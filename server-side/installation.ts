@@ -40,7 +40,7 @@ async function runMigration(client){
         const pageComponentRelation: Relation = {
             RelationName: "PageBlock",
             Name: blockName, // TODO: change to block name
-            Description: blockName + 'Description', // TODO: change to block description
+            Description: `${blockName} block`, // TODO: change to block description
             Type: "NgComponent",
             SubType: "NG11",
             AddonUUID: client.AddonUUID,
@@ -53,7 +53,7 @@ async function runMigration(client){
 
         const service = new MyService(client);
         const result = await service.upsertRelation(pageComponentRelation);
-        return { success:true, resultObject: {result} };
+        return { success:true, resultObject: result };
     } catch(err) {
         return { success: false, resultObject: err };
     }
