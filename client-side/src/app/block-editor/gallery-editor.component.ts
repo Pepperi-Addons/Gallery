@@ -2,11 +2,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-    selector: 'gallary',
-    templateUrl: './gallary.component.html',
-    styleUrls: ['./gallary.component.css']
+    selector: 'gallery-editor',
+    templateUrl: './gallery-editor.component.html',
+    styleUrls: ['./gallery-editor.component.css']
 })
-export class GallaryComponent implements OnInit {
+export class GalleryEditorComponent implements OnInit {
     @Input() hostObject: any;
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
@@ -14,11 +14,11 @@ export class GallaryComponent implements OnInit {
     constructor(private translate: TranslateService) { }
 
     ngOnInit(): void {
-        // When finish load raise block-loaded.
-        this.hostEvents.emit({action: 'block-loaded'});
+        // When finish load raise block-editor-loaded.
+        this.hostEvents.emit({action: 'block-editor-loaded'});
     }
 
     ngOnChanges(e: any): void {
-
+        
     }
 }

@@ -1,15 +1,16 @@
-import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { PepAddonService, PepFileService } from '@pepperi-addons/ngx-lib';
 
-import { GallaryEditorComponent } from './gallary-editor.component';
+import { GalleryComponent } from './gallery.component';
 
 import { config } from '../addon.config';
 
 @NgModule({
-    declarations: [GallaryEditorComponent],
+    declarations: [GalleryComponent],
     imports: [
         CommonModule,
         TranslateModule.forChild({
@@ -21,13 +22,13 @@ import { config } from '../addon.config';
             }, isolate: false
         }),
     ],
-    exports: [GallaryEditorComponent],
+    exports: [GalleryComponent],
     providers: [
         TranslateStore,
         // Add here all used services.
     ]
 })
-export class GallaryEditorModule {
+export class GalleryModule {
     constructor(
         translate: TranslateService,
         private pepAddonService: PepAddonService

@@ -1,7 +1,7 @@
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 // TODO: Change block name (if it more then one word put '_' between).
-const blockName = 'gallary';
+const blockName = 'gallery';
 
 module.exports = {
     output: {
@@ -17,8 +17,8 @@ module.exports = {
             name: blockName,
             filename: `${blockName}.js`,
             exposes: {
-                './GallaryModule': './src/app/block/index',
-                './GallaryEditorModule': './src/app/block-editor/index'
+                './GalleryModule': './src/app/block/index',
+                './GalleryEditorModule': './src/app/block-editor/index'
             },
             shared: {
                 "@angular/core": { eager: true, singleton: true, strictVersion: false },

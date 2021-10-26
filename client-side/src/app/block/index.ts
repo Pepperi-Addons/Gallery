@@ -1,2 +1,2 @@
-export * from './gallary.component';
-export * from './gallary.module';
+export * from './gallery.component';
+export * from './gallery.module';
