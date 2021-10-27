@@ -1,1 +1,120 @@
-Gallery editor works...
+<mat-tab-group  #tabGroup class="editor-tabs" animationDuration="0ms">
+    <mat-tab label="{{'GALLERY_EDITOR.TABS.GENERAL' | translate}}">
+    <label class="body-xl bold ellipsis">{{'GALLERY_EDITOR.GRID' | translate}}</label>
+    <div>
+        <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.MAX_COLUMNS' | translate}}</label>
+        <mat-slider [value]="configuration.galleryConfig.maxColumns" aria-label="unit(s)" [min]="'0'" [max]="'10'" [disabled]="" 
+                    (change)="onGalleryFieldChange('maxColumns',$event)" [thumbLabel]="'false'">
+        </mat-slider>
+    </div>
+    <div class="split-area">
+        <pep-textbox [label]="'GALLERY_EDITOR.GAP' | translate" type="int" 
+            [value]="configuration.galleryConfig.gap" (valueChange)="onGalleryFieldChange('gap',$event)"></pep-textbox>
+        <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="int" 
+            [value]="configuration.galleryConfig.imageHeight" (valueChange)="onGalleryFieldChange('imageHeight',$event)"></pep-textbox>
+    </div>
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.GRID_EXPLANATION' | translate}}</label>
+    <pep-checkbox [value]="configuration.galleryConfig.useText" 
+        [label]="'GALLERY_EDITOR.TEXT' | translate" 
+        [renderTitle]="false" 
+        (valueChange)="onGalleryFieldChange('useText',$event)">
+    </pep-checkbox>
+    
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.CARD_COLOR' | translate}}</label>
+    <pep-group-buttons [buttons]="[]" 
+                       [selectedButtonKey]="configuration.galleryConfig.cardColor" 
+                        buttonsClass="md regular" 
+                        [buttonsDisabled]="!configuration.galleryConfig.useText"
+                        (buttonClick)="onGalleryFieldChange('contentWidth',$event)" 
+                        viewType="toggle" 
+                        stretch="true">
+    </pep-group-buttons>
+
+    <label class="body-xs normal ellipsis" disabled="!configuration.galleryConfig.useText">{{'GALLERY_EDITOR.VERTICAL' | translate}}</label>
+    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'Top'}, {'key': '1', 'value': 'Center'}, {'key': '1', 'value': 'Bottom'}]"
+                       (buttonClick)="onGalleryFieldChange('innerSpacing',$event)"
+                       [selectedButtonKey]="configuration.galleryConfig.cardColor" 
+                        buttonsClass="md regular" 
+                        [buttonsDisabled]="!configuration.galleryConfig.useText"
+                        viewType="toggle" 
+                        stretch="true">>
+    </pep-group-buttons>
+
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.HORIZONTAL' | translate}}</label>
+    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'Left'}, {'key': '1', 'value': 'Center'}, {'key': '1', 'value': 'Right'}, ]" [selectedButtonKey]="" buttonsClass="md regular" 
+                        (buttonClick)="onGalleryFieldChange('horizontalAlign',$event)" viewType="toggle" stretch="true">
+    </pep-group-buttons>
+
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TEXT_POS_STYLING' | translate}}</label>
+    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'Overlyed'}, {'key': '2', 'value': 'Separated'}]" [selectedButtonKey]="" buttonsClass="md regular" 
+                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)" viewType="toggle" stretch="true">
+    </pep-group-buttons>
+
+    <pep-checkbox [value]="false" 
+        [label]="'GALLERY_EDITOR.TITLE' | translate" 
+        [renderTitle]="false" 
+        (valueChange)="onGalleryFieldChange('dropShadow.useDropShadow',$event)">
+    </pep-checkbox>
+
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TITLE_SIZE' | translate}}</label>
+    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'SM'}, {'key': '2', 'value': 'MD'}, {'key': '3', 'value': 'LG'}, {'key': '4', 'value': 'XL'}]" [selectedButtonKey]="" buttonsClass="md regular" 
+                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)" viewType="toggle" stretch="true">
+    </pep-group-buttons>
+
+    <pep-checkbox [value]="false" 
+        [label]="'GALLERY_EDITOR.DESCRIPTION' | translate" 
+        [renderTitle]="false" 
+        (valueChange)="onGalleryFieldChange('dropShadow.useDropShadow',$event)">
+    </pep-checkbox>
+
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.GROUP_TITLE_DESCRIPTION' | translate}}</label>
+    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'SM'}, {'key': '2', 'value': 'MD'}, {'key': '3', 'value': 'LG'}, {'key': '4', 'value': 'XL'}]" [selectedButtonKey]="" buttonsClass="md regular" 
+                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)" viewType="toggle" stretch="true">
+    </pep-group-buttons>
+
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TEXT_SIZE' | translate}}</label>
+    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'SM'}, {'key': '2', 'value': 'MD'}, {'key': '3', 'value': 'LG'}, {'key': '4', 'value': 'XL'}]" [selectedButtonKey]="" buttonsClass="md regular" 
+                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)" viewType="toggle" stretch="true">
+    </pep-group-buttons>
+
+    <pep-textbox [value]="" [label]="'GALLERY_EDITOR.MAX_NUM_OF_LINES' | translate" (valueChange)="onGalleryFieldChange('height',$event)"></pep-textbox>
+     
+    <pep-checkbox [value]="" [label]="'GALLERY_EDITOR.BORDER' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('overlay.useGradientOverlay',$event)"></pep-checkbox>
+    <pep-color [value]="" [label]="'GALLERY_EDITOR.BORDER_COLOR' | translate" [disabled]="" xAlignment="left"
+            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onGalleryFieldChange('overlay.color',$event)">
+    </pep-color>
+    <div>
+        <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.BORDER_OPACITY' | translate}}</label>
+        <mat-slider [value]="" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="" 
+                    (change)="onGalleryFieldChange('overlay.opacity',$event)" [thumbLabel]="'false'">
+        </mat-slider>
+    </div>
+
+    <pep-checkbox [value]="" [label]="'GALLERY_EDITOR.GRADIENT_OVERLAY' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('overlay.useGradientOverlay',$event)"></pep-checkbox>
+    <pep-color [value]="" [label]="'GALLERY_EDITOR.GRADIENT_OVERLAY_COLOR' | translate" [disabled]="" xAlignment="left"
+            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onGalleryFieldChange('overlay.color',$event)">
+    </pep-color>
+    <div>
+        <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.GRADIENT_OVERLAY_OPACITY' | translate}}</label>
+        <mat-slider [value]="" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="" 
+                    (change)="onGalleryFieldChange('overlay.opacity',$event)" [thumbLabel]="'false'">
+        </mat-slider>
+    </div>
+
+    <pep-checkbox [value]="" [label]="'GALLERY_EDITOR.OVERLAY' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('overlay.useGradientOverlay',$event)"></pep-checkbox>
+    <pep-color [value]="" [label]="'GALLERY_EDITOR.OVERLAY_COLOR' | translate" [disabled]="" xAlignment="left"
+            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onGalleryFieldChange('overlay.color',$event)">
+    </pep-color>
+    <div>
+        <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.OVERLAY_OPACITY' | translate}}</label>
+        <mat-slider [value]="" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="" 
+                    (change)="onGalleryFieldChange('overlay.opacity',$event)" [thumbLabel]="'false'">
+        </mat-slider>
+    </div>
+
+
+    </mat-tab>
+    <mat-tab label="{{'GALLERY_EDITOR.TABS.CONTENT' | translate}}">
+
+    </mat-tab>
+</mat-tab-group>

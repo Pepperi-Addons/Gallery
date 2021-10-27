@@ -6,6 +6,42 @@
     "Title_Sub_Addon_3": "Hello Block 3",
     "Open_Dialog": "Open Dialog",
     "Dialog_Body": "Dialog from sub addon 3",
-    "Dialog_Title": "Dialog"
+    "Dialog_Title": "Dialog",
 
+    "GALLERY_EDITOR": {
+        "TABS":{
+            "GENERAL": "General",
+            "CONTENT": "Content"
+        },
+        "GRID": "Grid",
+        "MAX_COLUMNS": "Max Columns",
+        "GAP": "Gap (rem)",
+        "IMAGE_HEIGHT": "Image Height (rem)",
+        "GRID_EXPLANATION": "The grid is set by the amount of images uploaded and number of columns selected.",
+        "TEXT": "Text",
+        "CARD_COLOR": "Card Color",
+        "VERTICAL": "Vertical Position",
+        "HORIZONTAL": "Content Align -> Horizontal",
+        "TEXT_POS_STYLING": "Text Position Styling",
+        "TITLE": "Title",
+        "TITLE_SIZE": "Title Size",
+        "DESCRIPTION": "Description",
+        "GROUP_TITLE_DESCRIPTION": "Group Title and Description",
+        "TEXT_SIZE": "Text Size",
+        "MAX_NUM_OF_LINES": "Maximun number of lines (truncate)",
+        "BORDER": "Border",
+        "BORDER_COLOR": "Border color",
+        "BORDER_OPACITY": "Border opacity",
+        "GRADIENT_OVERLAY": "Gradient overlay",
+        "GRADIENT_OVERLAY_COLOR": "Gradient overlay color",
+        "GRADIENT_OVERLAY_OPACITY": "Gradient overlay opacity",
+        "OVERLAY": "Overlay",
+        "OVERLAY_COLOR": "Overlay color",
+        "OVERLAY_OPACITY": "Overlay opacity",
+        "DROP_SHADOW": "Drop shadow",
+        "SHADOW_INTENSITY": "Shadow Intensity",
+        "SHADOW_OPACITY": "Shadow opacity"
+    }
 }
+
+
