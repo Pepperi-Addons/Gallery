@@ -40,7 +40,16 @@
         "OVERLAY_OPACITY": "Overlay opacity",
         "DROP_SHADOW": "Drop shadow",
         "SHADOW_INTENSITY": "Shadow Intensity",
-        "SHADOW_OPACITY": "Shadow opacity"
+        "SHADOW_OPACITY": "Shadow opacity",
+        "TEXT_COLOR": {
+            "SYSTEM": "System",
+            "INVERT": "Invert"
+        },
+        "VERTICAL_ALIGN": {
+            "TOP": "Top",
+            "MIDDLE": "Middle",
+            "BOTTOM": "Bottom"
+        }
     }
 }
 

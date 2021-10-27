@@ -77,8 +77,11 @@ const pepIcons = [
 export class GalleryEditorModule {
     constructor(
         translate: TranslateService,
+        private pepIconRegistry: PepIconRegistry,
         private pepAddonService: PepAddonService
     ) {
         this.pepAddonService.setDefaultTranslateLang(translate);
+        this.pepIconRegistry.registerIcons(pepIcons);
     }
 }
+

@@ -1,6 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IGallery, IGalleryEditor, IHostObject, IImageEditor } from '../gallery.model';
+import { PepButton } from '@pepperi-addons/ngx-lib/button';
 
 @Component({
     selector: 'gallery-editor',
@@ -27,6 +28,10 @@ export class GalleryEditorComponent implements OnInit {
         return this._configuration;
     }
 
+    public textColor: Array<PepButton> = [];
+    public VerticalAlign: Array<PepButton> = [];
+    public HorizentalAlign: Array<PepButton> = [];
+
     constructor(private translate: TranslateService) { }
 
     async ngOnInit(): Promise<void> {
@@ -35,11 +40,22 @@ export class GalleryEditorComponent implements OnInit {
         }
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
 
-        // this.buttonColor = [
-        //     { key: 'system-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.SYSTEM') },
-        //     { key: 'invert', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.INVERTED') },
-        //     { key: 'user-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.USER') },
-        // ]
+        this.textColor = [
+            { key: 'system-primary', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.SYSTEM') },
+            { key: 'invert', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.INVERT') }
+        ]
+
+        this.VerticalAlign =  [
+            { key: 'top', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.TOP') },
+            { key: 'middle', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.MIDDLE') },
+            { key: 'bottom', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.BOTTOM') }
+        ];
+
+        this.HorizentalAlign =  [
+            { key: 'left', iconName: 'text_align_right' },
+            { key: 'center', iconName: 'text_align_center' },
+            { key: 'right', iconName: 'text_align_left' },
+        ];
 
 
         // When finish load raise block-editor-loaded.

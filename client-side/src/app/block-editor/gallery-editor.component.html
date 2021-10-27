@@ -21,27 +21,27 @@
     </pep-checkbox>
     
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.CARD_COLOR' | translate}}</label>
-    <pep-group-buttons [buttons]="[]" 
+    <pep-group-buttons [buttons]="textColor" 
                        [selectedButtonKey]="configuration.galleryConfig.cardColor" 
                         buttonsClass="md regular" 
                         [buttonsDisabled]="!configuration.galleryConfig.useText"
-                        (buttonClick)="onGalleryFieldChange('contentWidth',$event)" 
+                        (buttonClick)="onGalleryFieldChange('cardColor',$event)" 
                         viewType="toggle" 
                         stretch="true">
     </pep-group-buttons>
 
-    <label class="body-xs normal ellipsis" disabled="!configuration.galleryConfig.useText">{{'GALLERY_EDITOR.VERTICAL' | translate}}</label>
-    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'Top'}, {'key': '1', 'value': 'Center'}, {'key': '1', 'value': 'Bottom'}]"
-                       (buttonClick)="onGalleryFieldChange('innerSpacing',$event)"
-                       [selectedButtonKey]="configuration.galleryConfig.cardColor" 
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.VERTICAL' | translate}}</label>
+    <pep-group-buttons [buttons]="VerticalAlign"
+                       (buttonClick)="onGalleryFieldChange('verticalAlign',$event)"
+                       [selectedButtonKey]="configuration.galleryConfig.verticalAlign" 
                         buttonsClass="md regular" 
                         [buttonsDisabled]="!configuration.galleryConfig.useText"
                         viewType="toggle" 
-                        stretch="true">>
+                        stretch="true">
     </pep-group-buttons>
 
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.HORIZONTAL' | translate}}</label>
-    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'Left'}, {'key': '1', 'value': 'Center'}, {'key': '1', 'value': 'Right'}, ]" [selectedButtonKey]="" buttonsClass="md regular" 
+    <pep-group-buttons [buttons]="HorizentalAlign" [selectedButtonKey]="" buttonsClass="md regular" 
                         (buttonClick)="onGalleryFieldChange('horizontalAlign',$event)" viewType="toggle" stretch="true">
     </pep-group-buttons>
 
