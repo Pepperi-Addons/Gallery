@@ -27,7 +27,7 @@
         "TITLE_SIZE": "Title Size",
         "DESCRIPTION": "Description",
         "GROUP_TITLE_DESCRIPTION": "Group Title and Description",
-        "TEXT_SIZE": "Text Size",
+        "DESCRIPTION_SIZE": "Text Size",
         "MAX_NUM_OF_LINES": "Maximun number of lines (truncate)",
         "BORDER": "Border",
         "BORDER_COLOR": "Border color",
@@ -49,6 +49,20 @@
             "TOP": "Top",
             "MIDDLE": "Middle",
             "BOTTOM": "Bottom"
+        },
+        "TEXT_POSITION": {
+            "OVERLYED": "Overlyed",
+            "SEPARATED": "Separated"
+        },
+        "GROUP_SIZE": {
+            "SM": "SM",
+            "MD": "MD",
+            "LG": "LG",
+            "XL": "XL"
+        },
+        "GROUP": {
+            "GROUPED": "Grouped",
+            "UNGROUPED": "Ungrouped"
         }
     }
 }

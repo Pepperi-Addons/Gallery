@@ -3,18 +3,18 @@
     <label class="body-xl bold ellipsis">{{'GALLERY_EDITOR.GRID' | translate}}</label>
     <div>
         <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.MAX_COLUMNS' | translate}}</label>
-        <mat-slider [value]="configuration.galleryConfig.maxColumns" aria-label="unit(s)" [min]="'0'" [max]="'10'" [disabled]="" 
+        <mat-slider [value]="configuration?.galleryConfig?.maxColumns" aria-label="unit(s)" [min]="'0'" [max]="'10'" [disabled]="" 
                     (change)="onGalleryFieldChange('maxColumns',$event)" [thumbLabel]="'false'">
         </mat-slider>
     </div>
     <div class="split-area">
-        <pep-textbox [label]="'GALLERY_EDITOR.GAP' | translate" type="int" 
-            [value]="configuration.galleryConfig.gap" (valueChange)="onGalleryFieldChange('gap',$event)"></pep-textbox>
+        <pep-textbox [label]="'GALLERY_EDITOR.GAP' | translate" type="decimal" 
+            [value]="configuration?.galleryConfig?.gap" (valueChange)="onGalleryFieldChange('gap',$event)"></pep-textbox>
         <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="int" 
-            [value]="configuration.galleryConfig.imageHeight" (valueChange)="onGalleryFieldChange('imageHeight',$event)"></pep-textbox>
+            [value]="configuration?.galleryConfig?.imageHeight" (valueChange)="onGalleryFieldChange('imageHeight',$event)"></pep-textbox>
     </div>
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.GRID_EXPLANATION' | translate}}</label>
-    <pep-checkbox [value]="configuration.galleryConfig.useText" 
+    <pep-checkbox [value]="configuration?.galleryConfig?.useText" 
         [label]="'GALLERY_EDITOR.TEXT' | translate" 
         [renderTitle]="false" 
         (valueChange)="onGalleryFieldChange('useText',$event)">
@@ -22,10 +22,10 @@
     
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.CARD_COLOR' | translate}}</label>
     <pep-group-buttons [buttons]="textColor" 
-                       [selectedButtonKey]="configuration.galleryConfig.cardColor" 
+                       [selectedButtonKey]="configuration?.galleryConfig?.cardTextColor" 
                         buttonsClass="md regular" 
-                        [buttonsDisabled]="!configuration.galleryConfig.useText"
-                        (buttonClick)="onGalleryFieldChange('cardColor',$event)" 
+                        [buttonsDisabled]="!configuration?.galleryConfig?.useText"
+                        (buttonClick)="onGalleryFieldChange('cardTextColor',$event)" 
                         viewType="toggle" 
                         stretch="true">
     </pep-group-buttons>
@@ -33,51 +33,79 @@
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.VERTICAL' | translate}}</label>
     <pep-group-buttons [buttons]="VerticalAlign"
                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)"
-                       [selectedButtonKey]="configuration.galleryConfig.verticalAlign" 
+                       [selectedButtonKey]="configuration?.galleryConfig?.verticalAlign" 
                         buttonsClass="md regular" 
-                        [buttonsDisabled]="!configuration.galleryConfig.useText"
+                        [buttonsDisabled]="!configuration?.galleryConfig?.useText"
                         viewType="toggle" 
                         stretch="true">
     </pep-group-buttons>
 
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.HORIZONTAL' | translate}}</label>
-    <pep-group-buttons [buttons]="HorizentalAlign" [selectedButtonKey]="" buttonsClass="md regular" 
-                        (buttonClick)="onGalleryFieldChange('horizontalAlign',$event)" viewType="toggle" stretch="true">
+    <pep-group-buttons [buttons]="HorizentalAlign" 
+                       [selectedButtonKey]="configuration?.galleryConfig?.horizontalAlign" 
+                        buttonsClass="md regular" 
+                        (buttonClick)="onGalleryFieldChange('horizontalAlign',$event)" 
+                        [buttonsDisabled]="!configuration?.galleryConfig?.useText" 
+                        viewType="toggle" 
+                        stretch="true">
     </pep-group-buttons>
 
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TEXT_POS_STYLING' | translate}}</label>
-    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'Overlyed'}, {'key': '2', 'value': 'Separated'}]" [selectedButtonKey]="" buttonsClass="md regular" 
-                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)" viewType="toggle" stretch="true">
+    <pep-group-buttons [buttons]="TextPositionStyling" 
+                       [selectedButtonKey]="configuration?.galleryConfig?.textPosition" buttonsClass="md regular" 
+                       [buttonsDisabled]="!configuration?.galleryConfig?.useText" 
+                       (buttonClick)="onGalleryFieldChange('textPosition',$event)" 
+                       viewType="toggle" stretch="true">
     </pep-group-buttons>
 
-    <pep-checkbox [value]="false" 
+    <pep-checkbox [value]="configuration?.galleryConfig?.useTitle" 
         [label]="'GALLERY_EDITOR.TITLE' | translate" 
         [renderTitle]="false" 
-        (valueChange)="onGalleryFieldChange('dropShadow.useDropShadow',$event)">
+        (valueChange)="onGalleryFieldChange('useTitle',$event)">
     </pep-checkbox>
 
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TITLE_SIZE' | translate}}</label>
-    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'SM'}, {'key': '2', 'value': 'MD'}, {'key': '3', 'value': 'LG'}, {'key': '4', 'value': 'XL'}]" [selectedButtonKey]="" buttonsClass="md regular" 
-                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)" viewType="toggle" stretch="true">
+    <pep-group-buttons [buttons]="PepSizes" 
+                       [selectedButtonKey]="configuration?.galleryConfig?.titleSize" 
+                        buttonsClass="md regular" 
+                        (buttonClick)="onGalleryFieldChange('titleSize',$event)" 
+                        [buttonsDisabled]="!configuration?.galleryConfig?.useTitle" 
+                        viewType="toggle" 
+                        stretch="true">
     </pep-group-buttons>
 
-    <pep-checkbox [value]="false" 
+    <pep-checkbox [value]="configuration?.galleryConfig?.useDescription" 
         [label]="'GALLERY_EDITOR.DESCRIPTION' | translate" 
         [renderTitle]="false" 
-        (valueChange)="onGalleryFieldChange('dropShadow.useDropShadow',$event)">
+        (valueChange)="onGalleryFieldChange('useDescription',$event)">
     </pep-checkbox>
 
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.GROUP_TITLE_DESCRIPTION' | translate}}</label>
-    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'SM'}, {'key': '2', 'value': 'MD'}, {'key': '3', 'value': 'LG'}, {'key': '4', 'value': 'XL'}]" [selectedButtonKey]="" buttonsClass="md regular" 
-                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)" viewType="toggle" stretch="true">
+    <pep-group-buttons [buttons]="GroupTitleAndDescription" 
+                       [selectedButtonKey]="configuration?.galleryConfig?.groupTitleAndDescription" 
+                       buttonsClass="md regular" 
+                       [buttonsDisabled]="!configuration?.galleryConfig?.useDescription"  
+                       (buttonClick)="onGalleryFieldChange('groupTitleAndDescription',$event)" 
+                       viewType="toggle" 
+                       stretch="true">
     </pep-group-buttons>
 
-    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TEXT_SIZE' | translate}}</label>
-    <pep-group-buttons [buttons]="[{'key': '1', 'value': 'SM'}, {'key': '2', 'value': 'MD'}, {'key': '3', 'value': 'LG'}, {'key': '4', 'value': 'XL'}]" [selectedButtonKey]="" buttonsClass="md regular" 
-                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)" viewType="toggle" stretch="true">
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.DESCRIPTION_SIZE' | translate}}</label>
+    <pep-group-buttons [buttons]="PepSizes" 
+                       [selectedButtonKey]="configuration?.galleryConfig?.descriptionSize" 
+                        buttonsClass="md regular" 
+                        [buttonsDisabled]="!configuration?.galleryConfig?.useDescription" 
+                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)"
+                        viewType="toggle" 
+                        stretch="true">
     </pep-group-buttons>
 
-    <pep-textbox [value]="" [label]="'GALLERY_EDITOR.MAX_NUM_OF_LINES' | translate" (valueChange)="onGalleryFieldChange('height',$event)"></pep-textbox>
+    <pep-textbox [value]="configuration?.galleryConfig?.descriptionMaxNumOfLines" 
+                 [label]="'GALLERY_EDITOR.MAX_NUM_OF_LINES' | translate" 
+                 (valueChange)="onGalleryFieldChange('descriptionMaxNumOfLines',$event)"
+                 [disabled]="!configuration?.galleryConfig?.useDescription"
+                 type="int" >
+    </pep-textbox>
      
     <pep-checkbox [value]="" [label]="'GALLERY_EDITOR.BORDER' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('overlay.useGradientOverlay',$event)"></pep-checkbox>
     <pep-color [value]="" [label]="'GALLERY_EDITOR.BORDER_COLOR' | translate" [disabled]="" xAlignment="left"
