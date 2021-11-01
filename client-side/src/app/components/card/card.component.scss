@@ -1,0 +1,32 @@
+@import '~@pepperi-addons/ngx-lib/theming';
+@import 'ngx-lib/src/core/style/abstracts/variables';
+//@import 'ngx-lib/src/core/style/abstracts/mixins';
+@include pepperi-theme();
+// Get the theme object.
+$pepperi-theme: get-pepperi-theme();
+
+:host{
+    width: 100%;
+}
+.cardCont{
+    display: grid;
+    border: 1px solid red;
+    width: calc((100% - 0rem) / 1);
+    grid-template-rows: min-content auto min-content;
+
+    div{
+        display: flex;
+
+        &.imageCont{
+            background-size: cover;
+            flex-direction: column;
+        }
+    }
+
+    &.textColor_system-primary{
+        color: get-pep-color($pepperi-theme, color-text, color-regular);
+    }
+    &.textColor_invert{
+        color: get-pep-color($pepperi-theme, color-text, color-invert);
+    }
+}

@@ -1,0 +1,76 @@
+<div class="cardCont" 
+    [ngStyle]="{'width': getCardWidth(),
+                'height' : galleryConfig?.imageHeight + 'rem'}"
+    [ngClass]="['textColor_'+ galleryConfig?.cardTextColor]">
+    
+    <ng-container *ngIf="galleryConfig?.useText && 
+                        (galleryConfig?.useTitle || galleryConfig?.useDescription) &&
+                        galleryConfig?.textPosition === 'separated'
+                        then title;">
+    </ng-container>
+    
+    <ng-container *ngTemplateOutlet="image"></ng-container>
+    
+    <ng-container *ngIf="galleryConfig?.useText && 
+                         galleryConfig?.useDescription &&
+                         galleryConfig?.textPosition === 'separated'; 
+                         then description; else empty"></ng-container>
+</div>
+
+<!-- <ng-template #titleAnddescription>
+    Both
+</ng-template> -->
+<ng-template #title>
+    <div [ngClass]="['body-' + galleryConfig.titleSize]"
+         [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
+                    'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
+         <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped'">
+            <ng-container *ngTemplateOutlet="text; context: {entry: 'title'}">
+            </ng-container>
+            <ng-container *ngTemplateOutlet="text; context: {entry: 'description'}">
+            </ng-container>
+         </ng-container>
+                    
+    </div>
+</ng-template>
+
+<ng-template #image>
+    <div class="imageCont"
+    [ngStyle]="{'justify-content': galleryConfig?.verticalAlign}"
+         style='background-image: url("https://www.desktopbackground.org/p/2011/02/22/161528_tilicho-lake-in-nepal-wallpapers-nature-wallpapers_1680x1050_h.jpg"); height:100%; width: 100%;'>
+        <ng-container *ngIf="galleryConfig?.useText && 
+                         galleryConfig?.textPosition === 'overlyed'; 
+                         then overlayedText; else empty"></ng-container>
+    </div>
+</ng-template>
+
+<ng-template #description>
+    <div [ngClass]="['body-' + galleryConfig.descriptionSize]"
+         [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
+                    'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
+         <ng-container *ngTemplateOutlet="text; context: {entry: 'description'}" >
+     </ng-container>
+    </div>
+</ng-template>
+
+<ng-template #overlayedText>
+    <ng-container *ngIf="galleryConfig?.useText && 
+                        galleryConfig?.useTitle
+                        then title; else null"></ng-container>
+    <ng-container *ngIf="galleryConfig?.useText && 
+                        galleryConfig?.useDescription
+                        then description; else null"></ng-container>
+</ng-template>
+
+
+<ng-template #text let-entry="entry">
+    <div *ngIf="entry === 'title'">
+        Title1
+    </div>
+    <div *ngIf="entry === 'description'">
+        Description1
+    </div>
+
+</ng-template>
+
+<ng-template #empty><div></div></ng-template>
