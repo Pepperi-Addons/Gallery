@@ -21,6 +21,11 @@ $pepperi-theme: get-pepperi-theme();
             background-size: cover;
             flex-direction: column;
         }
+
+        .groupedText{
+            display: flex; 
+            flex-direction: column;
+        }
     }
 
     &.textColor_system-primary{

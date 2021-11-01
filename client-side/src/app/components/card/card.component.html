@@ -4,32 +4,38 @@
     [ngClass]="['textColor_'+ galleryConfig?.cardTextColor]">
     
     <ng-container *ngIf="galleryConfig?.useText && 
-                        (galleryConfig?.useTitle || galleryConfig?.useDescription) &&
-                        galleryConfig?.textPosition === 'separated'
-                        then title;">
+                         galleryConfig?.textPosition === 'separated' &&
+                        (galleryConfig?.useTitle || galleryConfig?.useDescription)
+                        then topHeader; else empty">
     </ng-container>
     
     <ng-container *ngTemplateOutlet="image"></ng-container>
     
     <ng-container *ngIf="galleryConfig?.useText && 
-                         galleryConfig?.useDescription &&
-                         galleryConfig?.textPosition === 'separated'; 
-                         then description; else empty"></ng-container>
+                        galleryConfig?.textPosition === 'separated' &&
+                        (galleryConfig?.useTitle || galleryConfig?.useDescription)
+                        then footer; else empty">
+    </ng-container>
 </div>
 
-<!-- <ng-template #titleAnddescription>
-    Both
-</ng-template> -->
-<ng-template #title>
-    <div [ngClass]="['body-' + galleryConfig.titleSize]"
-         [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
+
+<ng-template #topHeader>
+    <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
                     'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
-         <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped'">
+         
+        <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && 
+                             galleryConfig?.verticalAlign === 'start'">
+            <div class="groupedText"> 
+                <ng-container *ngTemplateOutlet="text; context: {entry: 'title'}">
+                </ng-container>
+                <ng-container *ngTemplateOutlet="text; context: {entry: 'description'}">
+                </ng-container>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'ungrouped'">
             <ng-container *ngTemplateOutlet="text; context: {entry: 'title'}">
             </ng-container>
-            <ng-container *ngTemplateOutlet="text; context: {entry: 'description'}">
-            </ng-container>
-         </ng-container>
+        </ng-container>
                     
     </div>
 </ng-template>
@@ -44,30 +50,42 @@
     </div>
 </ng-template>
 
-<ng-template #description>
-    <div [ngClass]="['body-' + galleryConfig.descriptionSize]"
-         [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
+<ng-template #footer>
+    <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
                     'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
-         <ng-container *ngTemplateOutlet="text; context: {entry: 'description'}" >
-     </ng-container>
+         
+    <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && galleryConfig?.verticalAlign === 'end'">
+            <div class="groupedText"> 
+                <ng-container *ngTemplateOutlet="text; context: {entry: 'title'}">
+                </ng-container>
+                <ng-container *ngTemplateOutlet="text; context: {entry: 'description'}">
+                </ng-container>
+            </div>
+    </ng-container>
+    <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'ungrouped'">
+            <ng-container *ngTemplateOutlet="text; context: {entry: 'description'}">
+            </ng-container>
+    </ng-container>
     </div>
 </ng-template>
 
 <ng-template #overlayedText>
-    <ng-container *ngIf="galleryConfig?.useText && 
-                        galleryConfig?.useTitle
-                        then title; else null"></ng-container>
-    <ng-container *ngIf="galleryConfig?.useText && 
-                        galleryConfig?.useDescription
-                        then description; else null"></ng-container>
+    <ng-container *ngTemplateOutlet="text; context: {entry: 'title'}">
+    </ng-container>
+    <ng-container *ngTemplateOutlet="text; context: {entry: 'description'}">
+    </ng-container>
 </ng-template>
 
 
 <ng-template #text let-entry="entry">
-    <div *ngIf="entry === 'title'">
+    <div *ngIf="entry === 'title' && galleryConfig?.useTitle" 
+         [ngClass]="['title-' + galleryConfig?.titleSize]"
+         [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}">
         Title1
     </div>
-    <div *ngIf="entry === 'description'">
+    <div *ngIf="entry === 'description' && galleryConfig?.useDescription" 
+         [ngClass]="['body-' + galleryConfig.descriptionSize]"
+         [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}">
         Description1
     </div>
 
