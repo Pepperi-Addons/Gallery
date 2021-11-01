@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IGallery, IGalleryEditor, IHostObject, IImageEditor } from '../gallery.model';
+import { IGallery, IGalleryEditor, IHostObject, ICardEditor } from '../gallery.model';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 
 @Component({
@@ -74,7 +74,7 @@ export class GalleryEditorComponent implements OnInit {
 
         this.GroupTitleAndDescription = [
             { key: 'grouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.GROUPED') },
-            { key: 'ungrouped', value: this.translate.instant('GALLERY_EDITOR.GROUPUNGROUPED') },
+            { key: 'ungrouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.UNGROUPED') },
         ]
 
 
@@ -110,17 +110,17 @@ export class GalleryEditorComponent implements OnInit {
 
     private loadDefaultConfiguration() {
         this._configuration = this.getDefaultHostObject();
-        //this.updateHostObject();
+        this.updateHostObject();
     }
 
-    private getDefaultImage(): IImageEditor {
-        let image = new IImageEditor();
+    private getDefaultCard(): ICardEditor {
+        let card = new ICardEditor();
         //a.id = 0;
 
-        return image;
+        return card;
     }
 
     private getDefaultHostObject(): IGallery {
-        return { galleryConfig: new IGalleryEditor(), images: [this.getDefaultImage()] };
+        return { galleryConfig: new IGalleryEditor(), cards: [this.getDefaultCard()] };
     }
 }

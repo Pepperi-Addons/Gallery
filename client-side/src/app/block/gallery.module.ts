@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { CardModule } from '../components/card/card.module';
 import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { PepAddonService, PepFileService } from '@pepperi-addons/ngx-lib';
 
@@ -13,6 +13,7 @@ import { config } from '../addon.config';
     declarations: [GalleryComponent],
     imports: [
         CommonModule,
+        CardModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
