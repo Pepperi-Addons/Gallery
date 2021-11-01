@@ -61,7 +61,8 @@
     <pep-checkbox [value]="configuration?.galleryConfig?.useTitle" 
         [label]="'GALLERY_EDITOR.TITLE' | translate" 
         [renderTitle]="false" 
-        (valueChange)="onGalleryFieldChange('useTitle',$event)">
+        (valueChange)="onGalleryFieldChange('useTitle',$event)"
+        [disabled]="!configuration?.galleryConfig?.useText">
     </pep-checkbox>
 
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TITLE_SIZE' | translate}}</label>
@@ -69,7 +70,7 @@
                        [selectedButtonKey]="configuration?.galleryConfig?.titleSize" 
                         buttonsClass="md regular" 
                         (buttonClick)="onGalleryFieldChange('titleSize',$event)" 
-                        [buttonsDisabled]="!configuration?.galleryConfig?.useTitle" 
+                        [buttonsDisabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
                         viewType="toggle" 
                         stretch="true">
     </pep-group-buttons>
@@ -77,14 +78,15 @@
     <pep-checkbox [value]="configuration?.galleryConfig?.useDescription" 
         [label]="'GALLERY_EDITOR.DESCRIPTION' | translate" 
         [renderTitle]="false" 
-        (valueChange)="onGalleryFieldChange('useDescription',$event)">
+        (valueChange)="onGalleryFieldChange('useDescription',$event)"
+        [disabled]="!configuration?.galleryConfig?.useText">
     </pep-checkbox>
 
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.GROUP_TITLE_DESCRIPTION' | translate}}</label>
     <pep-group-buttons [buttons]="GroupTitleAndDescription" 
                        [selectedButtonKey]="configuration?.galleryConfig?.groupTitleAndDescription" 
                        buttonsClass="md regular" 
-                       [buttonsDisabled]="!configuration?.galleryConfig?.useDescription"  
+                       [buttonsDisabled]="configuration?.galleryConfig?.textPosition === 'overlyed' || !configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useDescription"  
                        (buttonClick)="onGalleryFieldChange('groupTitleAndDescription',$event)" 
                        viewType="toggle" 
                        stretch="true">
@@ -94,8 +96,8 @@
     <pep-group-buttons [buttons]="PepSizes" 
                        [selectedButtonKey]="configuration?.galleryConfig?.descriptionSize" 
                         buttonsClass="md regular" 
-                        [buttonsDisabled]="!configuration?.galleryConfig?.useDescription" 
-                        (buttonClick)="onGalleryFieldChange('verticalAlign',$event)"
+                        [buttonsDisabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useDescription" 
+                        (buttonClick)="onGalleryFieldChange('descriptionSize',$event)"
                         viewType="toggle" 
                         stretch="true">
     </pep-group-buttons>
@@ -103,7 +105,7 @@
     <pep-textbox [value]="configuration?.galleryConfig?.descriptionMaxNumOfLines" 
                  [label]="'GALLERY_EDITOR.MAX_NUM_OF_LINES' | translate" 
                  (valueChange)="onGalleryFieldChange('descriptionMaxNumOfLines',$event)"
-                 [disabled]="!configuration?.galleryConfig?.useDescription"
+                 [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useDescription"
                  type="int" >
     </pep-textbox>
      

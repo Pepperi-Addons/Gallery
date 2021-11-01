@@ -3,22 +3,7 @@
      <gallery-card *ngFor="let currentCard of configuration?.cards" 
                    [card]="currentCard" 
                    [galleryConfig]="configuration?.galleryConfig">
-    <!-- <div main>Avner Main</div> -->
-    <!-- <div footer>Avner Footer</div> -->
-
-    <!-- <div header>Avner Header</div> -->
      </gallery-card>
-     
-    <!-- <div *ngFor="let in of counter(5)"
-         [ngStyle]="{   'width': getCardWidth(),
-                        'height' :   configuration?.galleryConfig?.imageHeight + 'rem',           
-                        'justify-content': configuration?.galleryConfig?.horizontalAlign,
-                        'align-items': configuration?.galleryConfig?.verticalAlign }"
-         style="display: flex; border: 1px solid Red;" >
-         <ng-container *ngIf="configuration?.galleryConfig?.textPosition === 'overlyed'; then textTemplate; else empty"></ng-container> 
-    </div> -->
-    <!-- <ng-container *ngIf="configuration?.galleryConfig?.textPosition != 'overlyed'; then textTemplate; else empty"></ng-container> -->
-   
 </div>
 
 <ng-template #textTemplate>
