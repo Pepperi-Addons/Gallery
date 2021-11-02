@@ -51,6 +51,7 @@
     "ng-gallery": "^5.0.0",
     "ng2-file-upload": "^1.4.0",
     "ngx-image-viewer": "^1.0.13",
+    "ngx-lib": "^1.0.1",
     "ngx-quill": "^12.0.1",
     "ngx-signaturepad": "0.0.9",
     "ngx-translate-multi-http-loader": "^3.0.0",
