@@ -1,6 +1,6 @@
 <div class="cardCont" 
     [ngStyle]="{'width': getCardWidth(),
-                'height' : galleryConfig?.imageHeight + 'rem'}"
+                'height' : galleryConfig?.cardHeight + 'rem'}"
     [ngClass]="['textColor_'+ galleryConfig?.cardTextColor]">
     
     <ng-container *ngIf="galleryConfig?.useText && 
@@ -83,11 +83,14 @@
          [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}">
         Title1
     </div>
-    <div *ngIf="entry === 'description' && galleryConfig?.useDescription" 
-         [ngClass]="['body-' + galleryConfig.descriptionSize]"
-         [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}">
-        Description1
-    </div>
+    <textarea *ngIf="entry === 'description' && galleryConfig?.useDescription" 
+             [ngClass]="['body-' + galleryConfig.descriptionSize]"
+             [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}"
+            [rows]="galleryConfig?.descriptionMaxNumOfLines"
+            [minRows]="1"
+            [maxRows]="galleryConfig?.descriptionMaxNumOfLines"
+        class="textarea">Description1 Description1 Description1 Description1 Description1
+</textarea>
 
 </ng-template>
 

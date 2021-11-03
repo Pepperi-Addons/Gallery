@@ -5,6 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { GalleryEditorComponent } from './gallery-editor.component';
 import { PepAddonService, PepCustomizationService, PepFileService, PepHttpService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
 import { MatTabsModule } from '@angular/material/tabs';
+import { PepSliderModule } from '@pepperi-addons/ngx-lib/slider';
 import { PepButtonModule } from '@pepperi-addons/ngx-lib/button';
 import { PepTextboxModule } from '@pepperi-addons/ngx-lib/textbox';
 import { PepCheckboxModule } from '@pepperi-addons/ngx-lib/checkbox';
@@ -14,7 +15,6 @@ import { PepColorModule } from '@pepperi-addons/ngx-lib/color';
 import { PepImageModule } from '@pepperi-addons/ngx-lib/image';
 import { PepTextareaModule, } from '@pepperi-addons/ngx-lib/textarea';
 import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
-import { MatSliderModule } from '@angular/material/slider';
 import { pepIconTextAlignCenter, pepIconTextAlignLeft, pepIconTextAlignRight, pepIconArrowBackRight, pepIconArrowBackLeft, pepIconArrowBack, pepIconArrowLeftAlt,pepIconArrowDown, pepIconArrowUp, PepIconModule, pepIconNumberPlus, PepIconRegistry, pepIconSystemBin, pepIconSystemBolt, pepIconSystemClose, pepIconSystemEdit, pepIconSystemMove } from '@pepperi-addons/ngx-lib/icon';
 import { PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 
@@ -42,6 +42,7 @@ const pepIcons = [
     declarations: [GalleryEditorComponent],
     imports: [
         PepButtonModule,
+        PepSliderModule,
         PepTextboxModule,
         PepSelectModule,
         PepCheckboxModule,
@@ -51,7 +52,6 @@ const pepIcons = [
         PepColorModule,
         PepImageModule,
         PepTextareaModule,
-        MatSliderModule,
         CommonModule,
         TranslateModule.forChild({
             loader: {

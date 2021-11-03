@@ -10,7 +10,6 @@ $pepperi-theme: get-pepperi-theme();
 }
 .cardCont{
     display: grid;
-    border: 1px solid red;
     width: calc((100% - 0rem) / 1);
     grid-template-rows: min-content auto min-content;
 
@@ -35,3 +34,18 @@ $pepperi-theme: get-pepperi-theme();
         color: get-pep-color($pepperi-theme, color-text, color-invert);
     }
 }
+
+.textarea {
+    background: transparent;
+    width: 100%;
+    border: none;
+    resize: none; /* hide browser provided resize handles */
+    overflow-y: overlay;
+    -ms-overflow-style: none; /* hide scrollbar in IE and Edge */
+    scrollbar-width: none; /* hide scrollbar in Firefox */
+  }
+  
+  .textarea::-webkit-scrollbar {
+    display: none; /* hide scrollbar in Chrome and variants */
+  }
+  

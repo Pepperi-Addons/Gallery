@@ -1,7 +1,9 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IGallery, IGalleryEditor, IHostObject, ICardEditor } from '../gallery.model';
+import { IGallery, IGalleryEditor, IHostObject, ICardEditor, Overlay } from '../gallery.model';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
+import { PepColorService } from '@pepperi-addons/ngx-lib';
+import { GalleryService } from 'src/common/gallery.service';
 
 @Component({
     selector: 'gallery-editor',
@@ -35,7 +37,7 @@ export class GalleryEditorComponent implements OnInit {
     public PepSizes: Array<PepButton> = [];
     public GroupTitleAndDescription: Array<PepButton> = [];
 
-    constructor(private translate: TranslateService) { }
+    constructor(private translate: TranslateService, private pepColorService: PepColorService, private galleryService: GalleryService) { }
 
     async ngOnInit(): Promise<void> {
         if (!this.configuration) {
@@ -50,7 +52,7 @@ export class GalleryEditorComponent implements OnInit {
 
         this.VerticalAlign =  [
             { key: 'start', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.TOP') },
-            { key: 'center', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.MIDDLE') },
+            { key: 'center', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.MIDDLE'), disabled: this.configuration.galleryConfig.groupTitleAndDescription === 'grouped' },
             { key: 'end', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.BOTTOM') }
         ];
 
@@ -83,7 +85,7 @@ export class GalleryEditorComponent implements OnInit {
     }
 
     ngOnChanges(e: any): void {
-        
+        debugger;
     }
 
     private updateHostObject() {
@@ -106,6 +108,14 @@ export class GalleryEditorComponent implements OnInit {
         }
 
         this.updateHostObject();
+
+        if(key === 'groupTitleAndDescription'){
+            this.VerticalAlign[1].disabled = this.configuration.galleryConfig.groupTitleAndDescription === 'grouped';
+            //check if the vertical align was center, if true set it automateclly to top
+            if( this.configuration.galleryConfig.verticalAlign === 'center'){
+                this.configuration.galleryConfig.verticalAlign = 'start';
+            }
+        }
     }
 
     private loadDefaultConfiguration() {
@@ -122,5 +132,18 @@ export class GalleryEditorComponent implements OnInit {
 
     private getDefaultHostObject(): IGallery {
         return { galleryConfig: new IGalleryEditor(), cards: [this.getDefaultCard()] };
+    }
+
+    getSliderBackground( color){
+        let alignTo = 'right';
+
+        let col: Overlay = new Overlay();
+
+        col.color = color;
+        col.opacity = '100';
+
+        let gradStr = this.galleryService.getRGBAcolor(col,0) +' , '+ this.galleryService.getRGBAcolor(col);
+        
+        return 'linear-gradient(to ' + alignTo +', ' +  gradStr +')';
     }
 }

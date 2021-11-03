@@ -1,6 +1,7 @@
+import { getMatScrollStrategyAlreadyAttachedError } from "@angular/cdk/overlay/scroll/scroll-strategy";
 import { PepHorizontalAlignment, PepSizeType} from "@pepperi-addons/ngx-lib";
-
-export type textColor = 'system-primary' | 'dimmed' | 'inverted' | 'strong';
+import { PepColorService } from '@pepperi-addons/ngx-lib';
+export type textColor = 'system-primary' | 'dimmed' | 'invert' | 'strong';
 export type verticalAlignment = 'start' | 'center' | 'end';
 export type textPositionStyling = 'overlyed' | 'separated';
 export type groupTitleAndDescription = 'grouped' | 'ungrouped';
@@ -20,26 +21,36 @@ export interface IGallery{
 
 export class Overlay {
     useGradientOverlay: boolean = true;
-    color: string = 'hsl(0, 0%, 100%)';
+    color: string = 'hsl(0, 0%, 57%)';
+    opacity: string = '0';
+}
+
+export class Color {
+    color: string = 'hsl(0, 0%, 57%)';
     opacity: string = '0';
 }
 
 export class IGalleryEditor {
-    maxColumns: number = 3;
+    maxColumns: number = 1;
     gap: number = 1;
-    imageHeight: number = 4;
+    cardHeight: number = 16;
     useText: boolean = true;
-    cardTextColor: textColor = 'system-primary';
-    verticalAlign: verticalAlignment  = 'center';
-    horizontalAlign: PepHorizontalAlignment = 'left';
+    cardTextColor: textColor = 'invert';
+    verticalAlign: verticalAlignment  = 'start';
+    horizontalAlign: PepHorizontalAlignment = 'center';
     textPosition: textPositionStyling = 'separated';
     useTitle: boolean = true;
-    titleSize: PepSizeType = 'lg';
+    titleSize: PepSizeType = 'xl';
     useDescription: boolean = true;
-    groupTitleAndDescription: groupTitleAndDescription = 'grouped';
-    descriptionSize: PepSizeType = 'md';
-    descriptionMaxNumOfLines: number = 3;
-
+    groupTitleAndDescription: groupTitleAndDescription = 'ungrouped';
+    descriptionSize: PepSizeType = 'sm';
+    descriptionMaxNumOfLines: number = 2;
+    useBorder: boolean = false;
+    border: Color = new Color();
+    useGradientOverlay: boolean = false;
+    gradientOverlay: Color = new Color();
+    useOverlay: boolean = false;
+    overlay: Color = new Color();
 }
 
 export class ICardEditor {
