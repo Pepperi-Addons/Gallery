@@ -1,6 +1,5 @@
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
-// TODO: Change block name (if it more then one word put '_' between).
 const blockName = 'gallery';
 
 module.exports = {
