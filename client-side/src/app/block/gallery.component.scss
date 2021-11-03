@@ -1,11 +1,15 @@
-@import '~@pepperi-addons/ngx-lib/theming';
-@import 'ngx-lib/src/core/style/abstracts/variables';
+//@import '~@pepperi-addons/ngx-lib/theming';
+//@import 'ngx-lib/src/core/style/abstracts/variables';
 //@import 'ngx-lib/src/core/style/abstracts/mixins';
-@include pepperi-theme();
+//@include pepperi-theme();
 // Get the theme object.
-$pepperi-theme: get-pepperi-theme();
+//$pepperi-theme: get-pepperi-theme();
 
 .backgroundCont{
+    height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     width: 100%;
     position: absolute;
     top: 0px;

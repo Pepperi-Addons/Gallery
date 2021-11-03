@@ -8,6 +8,7 @@
             [maxValue]="10"
             [disabled]="false" 
             [value]="configuration?.galleryConfig?.maxColumns"
+            [background]="getSliderBackground(configuration?.galleryConfig?.border?.color)"
             (valueChange)="onGalleryFieldChange('maxColumns',$event)">
     </pep-slider>
     <div class="split-area">
@@ -156,6 +157,16 @@
     </pep-slider>
     </mat-tab>
     <mat-tab label="{{'GALLERY_EDITOR.TABS.CONTENT' | translate}}">
+        <label class="body-xl bold ellipsis">{{'IMAGE_EDITOR.TAB_TITLE' | translate}}</label>
+            <div #availableSlidesContainer id="availableSlides" class="available-slides">
+                <card-editor *ngFor="let currentCard of configuration?.cards;" class="available-slide"
+                    [id]="currentCard?.id" [showActions]="true" 
+                    [isDraggable]="true" (editClick)='onCardEditClick($event);' (removeClick)='onCardRemoveClick($event);'
+                    [configuration]="configuration">
+                </card-editor>
+            </div>
 
+            <pep-button class="add-content-button" value="{{'IMAGE_EDITOR.ADD_IMAGE' | translate}}" styleType="regular" iconName="number_plus" iconPosition="end"
+                    (buttonClick)="addNewCardClick()"></pep-button>
     </mat-tab>
 </mat-tab-group>

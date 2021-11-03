@@ -1,0 +1,24 @@
+<div class="card-editor-container">
+    <div>
+        <pep-button classNames="lock-events" sizeType="xs" iconName="system_move"></pep-button>
+    </div>
+    <div *ngIf="title !== ''" class="title-container">
+        <span class="body-sm ellipsis">{{id}}.&nbsp;</span>
+        <span class="body-sm color-link bold ellipsis" title="{{configuration?.cards[id].title}}">{{configuration?.cards[id].title}}</span>
+    </div>
+    <div class="actions" *ngIf="showActions">
+        <pep-button classNames="caution" sizeType="xs" iconName="system_bin" (buttonClick)="onRemoveClick();"></pep-button>
+        <!-- <pep-menu sizeType="xs" iconName="system_view" ></pep-menu> -->
+        <!-- <hide-in [hideIn]="hideIn" (hideInChange)="onHideInChange($event)"></hide-in> -->
+        <pep-button *ngIf="id != configuration?.galleryConfig?.editSlideIndex" sizeType="xs" iconName="arrow_down" (buttonClick)="onEditClick();"></pep-button>
+        <pep-button *ngIf="id == configuration?.galleryConfig?.editSlideIndex" sizeType="xs" iconName="arrow_up" (buttonClick)="onEditClick();"></pep-button>
+    </div>
+    <div class="editorCont" *ngIf="id == configuration?.galleryConfig?.editSlideIndex">
+        <pep-textbox [label]="'IMAGE_EDITOR.TITLE' | translate" type="string" [value]="configuration?.cards[id].title" (valueChange)="onCardFieldChange('title',$event)"></pep-textbox>
+        <pep-textarea [value]="configuration?.cards[id].description" [label]="'IMAGE_EDITOR.DESCRIPTION' | translate"
+                      rowSpan="2" (valueChange)="onCardFieldChange('description',$event)">
+        </pep-textarea>
+        <pep-textbox [label]="'IMAGE_EDITOR.IMAGE_URL' | translate" type="link" [value]="configuration?.cards[id].imageURL" (valueChange)="onCardFieldChange('imageURL',$event)"></pep-textbox>
+        <pep-textbox [label]="'IMAGE_EDITOR.LINK_TO' | translate" type="link" [value]="configuration?.cards[id].linkTo" (valueChange)="onCardFieldChange('linkTo',$event)"></pep-textbox>
+    </div>
+</div>

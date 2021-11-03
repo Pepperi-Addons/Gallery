@@ -1,12 +1,11 @@
 <div class="backgroundCont"
      [ngStyle]="{'box-shadow': getOverlay(),
                  'background' : getGradientOverlay(),
-                 'height': configuration?.galleryConfig?.cardHeight + 'rem',
                  'border': getGalleryBorder()}">
 </div>
 <div style="display: flex;flex-wrap: wrap;width:100%"
      [ngStyle]="{'gap': configuration?.galleryConfig?.gap + 'rem'}">
-     <gallery-card *ngFor="let currentCard of configuration?.cards" 
+     <gallery-card *ngFor="let currentCard of configuration?.cards" [ngStyle]="{'width': getCardWidth()}"
                    [card]="currentCard" 
                    [galleryConfig]="configuration?.galleryConfig">
      </gallery-card>

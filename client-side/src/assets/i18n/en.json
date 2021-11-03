@@ -64,6 +64,17 @@
             "GROUPED": "Grouped",
             "UNGROUPED": "Ungrouped"
         }
+    },
+
+    "IMAGE_EDITOR": {
+        "TAB_TITLE": "Gallery images",
+        "ADD_IMAGE": "Add image to Gallery",
+        "TITLE": "Title",
+        "DESCRIPTION": "Description",
+        "IMAGE_URL": "Image URL",
+        "LINK_TO": "Link to",
+        "DELETE_IMAGE": "Delete image"
+
     }
 }
 

@@ -1,5 +1,5 @@
 <div class="cardCont" 
-    [ngStyle]="{'width': getCardWidth(),
+    [ngStyle]="{'width': '100%',
                 'height' : galleryConfig?.cardHeight + 'rem'}"
     [ngClass]="['textColor_'+ galleryConfig?.cardTextColor]">
     
@@ -42,8 +42,10 @@
 
 <ng-template #image>
     <div class="imageCont"
-    [ngStyle]="{'justify-content': galleryConfig?.verticalAlign}"
-         style='background-image: url("https://www.desktopbackground.org/p/2011/02/22/161528_tilicho-lake-in-nepal-wallpapers-nature-wallpapers_1680x1050_h.jpg"); height:100%; width: 100%;'>
+    [ngStyle]="{'justify-content': galleryConfig?.verticalAlign,
+                'background-image': getCardImageURL()}"
+                
+         style='height:100%; width: 100%;'>
         <ng-container *ngIf="galleryConfig?.useText && 
                          galleryConfig?.textPosition === 'overlyed'; 
                          then overlayedText; else empty"></ng-container>
@@ -81,15 +83,15 @@
     <div *ngIf="entry === 'title' && galleryConfig?.useTitle" 
          [ngClass]="['title-' + galleryConfig?.titleSize]"
          [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}">
-        Title1
+         {{card.title}}
     </div>
     <textarea *ngIf="entry === 'description' && galleryConfig?.useDescription" 
-             [ngClass]="['body-' + galleryConfig.descriptionSize]"
+             [ngClass]="['body-' + galleryConfig?.descriptionSize]"
              [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}"
             [rows]="galleryConfig?.descriptionMaxNumOfLines"
             [minRows]="1"
             [maxRows]="galleryConfig?.descriptionMaxNumOfLines"
-        class="textarea">Description1 Description1 Description1 Description1 Description1
+        class="textarea">{{card.description}}
 </textarea>
 
 </ng-template>

@@ -17,6 +17,7 @@ import { PepTextareaModule, } from '@pepperi-addons/ngx-lib/textarea';
 import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
 import { pepIconTextAlignCenter, pepIconTextAlignLeft, pepIconTextAlignRight, pepIconArrowBackRight, pepIconArrowBackLeft, pepIconArrowBack, pepIconArrowLeftAlt,pepIconArrowDown, pepIconArrowUp, PepIconModule, pepIconNumberPlus, PepIconRegistry, pepIconSystemBin, pepIconSystemBolt, pepIconSystemClose, pepIconSystemEdit, pepIconSystemMove } from '@pepperi-addons/ngx-lib/icon';
 import { PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
+import { CardEditorModule } from '../components/card-editor/card-editor.module';
 
 import { config } from '../addon.config';
 
@@ -43,6 +44,7 @@ const pepIcons = [
     imports: [
         PepButtonModule,
         PepSliderModule,
+        CardEditorModule,
         PepTextboxModule,
         PepSelectModule,
         PepCheckboxModule,

@@ -44,10 +44,8 @@ export class CardComponent implements OnInit {
 
  
 
-    getSlideboxHeight() {
-           // let height = parseInt(this.galleryConfig.height);
-            //let remTodecrease =  8 * (100 / document.documentElement.clientHeight);
-            //return (height - remTodecrease).toString() + this.slideshowConfig.heightUnit;
+    getCardImageURL() {
+           return this.card?.imageURL !== '' ? 'url("' + this.card.imageURL + '")' : '';
     }
 
     ngOnChanges(changes) { 

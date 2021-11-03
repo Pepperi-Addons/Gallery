@@ -1,5 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IGallery, IHostObject, Color } from '../gallery.model';
 import  { GalleryService } from '../../common/gallery.service';
 @Component({
@@ -8,6 +8,8 @@ import  { GalleryService } from '../../common/gallery.service';
     styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
+    
+    @ViewChild('availableSlidesContainer', { read: ElementRef }) availableBlocksContainer: ElementRef;
     
     @Input()
     set hostObject(value: IHostObject) {
@@ -36,11 +38,11 @@ export class GalleryComponent implements OnInit {
 
     getGradientOverlay(){
 
-        let gradient = this.configuration.galleryConfig.gradientOverlay;
-        let horAlign = this.configuration.galleryConfig.horizontalAlign;
+        let gradient = this.configuration?.galleryConfig?.gradientOverlay;
+        let horAlign = this.configuration?.galleryConfig?.horizontalAlign;
 
         let alignTo = horAlign != 'center' ? horAlign : 'left';
-        let gradStr = this.configuration.galleryConfig.useGradientOverlay ? (horAlign != 'center' ? this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0) : this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0)) : '';
+        let gradStr = this.configuration?.galleryConfig?.useGradientOverlay ? (horAlign != 'center' ? this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0) : this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0)) : '';
         
         gradStr = gradStr != '' ? 'linear-gradient(to ' + alignTo +', ' +  gradStr +')' : '';
         
@@ -52,8 +54,8 @@ export class GalleryComponent implements OnInit {
     }
     
     getGalleryBorder() {
-        if(this.configuration.galleryConfig.useBorder){
-            let col: Color = this.configuration.galleryConfig.border;
+        if(this.configuration?.galleryConfig?.useBorder){
+            let col: Color = this.configuration?.galleryConfig?.border;
             return  '1px solid ' + this.galleryService.getRGBAcolor(col);
         }
         else{
@@ -63,7 +65,6 @@ export class GalleryComponent implements OnInit {
 
     getCardWidth (){
         return ('calc((100%  - ' + (this.configuration?.galleryConfig?.gap) * (this.configuration?.galleryConfig?.maxColumns - 1) + 'rem) /' + this.configuration?.galleryConfig?.maxColumns + ')' );
-        // return (100 / this.configuration?.galleryConfig?.maxColumns) + '%';  
     }
 
     counter(i: number) {

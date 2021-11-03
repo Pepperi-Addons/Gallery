@@ -14,6 +14,7 @@ export class GalleryEditorComponent implements OnInit {
     // @Input() hostObject: any;
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
+    currentCardindex: number;
 
     @Input()
     set hostObject(value: IHostObject) {
@@ -52,7 +53,7 @@ export class GalleryEditorComponent implements OnInit {
 
         this.VerticalAlign =  [
             { key: 'start', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.TOP') },
-            { key: 'center', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.MIDDLE'), disabled: this.configuration.galleryConfig.groupTitleAndDescription === 'grouped' },
+            { key: 'center', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.MIDDLE'), disabled: this.configuration?.galleryConfig?.groupTitleAndDescription === 'grouped' },
             { key: 'end', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.BOTTOM') }
         ];
 
@@ -110,9 +111,9 @@ export class GalleryEditorComponent implements OnInit {
         this.updateHostObject();
 
         if(key === 'groupTitleAndDescription'){
-            this.VerticalAlign[1].disabled = this.configuration.galleryConfig.groupTitleAndDescription === 'grouped';
+            this.VerticalAlign[1].disabled = this.configuration?.galleryConfig?.groupTitleAndDescription === 'grouped';
             //check if the vertical align was center, if true set it automateclly to top
-            if( this.configuration.galleryConfig.verticalAlign === 'center'){
+            if( this.configuration?.galleryConfig?.verticalAlign === 'center'){
                 this.configuration.galleryConfig.verticalAlign = 'start';
             }
         }
@@ -125,7 +126,7 @@ export class GalleryEditorComponent implements OnInit {
 
     private getDefaultCard(): ICardEditor {
         let card = new ICardEditor();
-        //a.id = 0;
+        card.id = 0;
 
         return card;
     }
@@ -145,5 +146,28 @@ export class GalleryEditorComponent implements OnInit {
         let gradStr = this.galleryService.getRGBAcolor(col,0) +' , '+ this.galleryService.getRGBAcolor(col);
         
         return 'linear-gradient(to ' + alignTo +', ' +  gradStr +')';
+    }
+
+    addNewCardClick() {
+        let card = new ICardEditor();
+        card.id = (this.configuration?.cards.length);
+
+        this.configuration?.cards.push( card);   
+    }
+
+    onCardEditClick(event){
+       
+        if(this.configuration?.galleryConfig?.editSlideIndex === event.id){ //close the editor
+            this.configuration.galleryConfig.editSlideIndex = -1;
+        }
+        else{ 
+            this.currentCardindex = this.configuration.galleryConfig.editSlideIndex = parseInt(event.id);
+        }
+
+        this.updateHostObject();
+    }
+    onSlideRemoveClick(event){
+        this.configuration?.cards.splice(event.id, 1);
+        this.configuration?.cards.forEach(function(card, index, arr) {card.id = index; });
     }
 }

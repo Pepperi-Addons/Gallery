@@ -51,8 +51,13 @@ export class IGalleryEditor {
     gradientOverlay: Color = new Color();
     useOverlay: boolean = false;
     overlay: Color = new Color();
+    editSlideIndex: number = -1;
 }
 
 export class ICardEditor {
-
+    id: number;
+    title: string = "Gallery";
+    description: string = "Description";
+    imageURL: string = "";
+    linkTo: string = "";
 }
