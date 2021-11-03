@@ -85,7 +85,7 @@ export class GalleryEditorComponent implements OnInit {
     }
 
     ngOnChanges(e: any): void {
-        debugger;
+
     }
 
     private updateHostObject() {
