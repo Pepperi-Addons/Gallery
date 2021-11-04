@@ -8,7 +8,7 @@
             [maxValue]="10"
             [disabled]="false" 
             [value]="configuration?.galleryConfig?.maxColumns"
-            [background]="getSliderBackground(configuration?.galleryConfig?.border?.color)"
+            [background]="'RGBA(0,0,0,50%)'"
             (valueChange)="onGalleryFieldChange('maxColumns',$event)">
     </pep-slider>
     <div class="split-area">
@@ -155,6 +155,36 @@
         [background]="getSliderBackground(configuration?.galleryConfig?.overlay?.color)"
         (valueChange)="onGalleryFieldChange('overlay.opacity',$event)">
     </pep-slider>
+
+
+    <pep-checkbox [value]="configuration?.galleryConfig?.useDropShadow" 
+                              [label]="'GALLERY_EDITOR.DROP_SHADOW' | translate" 
+                              [renderTitle]="false" 
+                              (valueChange)="onGalleryFieldChange('useDropShadow',$event)">
+    </pep-checkbox>
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.SHADOW_INTENSITY' | translate}}</label>
+    <pep-group-buttons 
+                    [buttons]="DropShadowStyle" 
+                    [selectedButtonKey]="configuration?.galleryConfig?.dropShadow?.intensity" 
+                    buttonsClass="md regular" 
+                    [buttonsDisabled]="!configuration?.galleryConfig?.useDropShadow"
+                    (buttonClick)="onGalleryFieldChange('dropShadow.intensity',$event)" 
+                    viewType="toggle" 
+                    stretch="true">
+    </pep-group-buttons>
+    <pep-slider
+                    [label]="'GALLERY_EDITOR.SHADOW_INTENSITY' | translate" 
+                    [hint]="configuration?.galleryConfig?.dropShadow?.opacity?.toString()" 
+                    [background]="'RGBA(0,0,0,50%)'"
+                    [minValue]="0" 
+                    [maxValue]="100"
+                    [disabled]="!configuration?.galleryConfig?.useDropShadow" 
+                    [value]="configuration?.galleryConfig?.dropShadow?.opacity"
+                    (valueChange)="onGalleryFieldChange('dropShadow.opacity',$event)">
+    </pep-slider>
+
+
+
     </mat-tab>
     <mat-tab label="{{'GALLERY_EDITOR.TABS.CONTENT' | translate}}">
         <label class="body-xl bold ellipsis">{{'IMAGE_EDITOR.TAB_TITLE' | translate}}</label>

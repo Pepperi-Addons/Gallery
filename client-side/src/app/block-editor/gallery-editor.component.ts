@@ -40,6 +40,7 @@ export class GalleryEditorComponent implements OnInit {
     public TextPositionStyling: Array<PepButton> = [];
     public PepSizes: Array<PepButton> = [];
     public GroupTitleAndDescription: Array<PepButton> = [];
+    public DropShadowStyle: Array<PepButton> = [];
 
     constructor(private translate: TranslateService, private pepColorService: PepColorService, private galleryService: GalleryService) { }
 
@@ -82,6 +83,11 @@ export class GalleryEditorComponent implements OnInit {
             { key: 'grouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.GROUPED') },
             { key: 'ungrouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.UNGROUPED') },
         ]
+
+        this.DropShadowStyle = [
+            { key: 'Soft', value: this.translate.instant('GALLERY_EDITOR.SHADOW.SOFT') },
+            { key: 'Regular', value: this.translate.instant('GALLERY_EDITOR.SHADOW.REGULAR') }
+        ];
 
 
         // When finish load raise block-editor-loaded.

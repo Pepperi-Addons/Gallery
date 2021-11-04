@@ -63,6 +63,10 @@
         "GROUP": {
             "GROUPED": "Grouped",
             "UNGROUPED": "Ungrouped"
+        },
+        "SHADOW": {
+            "SOFT": "Soft",
+            "REGULAR": "Regular"
         }
     },
 
