@@ -5,13 +5,18 @@
 // Get the theme object.
 //$pepperi-theme: get-pepperi-theme();
 
-.backgroundCont{
-    height: 100%;
-    height: -moz-available;          /* WebKit-based browsers will ignore this. */
-    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
-    height: fill-available;
-    width: 100%;
+.noImageFound{
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 50%;
+    text-shadow: -15px 5px 20px #ced0d3;
+    color: white;
+    font-family: "Anton", Arial, sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 2em;
+    transition: all 0.25s ease-out;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }

@@ -8,8 +8,18 @@ $pepperi-theme: get-pepperi-theme();
 :host{
     width: 100%;
 }
+.backgroundCont{
+    height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    pointer-events: none;
+}
 .cardCont{
-    display: grid;
     width: calc((100% - 0rem) / 1);
     grid-template-rows: min-content auto min-content;
 
@@ -18,6 +28,8 @@ $pepperi-theme: get-pepperi-theme();
 
         &.imageCont{
             background-size: cover;
+            background-size: cover;
+            background-position: center;
             flex-direction: column;
         }
 
@@ -40,7 +52,7 @@ $pepperi-theme: get-pepperi-theme();
     width: 100%;
     border: none;
     resize: none; /* hide browser provided resize handles */
-    overflow-y: overlay;
+    overflow-y: hidden;
     -ms-overflow-style: none; /* hide scrollbar in IE and Edge */
     scrollbar-width: none; /* hide scrollbar in Firefox */
   }

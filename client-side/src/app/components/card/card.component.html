@@ -1,8 +1,13 @@
+
 <div class="cardCont" 
     [ngStyle]="{'width': '100%',
-                'height' : galleryConfig?.cardHeight + 'rem'}"
-    [ngClass]="['textColor_'+ galleryConfig?.cardTextColor]">
-    
+                'display': galleryConfig?.textPosition === 'overlyed' ? 'block' : 'grid',
+                'height' : galleryConfig?.cardHeight + 'rem',
+                'cursor' : card?.linkTo != '' ? 'pointer' : 'inherit',
+                'border': getGalleryBorder()}"
+    [ngClass]="['textColor_'+ galleryConfig?.cardTextColor]"
+    (click)="onCardClicked()">
+
     <ng-container *ngIf="galleryConfig?.useText && 
                          galleryConfig?.textPosition === 'separated' &&
                         (galleryConfig?.useTitle || galleryConfig?.useDescription)
@@ -21,7 +26,8 @@
 
 <ng-template #topHeader>
     <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
-                    'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
+                    'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}"
+          class="ellipsis">
          
         <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && 
                              galleryConfig?.verticalAlign === 'start'">
@@ -43,7 +49,9 @@
 <ng-template #image>
     <div class="imageCont"
     [ngStyle]="{'justify-content': galleryConfig?.verticalAlign,
-                'background-image': getCardImageURL()}"
+                 'box-shadow': getOverlay(),
+                 'background-image' : getGradientOverlay()}"
+            
                 
          style='height:100%; width: 100%;'>
         <ng-container *ngIf="galleryConfig?.useText && 
@@ -80,11 +88,11 @@
 
 
 <ng-template #text let-entry="entry">
-    <div *ngIf="entry === 'title' && galleryConfig?.useTitle" 
-         [ngClass]="['title-' + galleryConfig?.titleSize]"
+    <div *ngIf="entry === 'title' && galleryConfig?.useTitle"
+         [ngClass]="['title-' + galleryConfig?.titleSize, 'ellipsis']"
          [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}">
          {{card.title}}
-    </div>
+</div>
     <textarea *ngIf="entry === 'description' && galleryConfig?.useDescription" 
              [ngClass]="['body-' + galleryConfig?.descriptionSize]"
              [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}"

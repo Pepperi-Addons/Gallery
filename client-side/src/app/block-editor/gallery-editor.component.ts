@@ -15,14 +15,17 @@ export class GalleryEditorComponent implements OnInit {
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     currentCardindex: number;
+    blockLoaded = false;
 
     @Input()
     set hostObject(value: IHostObject) {
         if (value && value.configuration) {
             this._configuration = value.configuration
         } else {
-            // TODO - NEED TO ADD DEFAULT SLIDE
-            this.loadDefaultConfiguration();
+            // TODO - NEED TO ADD DEFAULT CARD
+            if(this.blockLoaded){
+                this.loadDefaultConfiguration();
+            }
         }
     }
     
@@ -83,6 +86,7 @@ export class GalleryEditorComponent implements OnInit {
 
         // When finish load raise block-editor-loaded.
         this.hostEvents.emit({action: 'block-editor-loaded'});
+        this.blockLoaded = true;
     }
 
     ngOnChanges(e: any): void {
@@ -166,7 +170,7 @@ export class GalleryEditorComponent implements OnInit {
 
         this.updateHostObject();
     }
-    onSlideRemoveClick(event){
+    onCardRemoveClick(event){
         this.configuration?.cards.splice(event.id, 1);
         this.configuration?.cards.forEach(function(card, index, arr) {card.id = index; });
     }

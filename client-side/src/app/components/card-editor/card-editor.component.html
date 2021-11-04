@@ -3,7 +3,7 @@
         <pep-button classNames="lock-events" sizeType="xs" iconName="system_move"></pep-button>
     </div>
     <div *ngIf="title !== ''" class="title-container">
-        <span class="body-sm ellipsis">{{id}}.&nbsp;</span>
+        <span class="body-sm ellipsis">{{id + 1}}.&nbsp;</span>
         <span class="body-sm color-link bold ellipsis" title="{{configuration?.cards[id].title}}">{{configuration?.cards[id].title}}</span>
     </div>
     <div class="actions" *ngIf="showActions">

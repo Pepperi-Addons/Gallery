@@ -14,7 +14,7 @@
     <div class="split-area">
         <pep-textbox [label]="'GALLERY_EDITOR.GAP' | translate" type="decimal" 
             [value]="configuration?.galleryConfig?.gap" (valueChange)="onGalleryFieldChange('gap',$event)"></pep-textbox>
-        <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="int" 
+        <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="decimal" 
             [value]="configuration?.galleryConfig?.cardHeight" (valueChange)="onGalleryFieldChange('cardHeight',$event)"></pep-textbox>
     </div>
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.GRID_EXPLANATION' | translate}}</label>

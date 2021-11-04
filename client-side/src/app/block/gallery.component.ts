@@ -36,33 +36,6 @@ export class GalleryComponent implements OnInit {
 
     }
 
-    getGradientOverlay(){
-
-        let gradient = this.configuration?.galleryConfig?.gradientOverlay;
-        let horAlign = this.configuration?.galleryConfig?.horizontalAlign;
-
-        let alignTo = horAlign != 'center' ? horAlign : 'left';
-        let gradStr = this.configuration?.galleryConfig?.useGradientOverlay ? (horAlign != 'center' ? this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0) : this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0)) : '';
-        
-        gradStr = gradStr != '' ? 'linear-gradient(to ' + alignTo +', ' +  gradStr +')' : '';
-        
-        return   gradStr;
-    }
-
-    getOverlay(){
-       return  this.configuration?.galleryConfig?.useOverlay ?  'inset 0 0 0 100vh ' + this.galleryService.getRGBAcolor(this.configuration?.galleryConfig?.overlay) : 'unset' ;
-    }
-    
-    getGalleryBorder() {
-        if(this.configuration?.galleryConfig?.useBorder){
-            let col: Color = this.configuration?.galleryConfig?.border;
-            return  '1px solid ' + this.galleryService.getRGBAcolor(col);
-        }
-        else{
-            return 'none';
-        }
-    }
-
     getCardWidth (){
         return ('calc((100%  - ' + (this.configuration?.galleryConfig?.gap) * (this.configuration?.galleryConfig?.maxColumns - 1) + 'rem) /' + this.configuration?.galleryConfig?.maxColumns + ')' );
     }
