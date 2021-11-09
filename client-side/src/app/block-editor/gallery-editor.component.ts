@@ -4,6 +4,7 @@ import { IGallery, IGalleryEditor, IHostObject, ICardEditor, Overlay } from '../
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorService } from '@pepperi-addons/ngx-lib';
 import { GalleryService } from 'src/common/gallery.service';
+import {CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'gallery-editor',
@@ -179,5 +180,23 @@ export class GalleryEditorComponent implements OnInit {
     onCardRemoveClick(event){
         this.configuration?.cards.splice(event.id, 1);
         this.configuration?.cards.forEach(function(card, index, arr) {card.id = index; });
+    }
+
+    drop(event: CdkDragDrop<string[]>) {
+        if (event.previousContainer === event.container) {
+         moveItemInArray(this.configuration.cards, event.previousIndex, event.currentIndex);
+         for(let index = 0 ; index < this.configuration.cards.length; index++){
+            this.configuration.cards[index].id = index;
+         }
+          this.updateHostObject();
+        } 
+    }
+
+    onDragStart(event: CdkDragStart) {
+        this.galleryService.changeCursorOnDragStart();
+    }
+
+    onDragEnd(event: CdkDragEnd) {
+        this.galleryService.changeCursorOnDragEnd();
     }
 }

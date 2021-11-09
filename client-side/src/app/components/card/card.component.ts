@@ -86,7 +86,6 @@ export class CardComponent implements OnInit {
     }
 
     onCardClicked(){
-        debugger;
         if(this.card?.linkTo && this.card.linkTo != ''){
             var linkTo = window.open('', '_blank');
             linkTo.location.href = this.card.linkTo;

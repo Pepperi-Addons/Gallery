@@ -18,6 +18,7 @@ import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
 import { pepIconTextAlignCenter, pepIconTextAlignLeft, pepIconTextAlignRight, pepIconArrowBackRight, pepIconArrowBackLeft, pepIconArrowBack, pepIconArrowLeftAlt,pepIconArrowDown, pepIconArrowUp, PepIconModule, pepIconNumberPlus, PepIconRegistry, pepIconSystemBin, pepIconSystemBolt, pepIconSystemClose, pepIconSystemEdit, pepIconSystemMove } from '@pepperi-addons/ngx-lib/icon';
 import { PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { CardEditorModule } from '../components/card-editor/card-editor.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { config } from '../addon.config';
 
@@ -55,6 +56,7 @@ const pepIcons = [
         PepImageModule,
         PepTextareaModule,
         CommonModule,
+        DragDropModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,

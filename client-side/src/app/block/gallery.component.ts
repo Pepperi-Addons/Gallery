@@ -9,8 +9,6 @@ import  { GalleryService } from '../../common/gallery.service';
 })
 export class GalleryComponent implements OnInit {
     
-    @ViewChild('availableSlidesContainer', { read: ElementRef }) availableBlocksContainer: ElementRef;
-    
     @Input()
     set hostObject(value: IHostObject) {
             this._configuration = value?.configuration

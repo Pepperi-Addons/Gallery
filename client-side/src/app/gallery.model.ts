@@ -16,8 +16,8 @@ export interface IHostObject {
 }
 
 export class DropShadow {
-    useDropShadow: boolean = true;
-    intensity:  Intensity = 'Regular';
+    type: Intensity = 'Regular';
+    intensity:  number = 50;
 }
 
 export interface IGallery{

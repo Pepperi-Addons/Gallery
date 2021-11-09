@@ -165,34 +165,35 @@
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.SHADOW_INTENSITY' | translate}}</label>
     <pep-group-buttons 
                     [buttons]="DropShadowStyle" 
-                    [selectedButtonKey]="configuration?.galleryConfig?.dropShadow?.intensity" 
+                    [selectedButtonKey]="configuration?.galleryConfig?.dropShadow?.type" 
                     buttonsClass="md regular" 
                     [buttonsDisabled]="!configuration?.galleryConfig?.useDropShadow"
-                    (buttonClick)="onGalleryFieldChange('dropShadow.intensity',$event)" 
+                    (buttonClick)="onGalleryFieldChange('dropShadow.type',$event)" 
                     viewType="toggle" 
                     stretch="true">
     </pep-group-buttons>
     <pep-slider
                     [label]="'GALLERY_EDITOR.SHADOW_INTENSITY' | translate" 
-                    [hint]="configuration?.galleryConfig?.dropShadow?.opacity?.toString()" 
+                    [hint]="configuration?.galleryConfig?.dropShadow?.intensity?.toString()" 
                     [background]="'RGBA(0,0,0,50%)'"
                     [minValue]="0" 
                     [maxValue]="100"
                     [disabled]="!configuration?.galleryConfig?.useDropShadow" 
-                    [value]="configuration?.galleryConfig?.dropShadow?.opacity"
-                    (valueChange)="onGalleryFieldChange('dropShadow.opacity',$event)">
+                    [value]="configuration?.galleryConfig?.dropShadow?.intensity"
+                    (valueChange)="onGalleryFieldChange('dropShadow.intensity',$event)">
     </pep-slider>
 
 
 
     </mat-tab>
-    <mat-tab label="{{'GALLERY_EDITOR.TABS.CONTENT' | translate}}">
+    <mat-tab cdkDropListGroup label="{{'GALLERY_EDITOR.TABS.CONTENT' | translate}}">
         <label class="body-xl bold ellipsis">{{'IMAGE_EDITOR.TAB_TITLE' | translate}}</label>
-            <div #availableSlidesContainer id="availableSlides" class="available-slides">
-                <card-editor *ngFor="let currentCard of configuration?.cards;" class="available-slide"
+            <div (cdkDropListDropped)="drop($event)"  cdkDropList>
+                <card-editor  *ngFor="let currentCard of configuration?.cards;"
                     [id]="currentCard?.id" [showActions]="true" 
                     [isDraggable]="true" (editClick)='onCardEditClick($event);' (removeClick)='onCardRemoveClick($event);'
-                    [configuration]="configuration">
+                    [configuration]="configuration"
+                    cdkDrag style="cursor: grab;" (cdkDragStarted)="onDragStart($event)" (cdkDragEnded)="onDragEnd($event)">
                 </card-editor>
             </div>
 
