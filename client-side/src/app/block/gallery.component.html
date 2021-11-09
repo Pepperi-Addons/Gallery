@@ -1,4 +1,4 @@
-<div style="display: flex;flex-wrap: wrap;width:100%"
+<div class="galleryCardsCont"
      [ngStyle]="{'gap': configuration?.galleryConfig?.gap + 'rem'}">
      <gallery-card *ngFor="let currentCard of configuration?.cards" [ngStyle]="{'width': getCardWidth()}"
                    [card]="currentCard" 
@@ -7,10 +7,10 @@
      <div *ngIf="!configuration?.cards || configuration?.cards.length === 0" class="noImageFound">No Images</div>
 </div>
 
-<ng-template #textTemplate>
+<!-- <ng-template #textTemplate>
     <div *ngIf="configuration?.galleryConfig?.useText">
         <div *ngIf="configuration?.galleryConfig?.useTitle">Title</div>
         <div *ngIf="configuration?.galleryConfig?.useDescription">Description</div>
     </div>
 </ng-template>
-<ng-template #empty></ng-template>
+<ng-template #empty></ng-template> -->

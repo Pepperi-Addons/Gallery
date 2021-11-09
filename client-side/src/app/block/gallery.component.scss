@@ -1,22 +1,32 @@
-//@import '~@pepperi-addons/ngx-lib/theming';
-//@import 'ngx-lib/src/core/style/abstracts/variables';
-//@import 'ngx-lib/src/core/style/abstracts/mixins';
-//@include pepperi-theme();
-// Get the theme object.
-//$pepperi-theme: get-pepperi-theme();
+.galleryCardsCont{
 
-.noImageFound{
-    position: absolute;
-    top: 50%;
-    text-shadow: -15px 5px 20px #ced0d3;
-    color: white;
-    font-family: "Anton", Arial, sans-serif;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-size: 2em;
-    transition: all 0.25s ease-out;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    // TODO - NEED TO GET THE SCREEN SIZE AS INPUT AND ADD CLASS 
+    @media screen and (max-width:360px) {
+        flex-direction: column;
+
+        ::ng-deep {
+            gallery-card{
+                width: 100% !important;
+            }
+        }
+    }
+
+    .noImageFound{
+        position: absolute;
+        top: 50%;
+        text-shadow: -15px 5px 20px #ced0d3;
+        color: white;
+        font-family: "Anton", Arial, sans-serif;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-size: 2em;
+        transition: all 0.25s ease-out;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
 }
