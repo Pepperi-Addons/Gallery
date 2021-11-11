@@ -42,7 +42,13 @@ export class CardComponent implements OnInit {
         return ('calc((100%  - ' + (this.galleryConfig?.gap) * (this.galleryConfig?.maxColumns - 1) + 'rem) /' + this.galleryConfig?.maxColumns + ')' );
     }
 
- 
+    getCardShadow(){
+  
+        let shadow = this.galleryConfig?.dropShadow?.type === 'Regular' ? '13px 8px 12px' : '7px 4px 12px';
+        let color = ' rgb(0 0 0 / ' + this.galleryConfig?.dropShadow?.intensity.toString() + '%)';
+      
+        return shadow + color;
+    }
 
     getCardImageURL() {
            return this.card?.imageURL !== '' ? 'url("' + this.card.imageURL + '")' : '';

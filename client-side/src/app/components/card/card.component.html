@@ -4,9 +4,9 @@
                 'display': galleryConfig?.textPosition === 'overlyed' ? 'block' : 'grid',
                 'height' : galleryConfig?.cardHeight + 'rem',
                 'cursor' : card?.linkTo != '' ? 'pointer' : 'inherit',
-                'border': getGalleryBorder()}"
-    [ngClass]="['textColor_'+ galleryConfig?.cardTextColor,
-    galleryConfig?.useDropShadow === true ? 'drop-shadow_'+ galleryConfig?.dropShadow?.type : '',]"
+                'border': getGalleryBorder(),
+                'box-shadow': galleryConfig?.useDropShadow === true ? getCardShadow() : 'unset'}"
+    [ngClass]="['textColor_'+ galleryConfig?.cardTextColor]"
     (click)="onCardClicked()">
 
     <ng-container *ngIf="galleryConfig?.useText && 
