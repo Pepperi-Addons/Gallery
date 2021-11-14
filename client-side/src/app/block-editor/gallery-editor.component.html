@@ -4,8 +4,8 @@
     <pep-slider
             [label]="'GALLERY_EDITOR.MAX_COLUMNS' | translate" 
             [hint]="configuration?.galleryConfig?.maxColumns.toString()" 
-            [minValue]="0" 
-            [maxValue]="10"
+            [minValue]="1" 
+            [maxValue]="15"
             [disabled]="false" 
             [value]="configuration?.galleryConfig?.maxColumns"
             [background]="'RGBA(0,0,0,50%)'"
@@ -193,7 +193,7 @@
                     [id]="currentCard?.id" [showActions]="true" 
                     [isDraggable]="true" (editClick)='onCardEditClick($event);' (removeClick)='onCardRemoveClick($event);'
                     [configuration]="configuration"
-                    cdkDrag style="cursor: grab;" (cdkDragStarted)="onDragStart($event)" (cdkDragEnded)="onDragEnd($event)">
+                    cdkDrag [cdkDragDisabled]="currentCard?.id == configuration?.galleryConfig?.editSlideIndex" style="cursor: grab;" (cdkDragStarted)="onDragStart($event)" (cdkDragEnded)="onDragEnd($event)">
                 </card-editor>
             </div>
 
