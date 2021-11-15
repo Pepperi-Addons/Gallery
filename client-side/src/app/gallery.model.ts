@@ -28,37 +28,37 @@ export interface IGallery{
 export class Overlay {
     useGradientOverlay: boolean = true;
     color: string = 'hsl(0, 0%, 57%)';
-    opacity: string = '0';
+    opacity: string = '50';
 }
 
 export class Color {
     color: string = 'hsl(0, 0%, 57%)';
-    opacity: string = '0';
+    opacity: string = '50';
 }
 
 export class IGalleryEditor {
     maxColumns: number = 1;
-    gap: number = 1;
+    gap: number = 0.5;
     cardHeight: number = 16;
     useText: boolean = true;
     cardTextColor: textColor = 'invert';
-    verticalAlign: verticalAlignment  = 'start';
+    verticalAlign: verticalAlignment  = 'center';
     horizontalAlign: PepHorizontalAlignment = 'center';
-    textPosition: textPositionStyling = 'separated';
+    textPosition: textPositionStyling = 'overlyed';
     useTitle: boolean = true;
     titleSize: PepSizeType = 'xl';
     useDescription: boolean = true;
     groupTitleAndDescription: groupTitleAndDescription = 'ungrouped';
     descriptionSize: PepSizeType = 'sm';
-    descriptionMaxNumOfLines: number = 2;
+    descriptionMaxNumOfLines: number = 1;
     useBorder: boolean = false;
     border: Color = new Color();
-    useGradientOverlay: boolean = false;
+    useGradientOverlay: boolean = true;
     gradientOverlay: Color = new Color();
     useOverlay: boolean = false;
     overlay: Color = new Color();
     editSlideIndex: number = -1;
-    useDropShadow: boolean = false;
+    useDropShadow: boolean = true;
     dropShadow: DropShadow = new DropShadow();
 }
 

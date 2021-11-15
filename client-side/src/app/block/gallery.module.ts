@@ -4,7 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CardModule } from '../components/card/card.module';
 import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { PepAddonService, PepFileService } from '@pepperi-addons/ngx-lib';
-
+import { PepSizeDetectorModule } from '@pepperi-addons/ngx-lib/size-detector';
 import { GalleryComponent } from './gallery.component';
 
 import { config } from '../addon.config';
@@ -14,6 +14,7 @@ import { config } from '../addon.config';
     imports: [
         CommonModule,
         CardModule,
+        PepSizeDetectorModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
