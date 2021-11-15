@@ -1,5 +1,6 @@
 <div class="galleryCardsCont"
-     [ngStyle]="{'gap': configuration?.galleryConfig?.gap + 'rem'}">
+     [ngStyle]="{'gap': configuration?.galleryConfig?.gap + 'rem'}"
+     [ngClass]="[false ? 'oneColumnView' : '']">
      <gallery-card *ngFor="let currentCard of configuration?.cards" [ngStyle]="{'width': getCardWidth()}"
                    [card]="currentCard" 
                    [galleryConfig]="configuration?.galleryConfig">

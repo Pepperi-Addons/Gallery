@@ -43,11 +43,12 @@ export class CardComponent implements OnInit {
     }
 
     getCardShadow(){
-  
-        let shadow = this.galleryConfig?.dropShadow?.type === 'Regular' ? '13px 8px 12px' : '7px 4px 12px';
-        let color = ' rgb(0 0 0 / ' + this.galleryConfig?.dropShadow?.intensity.toString() + '%)';
+        
+        let intensity = this.galleryConfig?.dropShadow?.intensity.toString();
+        let shadow = this.galleryConfig?.dropShadow?.type === 'Soft' ? '0px 3px 6px 0px rgba(0, 0, 0, '+ intensity +'),0px 4px 8px 0px rgba(0, 0, 0, '+ intensity +'),0px 6px 12px 0px rgba(0, 0, 0, '+ intensity +')' :
+                                                                       '0px 8px 16px 0px rgba(0, 0, 0, '+ intensity +'), 0px 12px 24px 0px rgba(0, 0, 0, '+ intensity +'),0px 24px 48px 0px rgba(0, 0, 0, '+ intensity +')'
       
-        return shadow + color;
+        return shadow;
     }
 
     getCardImageURL() {
