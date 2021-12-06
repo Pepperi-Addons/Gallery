@@ -1,4 +1,3 @@
-import { getMatScrollStrategyAlreadyAttachedError } from "@angular/cdk/overlay/scroll/scroll-strategy";
 import { PepHorizontalAlignment, PepSizeType} from "@pepperi-addons/ngx-lib";
 import { PepColorService } from '@pepperi-addons/ngx-lib';
 export type textColor = 'system-primary' | 'dimmed' | 'invert' | 'strong';
