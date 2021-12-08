@@ -38,9 +38,9 @@ export class CardComponent implements OnInit {
         return { galleryConfig: new IGalleryEditor(), cards: Array<ICardEditor>() };
     }
     
-    getCardWidth (){
-        return ('calc((100%  - ' + (this.galleryConfig?.gap) * (this.galleryConfig?.maxColumns - 1) + 'rem) /' + this.galleryConfig?.maxColumns + ')' );
-    }
+    // getCardWidth (){
+    //     return ('calc((100%  - ' + (this.galleryConfig?.gap) * (this.galleryConfig?.maxColumns - 1) + 'rem) /' + this.galleryConfig?.maxColumns + ')' );
+    // }
 
     getCardShadow(){
         

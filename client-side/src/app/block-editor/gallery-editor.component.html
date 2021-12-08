@@ -17,7 +17,7 @@
         <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="decimal" 
             [value]="configuration?.galleryConfig?.cardHeight" (valueChange)="onGalleryFieldChange('cardHeight',$event)"></pep-textbox>
     </div>
-    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.GRID_EXPLANATION' | translate}}</label>
+    <label class="body-xs normal">{{'GALLERY_EDITOR.GRID_EXPLANATION' | translate}}</label>
     <pep-checkbox [value]="configuration?.galleryConfig?.useText" 
         [label]="'GALLERY_EDITOR.TEXT' | translate" 
         [renderTitle]="false" 

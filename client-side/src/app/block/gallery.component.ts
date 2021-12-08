@@ -1,18 +1,26 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IGallery, IHostObject, Color } from '../gallery.model';
 import  { GalleryService } from '../../common/gallery.service';
-import { PepLayoutService, PepScreenSizeType } from '@pepperi-addons/ngx-lib';
+import { PepLayoutService } from '@pepperi-addons/ngx-lib';
+
 @Component({
     selector: 'gallery',
     templateUrl: './gallery.component.html',
     styleUrls: ['./gallery.component.scss']
 })
+
 export class GalleryComponent implements OnInit {
     
     @Input()
     set hostObject(value: IHostObject) {
-            this._configuration = value?.configuration
+        this._configuration = value?.configuration;
+            //check if MaxColumns has been changed , and calc the cards width;
+            //if(this.configuration && this.configuration.galleryConfig.maxColumns !== value?.configuration?.galleryConfig.maxColumns){
+                   this.setCardWidth();
+            //}
+
+           
 
     }
 
@@ -21,40 +29,44 @@ export class GalleryComponent implements OnInit {
         return this._configuration;
     }
 
+    public cardWidth: string;
+
+    @ViewChild('galleryContainer', { static: true }) galleryContainer: ElementRef;
     
-
-    private _screenSize: PepScreenSizeType;
-    @Input()
-    set screenSize(value: PepScreenSizeType) {
-        this._screenSize = value;
-    }
-    get screenSize(): PepScreenSizeType {
-        return this._screenSize;
-    }
-
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
 
-    constructor(private translate: TranslateService, private galleryService: GalleryService, private layoutService: PepLayoutService) { }
+    constructor(private translate: TranslateService, 
+                private galleryService: GalleryService, 
+                private layoutService: PepLayoutService ) { }
+
+    @HostListener('window:resize')
+    public onWindowResize() {
+        this.setCardWidth();
+    }
 
     ngOnInit(): void {
-        this.layoutService.onResize$.subscribe((size: PepScreenSizeType) => {
-            this.screenSize = size;
-        });
-       
+        this.setCardWidth();
         // When finish load raise block-loaded.
         this.hostEvents.emit({action: 'block-loaded'});
     }
 
     ngOnChanges(e: any): void {
-
+   
     }
 
-    getCardWidth (){
-        if(this.screenSize < PepScreenSizeType.XS){
-            return ('calc((100%  - ' + (this.configuration?.galleryConfig?.gap) * (this.configuration?.galleryConfig?.maxColumns - 1) + 'rem) /' + this.configuration?.galleryConfig?.maxColumns + ')' );
+    setCardWidth (){
+        const galleryWidth = this.galleryContainer.nativeElement.clientWidth;
+
+        if(galleryWidth > 361 ){ //from 360 it's a mobile size / xs size
+            this.cardWidth = ('calc((100%  - ' + (this.configuration?.galleryConfig?.gap) * (this.configuration?.galleryConfig?.maxColumns - 1) + 'rem) /' + this.configuration?.galleryConfig?.maxColumns + ')' );
         }
         else{ // FOR EXTRA SMALL SCREENS
-            return ('100%;');
+            if(this.configuration?.galleryConfig?.maxColumns === 1){
+                this.cardWidth = '100%';
+            }
+            else{
+                this.cardWidth = ('calc((100%  - ' + (this.configuration?.galleryConfig?.gap) + 'rem) /' + 2 + ')' );
+            }
         }
     }
 
