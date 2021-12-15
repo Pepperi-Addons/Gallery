@@ -3,9 +3,11 @@
     [ngStyle]="{'width': '100%',
                 'display': galleryConfig?.textPosition === 'overlyed' ? 'block' : 'grid',
                 'height' : galleryConfig?.cardHeight + 'rem',
-                'cursor' : card?.linkTo != '' ? 'pointer' : 'inherit',
-                'box-shadow': galleryConfig?.useDropShadow === true ? getCardShadow() : 'unset'}"
-    [ngClass]="['textColor_'+ galleryConfig?.cardTextColor]"
+                'cursor' : card?.linkTo != '' ? 'pointer' : 'inherit'}"
+    [ngClass]="['textColor_'+ galleryConfig?.cardTextColor,
+                galleryConfig?.useDropShadow ? 'shadow-' + this.galleryConfig?.dropShadow?.size : '',
+                galleryConfig?.useDropShadow ? this.galleryConfig?.dropShadow?.type : '',
+                galleryConfig?.useRoundCorners ? 'roundness-' + galleryConfig?.roundCornersSize : '']"
     (click)="onCardClicked()">
 
     <ng-container *ngIf="galleryConfig?.useText && 
@@ -52,9 +54,7 @@
                  'box-shadow': getOverlay(),
                  'background-image' : getGradientOverlay(),
                  'border': getGalleryBorder()}"
-            
-                
-         style='height:100%; width: 100%;'>
+    [ngClass]="galleryConfig?.useRoundCorners ? 'roundness-' + galleryConfig?.roundCornersSize : ''">
         <ng-container *ngIf="galleryConfig?.useText && 
                          galleryConfig?.textPosition === 'overlyed'; 
                          then overlayedText; else empty"></ng-container>

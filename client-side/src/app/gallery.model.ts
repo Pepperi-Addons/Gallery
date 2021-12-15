@@ -4,7 +4,7 @@ export type textColor = 'system-primary' | 'dimmed' | 'invert' | 'strong';
 export type verticalAlignment = 'start' | 'center' | 'end';
 export type textPositionStyling = 'overlyed' | 'separated';
 export type groupTitleAndDescription = 'grouped' | 'ungrouped';
-export type Intensity = 'Soft' | 'Regular';
+export type Intensity = 'soft' | 'regular' | 'hard';
 
 export interface IHostObject {
     configuration: IGallery;
@@ -15,8 +15,8 @@ export interface IHostObject {
 }
 
 export class DropShadow {
-    type: Intensity = 'Regular';
-    intensity:  number = 50;
+    type: Intensity = 'regular';
+    size: PepSizeType = 'md';
 }
 
 export interface IGallery{
@@ -59,6 +59,8 @@ export class IGalleryEditor {
     editSlideIndex: number = -1;
     useDropShadow: boolean = true;
     dropShadow: DropShadow = new DropShadow();
+    useRoundCorners: boolean = false;
+    roundCornersSize: PepSizeType = 'md';
 }
 
 export class ICardEditor {

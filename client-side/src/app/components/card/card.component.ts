@@ -37,19 +37,6 @@ export class CardComponent implements OnInit {
     private getDefaultHostObject(): IGallery {
         return { galleryConfig: new IGalleryEditor(), cards: Array<ICardEditor>() };
     }
-    
-    // getCardWidth (){
-    //     return ('calc((100%  - ' + (this.galleryConfig?.gap) * (this.galleryConfig?.maxColumns - 1) + 'rem) /' + this.galleryConfig?.maxColumns + ')' );
-    // }
-
-    getCardShadow(){
-        
-        let intensity = this.galleryConfig?.dropShadow?.intensity.toString();
-        let shadow = this.galleryConfig?.dropShadow?.type === 'Soft' ? '0px 3px 6px 0px rgba(0, 0, 0, '+ intensity +'),0px 4px 8px 0px rgba(0, 0, 0, '+ intensity +'),0px 6px 12px 0px rgba(0, 0, 0, '+ intensity +')' :
-                                                                       '0px 8px 16px 0px rgba(0, 0, 0, '+ intensity +'), 0px 12px 24px 0px rgba(0, 0, 0, '+ intensity +'),0px 24px 48px 0px rgba(0, 0, 0, '+ intensity +')'
-      
-        return shadow;
-    }
 
     getCardImageURL() {
            return this.card?.imageURL !== '' ? 'url("' + this.card.imageURL + '")' : '';
@@ -77,15 +64,33 @@ export class CardComponent implements OnInit {
 
         let gradient = this.galleryConfig?.gradientOverlay;
         let horAlign = this.galleryConfig?.horizontalAlign;
+        let verAlign = this.galleryConfig?.verticalAlign;
 
-        let alignTo = horAlign != 'center' ? horAlign : 'left';
+        let direction = '0';
+
+        switch(horAlign){
+            case 'left':{
+                direction = verAlign === 'start' ? '315' : verAlign === 'center' ? '270' : '225';
+                break;
+            }
+            case 'center':{
+                direction = verAlign === 'start' ? '0' : verAlign === 'center' ? 'circle' : '180';
+                break;
+            }
+            case 'right':{
+                direction = verAlign === 'start' ? '45' : verAlign === 'center' ? '315' : '135';
+                break;
+            }
+        }
+            direction = direction === 'circle' ? direction : direction + 'deg';
+
+        let colorsStr =  direction ! == 'circle' ? this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) :
+                                                   this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
         let imageSrc = this.card?.imageURL !== '' ? 'url('+this.card?.imageURL + ')' : '';
-        let gradStr = this.galleryConfig?.useGradientOverlay ? (horAlign != 'center' ? this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0) : this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0)) : '';
-        
-        gradStr = gradStr != '' ? 'linear-gradient(to ' + alignTo +', ' +  gradStr +')' : '';
-        
-        return   (gradStr  +  (this.card?.imageURL !== '' && this.galleryConfig?.useGradientOverlay ?  ',' : '') + imageSrc);
-        
+        let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
+
+        return gradType + '(' + direction +' , '+ colorsStr +'),'+ imageSrc ;
+    
     }
 
     getOverlay(){

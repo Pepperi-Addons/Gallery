@@ -5,6 +5,10 @@
 // Get the theme object.
 $pepperi-theme: get-pepperi-theme();
 
+*{
+    -webkit-font-smoothing: antialiased;
+}
+
 :host{
     width: 100%;
 }
@@ -22,15 +26,23 @@ $pepperi-theme: get-pepperi-theme();
 .cardCont{
     width: calc((100% - 0rem) / 1);
     grid-template-rows: min-content auto min-content;
+    transition: transform .2s;
 
     div{
         display: flex;
 
         &.imageCont{
+            height: 100%;
+            width: 100%;
             background-size: cover;
             background-size: cover;
             background-position: center;
             flex-direction: column;
+            padding: 1.25rem;
+
+            .title-2xl{
+                font-size: 2.5rem !important;
+            }
         }
 
         .groupedText{
@@ -47,6 +59,68 @@ $pepperi-theme: get-pepperi-theme();
         color: get-pep-color($pepperi-theme, color-text, color-invert);
     }
 
+    &:hover {
+        transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+
+    &.shadow-xs{
+        &.soft{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-xs, soft);
+        }
+        &.regular{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-xs, regular);
+        }
+        &.hard{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-xs, hard);
+        }
+    }
+    &.shadow-sm{
+        &.soft{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-sm, soft);
+        }
+        &.regular{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-sm, regular);
+        }
+        &.hard{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-sm, hard);
+        }
+    }
+    &.shadow-md{
+        &.soft{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-md, soft);
+        }
+        &.regular{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-md, regular);
+        }
+        &.hard{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-md, hard);
+        }
+    }
+    &.shadow-lg{
+        &.soft{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-lg, soft);
+        }
+        &.regular{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-lg, regular);
+        }
+        &.hard{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-lg, hard);
+        }
+    }
+    &.shadow-xl{
+        &.soft{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-xl, soft);
+        }
+        &.regular{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-xl, regular);
+        }
+        &.hard{
+            box-shadow: get-pep-shadow($pepperi-theme, shadow-xl, hard);
+        }
+    }
+}
+.roundness-2xl {
+    border-radius: 1rem;;
 }
 
 .textarea {

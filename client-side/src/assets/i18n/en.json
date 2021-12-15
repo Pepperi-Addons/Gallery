@@ -16,7 +16,7 @@
         "GRID": "Grid",
         "MAX_COLUMNS": "Max Columns",
         "GAP": "Gap (rem)",
-        "IMAGE_HEIGHT": "Image Height (rem)",
+        "IMAGE_HEIGHT": "Height (rem)",
         "GRID_EXPLANATION": "The grid is set by the amount of images uploaded and number of columns selected.",
         "TEXT": "Text",
         "CARD_COLOR": "Card Color",
@@ -40,6 +40,7 @@
         "OVERLAY_OPACITY": "Overlay opacity",
         "DROP_SHADOW": "Drop shadow",
         "SHADOW_INTENSITY": "Shadow Intensity",
+        "SHADOW_SIZE": "Shadow Size",
         "SHADOW_OPACITY": "Shadow opacity",
         "TEXT_COLOR": {
             "SYSTEM": "System",
@@ -55,6 +56,7 @@
             "SEPARATED": "Separated"
         },
         "GROUP_SIZE": {
+            "XS": "XS",
             "SM": "SM",
             "MD": "MD",
             "LG": "LG",
@@ -66,8 +68,10 @@
         },
         "SHADOW": {
             "SOFT": "Soft",
-            "REGULAR": "Regular"
-        }
+            "REGULAR": "Regular",
+            "HARD": "Hard"
+        },
+        "ROUND_CORNER": "Round corner"
     },
 
     "IMAGE_EDITOR": {
