@@ -25,6 +25,7 @@
         "TEXT_POS_STYLING": "Text Position Styling",
         "TITLE": "Title",
         "TITLE_SIZE": "Title Size",
+        "TITLE_WEIGHT": "Title Weight",
         "DESCRIPTION": "Description",
         "GROUP_TITLE_DESCRIPTION": "Group Title and Description",
         "DESCRIPTION_SIZE": "Text Size",
@@ -70,6 +71,11 @@
             "SOFT": "Soft",
             "REGULAR": "Regular",
             "HARD": "Hard"
+        },
+        "FONT_WEIGHT": {
+            "NORMAL": "Normal",
+            "BOLD": "Bold",
+            "BOLDER": "Bolder"
         },
         "ROUND_CORNER": "Round corner"
     },

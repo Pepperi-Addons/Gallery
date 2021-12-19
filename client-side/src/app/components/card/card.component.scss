@@ -27,6 +27,7 @@ $pepperi-theme: get-pepperi-theme();
     width: calc((100% - 0rem) / 1);
     grid-template-rows: min-content auto min-content;
     transition: transform .2s;
+    overflow: hidden;
 
     div{
         display: flex;
@@ -38,18 +39,19 @@ $pepperi-theme: get-pepperi-theme();
             background-size: cover;
             background-position: center;
             flex-direction: column;
-            padding: 1.25rem;
-
-            .title-2xl{
-                font-size: 2.5rem !important;
-            }
+            padding: 0.75rem 1rem;
         }
 
+        &.headerPadding{
+            padding: .25rem 1rem;
+        }
         .groupedText{
             display: flex; 
             flex-direction: column;
         }
     }
+
+
 
     &.textColor_system-primary{
         color: get-pep-color($pepperi-theme, color-text, color-regular);
@@ -61,6 +63,23 @@ $pepperi-theme: get-pepperi-theme();
 
     &:hover {
         transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+
+    .title-sm{
+        font-size: calc(#{$fs-sm} * 1.75) !important;   
+    }
+    .title-md{
+        font-size: calc(#{$fs-md} * 1.75) !important;   
+    }
+    .title-lg{
+        font-size: calc(#{$fs-lg} * 2.25) !important; 
+        height: calc(#{$fs-lg} * 1.85);  
+        line-height: calc(#{$fs-lg} * 1.85) !important;  
+    }
+    .title-xl{
+        font-size: calc(#{$fs-xl} * 2.5) !important; 
+        height: calc(#{$fs-xl} * 2); 
+        line-height: calc(#{$fs-xl} * 2) !important;     
     }
 
     &.shadow-xs{
@@ -119,6 +138,7 @@ $pepperi-theme: get-pepperi-theme();
         }
     }
 }
+
 .roundness-2xl {
     border-radius: 1rem;;
 }

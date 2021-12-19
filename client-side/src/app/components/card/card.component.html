@@ -3,7 +3,8 @@
     [ngStyle]="{'width': '100%',
                 'display': galleryConfig?.textPosition === 'overlyed' ? 'block' : 'grid',
                 'height' : galleryConfig?.cardHeight + 'rem',
-                'cursor' : card?.linkTo != '' ? 'pointer' : 'inherit'}"
+                'cursor' : card?.linkTo != '' ? 'pointer' : 'inherit',
+                'border': getGalleryBorder()}"
     [ngClass]="['textColor_'+ galleryConfig?.cardTextColor,
                 galleryConfig?.useDropShadow ? 'shadow-' + this.galleryConfig?.dropShadow?.size : '',
                 galleryConfig?.useDropShadow ? this.galleryConfig?.dropShadow?.type : '',
@@ -29,7 +30,7 @@
 <ng-template #topHeader>
     <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
                     'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}"
-          class="ellipsis">
+          class="headerPadding ellipsis">
          
         <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && 
                              galleryConfig?.verticalAlign === 'start'">
@@ -50,11 +51,9 @@
 
 <ng-template #image>
     <div class="imageCont"
-    [ngStyle]="{'justify-content': galleryConfig?.verticalAlign,
+    [ngStyle]="{'justify-content': (galleryConfig?.textPosition == 'overlyed' && galleryConfig?.groupTitleAndDescription === 'ungrouped') ? 'space-between' :  galleryConfig?.verticalAlign,
                  'box-shadow': getOverlay(),
-                 'background-image' : getGradientOverlay(),
-                 'border': getGalleryBorder()}"
-    [ngClass]="galleryConfig?.useRoundCorners ? 'roundness-' + galleryConfig?.roundCornersSize : ''">
+                 'background-image' : getGradientOverlay()}">
         <ng-container *ngIf="galleryConfig?.useText && 
                          galleryConfig?.textPosition === 'overlyed'; 
                          then overlayedText; else empty"></ng-container>
@@ -62,7 +61,7 @@
 </ng-template>
 
 <ng-template #footer>
-    <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
+    <div class="headerPadding" [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
                     'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
          
     <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && galleryConfig?.verticalAlign === 'end'">
@@ -90,7 +89,8 @@
 
 <ng-template #text let-entry="entry">
     <div *ngIf="entry === 'title' && galleryConfig?.useTitle"
-         [ngClass]="['title-' + galleryConfig?.titleSize, 'ellipsis']"
+         [ngClass]="['title-' + galleryConfig?.titleSize,
+                      galleryConfig?.titleWeight, 'ellipsis']"
          [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}">
          {{card.title}}
 </div>

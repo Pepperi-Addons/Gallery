@@ -79,6 +79,16 @@
                         stretch="true">
     </pep-group-buttons>
 
+    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TITLE_WEIGHT' | translate}}</label>
+    <pep-group-buttons [buttons]="TitleWeight" 
+                       [selectedButtonKey]="configuration?.galleryConfig?.titleWeight" 
+                        buttonsClass="md regular" 
+                        (buttonClick)="onGalleryFieldChange('titleWeight',$event)" 
+                        [buttonsDisabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
+                        viewType="toggle" 
+                        stretch="true">
+    </pep-group-buttons>
+
     <pep-checkbox [value]="configuration?.galleryConfig?.useDescription" 
         [label]="'GALLERY_EDITOR.DESCRIPTION' | translate" 
         [renderTitle]="false" 

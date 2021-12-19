@@ -5,6 +5,7 @@ export type verticalAlignment = 'start' | 'center' | 'end';
 export type textPositionStyling = 'overlyed' | 'separated';
 export type groupTitleAndDescription = 'grouped' | 'ungrouped';
 export type Intensity = 'soft' | 'regular' | 'hard';
+export type FontWeight = 'normal' | 'bold' | 'bolder';
 
 export interface IHostObject {
     configuration: IGallery;
@@ -46,6 +47,7 @@ export class IGalleryEditor {
     textPosition: textPositionStyling = 'overlyed';
     useTitle: boolean = true;
     titleSize: PepSizeType = 'xl';
+    titleWeight: FontWeight = 'normal';
     useDescription: boolean = true;
     groupTitleAndDescription: groupTitleAndDescription = 'ungrouped';
     descriptionSize: PepSizeType = 'sm';
