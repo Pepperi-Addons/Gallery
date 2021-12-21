@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { IGallery, IHostObject, Color } from '../gallery.model';
+import { IGallery, IHostObject } from '../gallery.model';
 import  { GalleryService } from '../../common/gallery.service';
 import { PepLayoutService } from '@pepperi-addons/ngx-lib';
 

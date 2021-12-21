@@ -1,13 +1,13 @@
 
-<div class="cardCont" 
+<div class="galleryCardCont" 
     [ngStyle]="{'width': '100%',
                 'display': galleryConfig?.textPosition === 'overlyed' ? 'block' : 'grid',
                 'height' : galleryConfig?.cardHeight + 'rem',
                 'cursor' : card?.linkTo != '' ? 'pointer' : 'inherit',
                 'border': getGalleryBorder()}"
     [ngClass]="['textColor_'+ galleryConfig?.cardTextColor,
-                galleryConfig?.useDropShadow ? 'shadow-' + this.galleryConfig?.dropShadow?.size : '',
-                galleryConfig?.useDropShadow ? this.galleryConfig?.dropShadow?.type : '',
+                galleryConfig?.dropShadow?.use ? 'shadow-' + this.galleryConfig?.dropShadow?.size : '',
+                galleryConfig?.dropShadow?.use ? this.galleryConfig?.dropShadow?.intensity : '',
                 galleryConfig?.useRoundCorners ? 'roundness-' + galleryConfig?.roundCornersSize : '']"
     (click)="onCardClicked()">
 

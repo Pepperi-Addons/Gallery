@@ -1,11 +1,11 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IGallery, IGalleryEditor, IHostObject, ICardEditor, Overlay } from '../gallery.model';
+import { IGallery, IGalleryEditor, IHostObject, ICardEditor } from '../gallery.model';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorService } from '@pepperi-addons/ngx-lib';
 import { GalleryService } from 'src/common/gallery.service';
-import {CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-
+import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
 @Component({
     selector: 'gallery-editor',
     templateUrl: './gallery-editor.component.html',
@@ -190,10 +190,10 @@ export class GalleryEditorComponent implements OnInit {
     getSliderBackground( color){
         let alignTo = 'right';
 
-        let col: Overlay = new Overlay();
+        let col: PepColorSettings = new PepColorSettings();
 
-        col.color = color;
-        col.opacity = '100';
+        col.value = color;
+        col.opacity = 100;
 
         let gradStr = this.galleryService.getRGBAcolor(col,0) +' , '+ this.galleryService.getRGBAcolor(col);
         

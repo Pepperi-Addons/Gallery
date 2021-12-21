@@ -133,79 +133,21 @@
                         stretch="true">
     </pep-group-buttons>
 
-    <pep-checkbox [value]="configuration?.galleryConfig?.useBorder" [label]="'GALLERY_EDITOR.BORDER' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('useBorder',$event)"></pep-checkbox>
-    <pep-color [value]="configuration?.galleryConfig?.border?.color" [label]="'GALLERY_EDITOR.BORDER_COLOR' | translate" [disabled]="" xAlignment="left"
-            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onGalleryFieldChange('border.color',$event)">
-    </pep-color>
-    <pep-slider
-            [label]="'GALLERY_EDITOR.BORDER_OPACITY' | translate" 
-            [hint]="configuration?.galleryConfig?.border?.opacity?.toString()" 
-            [minValue]="0" 
-            [maxValue]="100"
-            [disabled]="!configuration?.galleryConfig?.useBorder" 
-            [value]="configuration?.galleryConfig?.border?.opacity"
-            [background]="getSliderBackground(configuration?.galleryConfig?.border?.color)"
-            (valueChange)="onGalleryFieldChange('border.opacity',$event)">
-    </pep-slider>
-    <pep-checkbox [value]="configuration?.galleryConfig?.useGradientOverlay" [label]="'GALLERY_EDITOR.GRADIENT_OVERLAY' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('useGradientOverlay',$event)"></pep-checkbox>
-    <pep-color [value]="configuration?.galleryConfig?.gradientOverlay?.color" [label]="'GALLERY_EDITOR.GRADIENT_OVERLAY_COLOR' | translate" [disabled]="!configuration?.galleryConfig?.useGradientOverlay" xAlignment="left"
-            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onGalleryFieldChange('gradientOverlay.color',$event)">
-    </pep-color>
-    <pep-slider
-        [label]="'GALLERY_EDITOR.GRADIENT_OVERLAY_OPACITY' | translate" 
-        [hint]="configuration?.galleryConfig?.gradientOverlay?.opacity?.toString()" 
-        [minValue]="0" 
-        [maxValue]="100"
-        [disabled]="!configuration?.galleryConfig?.useGradientOverlay" 
-        [value]="configuration?.galleryConfig?.gradientOverlay?.opacity"
-        [background]="getSliderBackground(configuration?.galleryConfig?.gradientOverlay?.color)"
-        (valueChange)="onGalleryFieldChange('gradientOverlay.opacity',$event)">
-    </pep-slider>
-    <pep-checkbox [value]="configuration?.galleryConfig?.useOverlay" [label]="'GALLERY_EDITOR.OVERLAY' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('useOverlay',$event)"></pep-checkbox>
-    <pep-color [value]="configuration?.galleryConfig?.overlay?.color" [label]="'GALLERY_EDITOR.OVERLAY_COLOR' | translate" [disabled]="!configuration?.galleryConfig?.useOverlay" xAlignment="left"
-            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onGalleryFieldChange('overlay.color',$event)">
-    </pep-color>
-    <pep-slider
-        [label]="'GALLERY_EDITOR.OVERLAY_OPACITY' | translate" 
-        [hint]="configuration?.galleryConfig?.overlay?.opacity?.toString()" 
-        [minValue]="0" 
-        [maxValue]="100"
-        [disabled]="!configuration?.galleryConfig?.useOverlay" 
-        [value]="configuration?.galleryConfig?.overlay?.opacity"
-        [background]="getSliderBackground(configuration?.galleryConfig?.overlay?.color)"
-        (valueChange)="onGalleryFieldChange('overlay.opacity',$event)">
-    </pep-slider>
+    <pep-color-settings [title]="'GALLERY_EDITOR.BORDER' | translate"
+                        [color]="configuration?.galleryConfig?.border">
+    </pep-color-settings>
 
+    <pep-color-settings [title]="'GALLERY_EDITOR.GRADIENT_OVERLAY' | translate"
+                        [color]="configuration?.galleryConfig?.gradientOverlay">
+    </pep-color-settings>
+  
+    <pep-color-settings [title]="'GALLERY_EDITOR.OVERLAY' | translate"
+                        [color]="configuration?.galleryConfig?.overlay">
+    </pep-color-settings> 
 
-    <pep-checkbox [value]="configuration?.galleryConfig?.useDropShadow" 
-                              [label]="'GALLERY_EDITOR.DROP_SHADOW' | translate" 
-                              [renderTitle]="false" 
-                              (valueChange)="onGalleryFieldChange('useDropShadow',$event)">
-    </pep-checkbox>
-
-    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.SHADOW_SIZE' | translate}}</label>
-    <pep-group-buttons 
-                    [buttons]="DropShadowSizes" 
-                    [selectedButtonKey]="configuration?.galleryConfig?.dropShadow?.size" 
-                    buttonsClass="md regular" 
-                    [buttonsDisabled]="!configuration?.galleryConfig?.useDropShadow"
-                    (buttonClick)="onGalleryFieldChange('dropShadow.size',$event)" 
-                    viewType="toggle" 
-                    stretch="true">
-    </pep-group-buttons>
-
-    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.SHADOW_INTENSITY' | translate}}</label>
-    <pep-group-buttons 
-                    [buttons]="DropShadowStyle" 
-                    [selectedButtonKey]="configuration?.galleryConfig?.dropShadow?.type" 
-                    buttonsClass="md regular" 
-                    [buttonsDisabled]="!configuration?.galleryConfig?.useDropShadow"
-                    (buttonClick)="onGalleryFieldChange('dropShadow.type',$event)" 
-                    viewType="toggle" 
-                    stretch="true">
-    </pep-group-buttons>
-
+    <pep-shadow-settings [shadow]="configuration?.galleryConfig?.dropShadow"></pep-shadow-settings>
     </mat-tab>
+
     <mat-tab cdkDropListGroup label="{{'GALLERY_EDITOR.TABS.CONTENT' | translate}}">
         <label class="body-xl bold ellipsis">{{'IMAGE_EDITOR.TAB_TITLE' | translate}}</label>
             <div (cdkDropListDropped)="drop($event)"  cdkDropList>

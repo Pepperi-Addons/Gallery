@@ -23,7 +23,7 @@ $pepperi-theme: get-pepperi-theme();
     left: 0px;
     pointer-events: none;
 }
-.cardCont{
+.galleryCardCont{
     width: calc((100% - 0rem) / 1);
     grid-template-rows: min-content auto min-content;
     transition: transform .2s;

@@ -1,8 +1,9 @@
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { PepColorService, PepLayoutService, PepScreenSizeType, PepSizeType, PepStyleType } from '@pepperi-addons/ngx-lib';
-import { IGallery, IGalleryEditor, IHostObject, ICardEditor, Overlay, Color  } from '../../gallery.model';
+import { IGallery, IGalleryEditor, IHostObject, ICardEditor  } from '../../gallery.model';
 import { GalleryService } from 'src/common/gallery.service';
+import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
 
 @Component({
     selector: 'gallery-card',
@@ -51,8 +52,8 @@ export class CardComponent implements OnInit {
         //this.carIdndex = this.card.id;
     }
     getGalleryBorder() {
-        if(this.galleryConfig?.useBorder){
-            let col: Color = this.galleryConfig?.border;
+        if(this.galleryConfig?.border?.use){
+            let col: PepColorSettings = this.galleryConfig?.border;
             return  '1px solid ' + this.galleryService.getRGBAcolor(col);
         }
         else{
@@ -61,7 +62,6 @@ export class CardComponent implements OnInit {
     }
 
     getGradientOverlay(){
-
         let gradient = this.galleryConfig?.gradientOverlay;
         let horAlign = this.galleryConfig?.horizontalAlign;
         let verAlign = this.galleryConfig?.verticalAlign;
@@ -86,15 +86,15 @@ export class CardComponent implements OnInit {
 
         let colorsStr =  direction ! == 'circle' ? this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) :
                                                    this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
-        let imageSrc = this.card?.imageURL !== '' ? 'url('+this.card?.imageURL + ')' : '';
+        let imageSrc = this.card?.imageURL !== '' ? ', url('+this.card?.imageURL + ')' : '';
         let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 
-        return gradType + '(' + direction +' , '+ colorsStr +'),'+ imageSrc ;
+        return gradType + '(' + direction +' , '+ colorsStr +')' + imageSrc ;
     
     }
 
     getOverlay(){
-       return  this.galleryConfig?.useOverlay ?  'inset 0 0 0 100vh ' + this.galleryService.getRGBAcolor(this.galleryConfig?.overlay) : 'unset' ;
+       return  this.galleryConfig?.overlay?.use ?  'inset 0 0 0 100vh ' + this.galleryService.getRGBAcolor(this.galleryConfig?.overlay) : 'unset' ;
     }
 
     onCardClicked(){

@@ -1,8 +1,7 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
 import { Injectable } from "@angular/core";
+import { PepColorSettings } from "@pepperi-addons/ngx-composite-lib/color-settings";
 import { PepColorService } from "@pepperi-addons/ngx-lib";
-import { Color } from "src/app/gallery.model";
-
 
 @Injectable({
     providedIn: 'root',
@@ -12,11 +11,11 @@ export class GalleryService {
 
     constructor(private pepColorService: PepColorService) {};
 
-    getRGBAcolor(colObj: Color, opac = null){
+    getRGBAcolor(colObj: PepColorSettings, opac = null){
         let rgba = 'rgba(255,255,255,0';
             if(colObj){
-                let color = colObj.color;
-                let opacity = opac != null ? opac : parseInt(colObj.opacity);
+                let color = colObj.value || 'hsl(0, 0%, 0%)';
+                let opacity = opac != null ? opac : colObj.opacity;
 
                 opacity = opacity > 0 ? opacity / 100 : 0;
                 //check if allready rgba

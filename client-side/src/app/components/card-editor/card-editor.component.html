@@ -8,8 +8,6 @@
     </div>
     <div class="actions" *ngIf="showActions">
         <pep-button classNames="caution" sizeType="xs" iconName="system_bin" (buttonClick)="onRemoveClick();"></pep-button>
-        <!-- <pep-menu sizeType="xs" iconName="system_view" ></pep-menu> -->
-        <!-- <hide-in [hideIn]="hideIn" (hideInChange)="onHideInChange($event)"></hide-in> -->
         <pep-button *ngIf="id != configuration?.galleryConfig?.editSlideIndex" sizeType="xs" iconName="arrow_down" (buttonClick)="onEditClick();"></pep-button>
         <pep-button *ngIf="id == configuration?.galleryConfig?.editSlideIndex" sizeType="xs" iconName="arrow_up" (buttonClick)="onEditClick();"></pep-button>
     </div>

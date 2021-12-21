@@ -39,10 +39,6 @@
         "OVERLAY": "Overlay",
         "OVERLAY_COLOR": "Overlay color",
         "OVERLAY_OPACITY": "Overlay opacity",
-        "DROP_SHADOW": "Drop shadow",
-        "SHADOW_INTENSITY": "Shadow Intensity",
-        "SHADOW_SIZE": "Shadow Size",
-        "SHADOW_OPACITY": "Shadow opacity",
         "TEXT_COLOR": {
             "SYSTEM": "System",
             "INVERT": "Invert"
