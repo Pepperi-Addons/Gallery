@@ -43,36 +43,16 @@
             "SYSTEM": "System",
             "INVERT": "Invert"
         },
-        "VERTICAL_ALIGN": {
-            "TOP": "Top",
-            "MIDDLE": "Middle",
-            "BOTTOM": "Bottom"
-        },
         "TEXT_POSITION": {
             "OVERLYED": "Overlyed",
             "SEPARATED": "Separated"
         },
-        "GROUP_SIZE": {
-            "XS": "XS",
-            "SM": "SM",
-            "MD": "MD",
-            "LG": "LG",
-            "XL": "XL"
-        },
+
         "GROUP": {
             "GROUPED": "Grouped",
             "UNGROUPED": "Ungrouped"
         },
-        "SHADOW": {
-            "SOFT": "Soft",
-            "REGULAR": "Regular",
-            "HARD": "Hard"
-        },
-        "FONT_WEIGHT": {
-            "NORMAL": "Normal",
-            "BOLD": "Bold",
-            "BOLDER": "Bolder"
-        },
+        
         "ROUND_CORNER": "Round corner"
     },
 

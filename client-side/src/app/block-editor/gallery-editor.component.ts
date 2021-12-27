@@ -36,16 +36,8 @@ export class GalleryEditorComponent implements OnInit {
     }
 
     public textColor: Array<PepButton> = [];
-    public VerticalAlign: Array<PepButton> = [];
-    public HorizentalAlign: Array<PepButton> = [];
     public TextPositionStyling: Array<PepButton> = [];
-    public TitleSizes: Array<PepButton> = [];
-    public TitleWeight: Array<PepButton> = [];
-    public DescriptionSizes: Array<PepButton> = [];
-    public RoundCornersSizes: Array<PepButton> = [];
     public GroupTitleAndDescription: Array<PepButton> = [];
-    public DropShadowStyle: Array<PepButton> = [];
-    public DropShadowSizes: Array<PepButton> = [];
 
     constructor(private translate: TranslateService, private pepColorService: PepColorService, private galleryService: GalleryService) { }
 
@@ -60,68 +52,15 @@ export class GalleryEditorComponent implements OnInit {
             { key: 'invert', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.INVERT') }
         ]
 
-        this.VerticalAlign =  [
-            { key: 'start', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.TOP')},
-            { key: 'center', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.MIDDLE') },
-            { key: 'end', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.BOTTOM') }
-        ];
-
-        this.HorizentalAlign =  [
-            { key: 'left', iconName: 'text_align_right' },
-            { key: 'center', iconName: 'text_align_center' },
-            { key: 'right', iconName: 'text_align_left' }
-        ];
-
         this.TextPositionStyling =  [
             { key: 'overlyed', value: this.translate.instant('GALLERY_EDITOR.TEXT_POSITION.OVERLYED') },
             { key: 'separated', value: this.translate.instant('GALLERY_EDITOR.TEXT_POSITION.SEPARATED') }
         ];
 
-        this.DescriptionSizes = [
-            { key: '2xs', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.SM') },
-            { key: 'sm', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.MD') },
-            { key: 'md', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.LG') },
-            { key: 'lg', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.XL') }
-        ];
-
-        this.RoundCornersSizes = [
-            { key: 'sm', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.SM') },
-            { key: 'md', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.MD') },
-            { key: 'lg', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.LG') },
-            { key: '2xl', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.XL') }
-        ];
-
-        this.TitleSizes = [
-            { key: 'sm', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.SM') },
-            { key: 'md', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.MD') },
-            { key: 'lg', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.LG') },
-            { key: 'xl', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.XL') }
-        ]
-
-        this.TitleWeight = [
-            { key: 'normal', value: this.translate.instant('GALLERY_EDITOR.FONT_WEIGHT.NORMAL') },
-            { key: 'bold', value: this.translate.instant('GALLERY_EDITOR.FONT_WEIGHT.BOLD') },
-            { key: 'bolder', value: this.translate.instant('GALLERY_EDITOR.FONT_WEIGHT.BOLDER') }
-        ]
         this.GroupTitleAndDescription = [
             { key: 'grouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.GROUPED') },
             { key: 'ungrouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.UNGROUPED') },
         ]
-
-        this.DropShadowSizes = [
-            { key: 'sm', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.SM') },
-            { key: 'md', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.MD') },
-            { key: 'lg', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.LG') },
-            { key: 'xl', value: this.translate.instant('GALLERY_EDITOR.GROUP_SIZE.XL') }
-        ];
-
-        this.DropShadowStyle = [
-            { key: 'soft', value: this.translate.instant('GALLERY_EDITOR.SHADOW.SOFT') },
-            { key: 'regular', value: this.translate.instant('GALLERY_EDITOR.SHADOW.REGULAR') },
-            { key: 'hard', value: this.translate.instant('GALLERY_EDITOR.SHADOW.HARD') }
-            
-        ];
-
 
         // When finish load raise block-editor-loaded.
         this.hostEvents.emit({action: 'block-editor-loaded'});
@@ -154,17 +93,17 @@ export class GalleryEditorComponent implements OnInit {
         this.updateHostObject();
 
         if(key === 'groupTitleAndDescription' || key === 'textPosition'){
-            this.VerticalAlign[1].disabled = this.configuration?.galleryConfig?.groupTitleAndDescription === 'ungrouped' || 
+            /*this.VerticalAlign[1].disabled = this.configuration?.galleryConfig?.groupTitleAndDescription === 'ungrouped' || 
                                              this.configuration?.galleryConfig?.textPosition === 'separated';
             //check if the vertical align was center, if true set it automateclly to top
             if( this.configuration?.galleryConfig?.verticalAlign === 'center'){
                 this.configuration.galleryConfig.verticalAlign = 'start';
-            }
-
-            let isDisabled = this.configuration?.galleryConfig?.textPosition == 'overlyed' && 
+            }*/
+            
+            /*let isDisabled = this.configuration?.galleryConfig?.textPosition == 'overlyed' && 
             this.configuration?.galleryConfig?.groupTitleAndDescription === 'ungrouped' ? true : false;
             
-            this.VerticalAlign[0].disabled = this.VerticalAlign[2].disabled = isDisabled;
+            this.VerticalAlign[0].disabled = this.VerticalAlign[2].disabled = isDisabled;*/
                
         }
 

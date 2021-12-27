@@ -16,7 +16,7 @@ $pepperi-theme: get-pepperi-theme();
     height: 100%;
     height: -moz-available;          /* WebKit-based browsers will ignore this. */
     height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
-    height: fill-available;
+    height: stretch; //  fill-available;
     width: 100%;
     position: absolute;
     top: 0px;
@@ -139,7 +139,7 @@ $pepperi-theme: get-pepperi-theme();
     }
 }
 
-.roundness-2xl {
+.roundness-xl {
     border-radius: 1rem;;
 }
 

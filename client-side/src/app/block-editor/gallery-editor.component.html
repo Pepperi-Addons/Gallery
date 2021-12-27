@@ -34,25 +34,15 @@
                         stretch="true">
     </pep-group-buttons>
 
-    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.VERTICAL' | translate}}</label>
-    <pep-group-buttons [buttons]="VerticalAlign"
-                       (buttonClick)="onGalleryFieldChange('verticalAlign',$event)"
-                       [selectedButtonKey]="configuration?.galleryConfig?.verticalAlign" 
-                        buttonsClass="md regular" 
-                        [buttonsDisabled]="!configuration?.galleryConfig?.useText"
-                        viewType="toggle" 
-                        stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings [groupType]="'vertical-align'" [subHeader]="'GALLERY_EDITOR.VERTICAL' | translate"
+                                [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.verticalAlign"
+                                (btnkeyChange)="onGalleryFieldChange('verticalAlign',$event)">
+    </pep-group-buttons-settings>
 
-    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.HORIZONTAL' | translate}}</label>
-    <pep-group-buttons [buttons]="HorizentalAlign" 
-                       [selectedButtonKey]="configuration?.galleryConfig?.horizontalAlign" 
-                        buttonsClass="md regular" 
-                        (buttonClick)="onGalleryFieldChange('horizontalAlign',$event)" 
-                        [buttonsDisabled]="!configuration?.galleryConfig?.useText" 
-                        viewType="toggle" 
-                        stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings [groupType]="'horizontal-align'" [subHeader]="'GALLERY_EDITOR.HORIZONTAL' | translate"
+                                [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.horizontalAlign"
+                                (btnkeyChange)="onGalleryFieldChange('horizontalAlign',$event)">
+    </pep-group-buttons-settings>
 
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TEXT_POS_STYLING' | translate}}</label>
     <pep-group-buttons [buttons]="TextPositionStyling" 
@@ -69,25 +59,17 @@
         [disabled]="!configuration?.galleryConfig?.useText">
     </pep-checkbox>
 
-    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TITLE_SIZE' | translate}}</label>
-    <pep-group-buttons [buttons]="TitleSizes" 
-                       [selectedButtonKey]="configuration?.galleryConfig?.titleSize" 
-                        buttonsClass="md regular" 
-                        (buttonClick)="onGalleryFieldChange('titleSize',$event)" 
-                        [buttonsDisabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
-                        viewType="toggle" 
-                        stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.TITLE_SIZE' | translate"
+                                [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
+                                [btnKey]="configuration?.galleryConfig?.titleSize" [excludeKeys]="['xs']"
+                                (btnkeyChange)="onGalleryFieldChange('titleSize',$event)">
+    </pep-group-buttons-settings>
 
-    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.TITLE_WEIGHT' | translate}}</label>
-    <pep-group-buttons [buttons]="TitleWeight" 
-                       [selectedButtonKey]="configuration?.galleryConfig?.titleWeight" 
-                        buttonsClass="md regular" 
-                        (buttonClick)="onGalleryFieldChange('titleWeight',$event)" 
-                        [buttonsDisabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
-                        viewType="toggle" 
-                        stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings [groupType]="'font-weight'" [subHeader]="'GALLERY_EDITOR.TITLE_WEIGHT' | translate"
+                                [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
+                                [btnKey]="configuration?.galleryConfig?.titleWeight"
+                                (btnkeyChange)="onGalleryFieldChange('titleWeight',$event)">
+    </pep-group-buttons-settings>
 
     <pep-checkbox [value]="configuration?.galleryConfig?.useDescription" 
         [label]="'GALLERY_EDITOR.DESCRIPTION' | translate" 
@@ -106,15 +88,11 @@
                        stretch="true">
     </pep-group-buttons>
 
-    <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.DESCRIPTION_SIZE' | translate}}</label>
-    <pep-group-buttons [buttons]="DescriptionSizes" 
-                       [selectedButtonKey]="configuration?.galleryConfig?.descriptionSize" 
-                        buttonsClass="md regular" 
-                        [buttonsDisabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useDescription" 
-                        (buttonClick)="onGalleryFieldChange('descriptionSize',$event)"
-                        viewType="toggle" 
-                        stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.DESCRIPTION_SIZE' | translate"
+                                [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useDescription" 
+                                [btnKey]="configuration?.galleryConfig?.descriptionSize" [excludeKeys]="['xs']"
+                                (btnkeyChange)="onGalleryFieldChange('descriptionSize',$event)">
+    </pep-group-buttons-settings>
 
     <pep-textbox [value]="configuration?.galleryConfig?.descriptionMaxNumOfLines" 
                  [label]="'GALLERY_EDITOR.MAX_NUM_OF_LINES' | translate" 
@@ -124,14 +102,12 @@
     </pep-textbox>
     
     <pep-checkbox [value]="configuration?.galleryConfig?.useRoundCorners" [label]="'GALLERY_EDITOR.ROUND_CORNER' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('useRoundCorners',$event)"></pep-checkbox>
-    <pep-group-buttons [buttons]="RoundCornersSizes" 
-                       [selectedButtonKey]="configuration?.galleryConfig?.roundCornersSize" 
-                        buttonsClass="md regular" 
-                        [buttonsDisabled]="!configuration?.galleryConfig?.useRoundCorners" 
-                        (buttonClick)="onGalleryFieldChange('roundCornersSize',$event)"
-                        viewType="toggle" 
-                        stretch="true">
-    </pep-group-buttons>
+    
+    <pep-group-buttons-settings [groupType]="'sizes'"
+                                [disabled]="!configuration?.galleryConfig?.useRoundCorners" 
+                                [btnKey]="configuration?.galleryConfig?.roundCornersSize" [excludeKeys]="['xs']"
+                                (btnkeyChange)="onGalleryFieldChange('roundCornersSize',$event)">
+    </pep-group-buttons-settings>
 
     <pep-color-settings [title]="'GALLERY_EDITOR.BORDER' | translate"
                         [color]="configuration?.galleryConfig?.border">

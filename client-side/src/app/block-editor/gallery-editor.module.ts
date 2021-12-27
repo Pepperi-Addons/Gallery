@@ -21,6 +21,7 @@ import { CardEditorModule } from '../components/card-editor/card-editor.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PepShadowSettingsModule } from '@pepperi-addons/ngx-composite-lib/shadow-settings';
 import { PepColorSettingsModule } from '@pepperi-addons/ngx-composite-lib/color-settings';
+import { PepGroupButtonsSettingsModule } from '@pepperi-addons/ngx-composite-lib/group-buttons-settings';
 import { config } from '../addon.config';
 
 const pepIcons = [
@@ -76,6 +77,7 @@ export function createTranslateLoader(addonService: PepAddonService) {
         DragDropModule,
         PepShadowSettingsModule,
         PepColorSettingsModule,
+        PepGroupButtonsSettingsModule,
         // TranslateModule.forChild({
         //     loader: {
         //         provide: TranslateLoader,
