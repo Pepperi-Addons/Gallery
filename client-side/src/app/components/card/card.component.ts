@@ -86,10 +86,22 @@ export class CardComponent implements OnInit {
 
         let colorsStr =  direction ! == 'circle' ? this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) :
                                                    this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
-        let imageSrc = this.card?.imageURL !== '' ? ', url('+this.card?.imageURL + ')' : '';
+        let imageSrc = this.card?.imageURL !== '' ? 'url('+this.card?.imageURL + ')' : '';
         let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
-
-        return gradType + '(' + direction +' , '+ colorsStr +')' + imageSrc ;
+        
+        let gradStr = this.galleryConfig.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
+        if(gradStr != '' && imageSrc != ''){
+            return gradStr + ',' + imageSrc;
+        }
+        else if(gradStr != '' && imageSrc == ''){
+            return gradStr ;
+        }
+        else if(gradStr == '' && imageSrc != ''){
+            return imageSrc ;
+        }
+        else{
+            return 'unset';
+        }
     
     }
 
