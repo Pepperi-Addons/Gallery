@@ -42,22 +42,6 @@ const pepIcons = [
     pepIconArrowUp
 ];
 
-export function createTranslateLoader(addonService: PepAddonService) {
-    const addonStaticFolder = addonService.getAddonStaticFolder(config.AddonUUID);
-    const ngxLibTranslationResource = addonService.getNgxLibTranslationResource(config.AddonUUID);
-    const addonTranslationResource = addonService.getAddonTranslationResource(config.AddonUUID);
-    const ngxCompositeLibAssetsFolder = 'assets/ngx-composite-lib/i18n/';
-
-    return addonService.translateService.createMultiTranslateLoader([
-        ngxLibTranslationResource,
-        addonTranslationResource,
-        {
-            prefix: `${addonStaticFolder}/${ngxCompositeLibAssetsFolder}`,
-            suffix: '.ngx-composite-lib.json',
-        }
-    ]);
-}
-
 @NgModule({
     declarations: [GalleryEditorComponent],
     imports: [
@@ -78,18 +62,11 @@ export function createTranslateLoader(addonService: PepAddonService) {
         PepShadowSettingsModule,
         PepColorSettingsModule,
         PepGroupButtonsSettingsModule,
-        // TranslateModule.forChild({
-        //     loader: {
-        //         provide: TranslateLoader,
-        //         useFactory: (http: HttpClient, fileService: PepFileService, addonService: PepAddonService) => 
-        //             PepAddonService.createDefaultMultiTranslateLoader(http, fileService, addonService, config.AddonUUID),
-        //         deps: [HttpClient, PepFileService, PepAddonService],
-        //     }, isolate: false
-        // }),
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
-                useFactory: createTranslateLoader,
+                useFactory: (addonService: PepAddonService) => 
+                    PepAddonService.createMultiTranslateLoader(addonService, ['ngx-lib', 'ngx-composite-lib'], config.AddonUUID),
                 deps: [PepAddonService]
             }, isolate: false
         }),
