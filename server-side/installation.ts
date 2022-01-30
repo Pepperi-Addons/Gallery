@@ -49,7 +49,6 @@ async function runMigration(client){
             ModuleName: `${blockName}Module`,
             EditorComponentName: `${blockName}EditorComponent`,
             EditorModuleName: `${blockName}EditorModule`,
-
             Schema: {
                 "Fields": {
                     "galleryConfig": {
