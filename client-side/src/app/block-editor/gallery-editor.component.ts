@@ -20,7 +20,7 @@ export class GalleryEditorComponent implements OnInit {
 
     @Input()
     set hostObject(value: IHostObject) {
-        if (value && value.configuration) {
+        if (value && value.configuration && Object.keys(value.configuration).length) {
             this._configuration = value.configuration
         } else {
             // TODO - NEED TO ADD DEFAULT CARD
@@ -79,9 +79,18 @@ export class GalleryEditorComponent implements OnInit {
         });
     }
 
+    private updateHostObjectField(fieldKey: string, value: any) {
+        debugger;
+        this.hostEvents.emit({
+            action: 'set-configuration-field',
+            key: fieldKey, // 'galleryConfig.maxColumn'
+            value: value
+        });
+    }
+
     onGalleryFieldChange(key, event){
         const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
-
+        debugger;
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
             this.configuration.galleryConfig[keyObj[0]][keyObj[1]] = value;
@@ -90,7 +99,7 @@ export class GalleryEditorComponent implements OnInit {
             this.configuration.galleryConfig[key] = value;
         }
 
-        this.updateHostObject();
+        this.updateHostObjectField(`galleryConfig.${key}`, value);
 
         if(key === 'groupTitleAndDescription' || key === 'textPosition'){
             /*this.VerticalAlign[1].disabled = this.configuration?.galleryConfig?.groupTitleAndDescription === 'ungrouped' || 

@@ -48,7 +48,153 @@ async function runMigration(client){
             ComponentName: `${blockName}Component`,
             ModuleName: `${blockName}Module`,
             EditorComponentName: `${blockName}EditorComponent`,
-            EditorModuleName: `${blockName}EditorModule`
+            EditorModuleName: `${blockName}EditorModule`,
+
+            Schema: {
+                "Fields": {
+                    "galleryConfig": {
+                        "Type": "Object",
+                        "Fields": {
+                            "maxColumn": {
+                                "Type": "Integer",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "gap": {
+                                "Type": "Integer",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "cardHeight": {
+                                "Type": "Integer",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "useText": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "cardTextColor": {
+                                "Type": "MultipleStringValues",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "verticalAlign": {
+                                "Type": "MultipleStringValues",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "horizontalAlign": {
+                                "Type": "MultipleStringValues",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "textPosition": {
+                                "Type": "MultipleStringValues",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "useTitle": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "titleSize": {
+                                "Type": "MultipleStringValues",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "titleWeight": {
+                                "Type": "MultipleStringValues",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "useDescription": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "groupTitleAndDescription": {
+                                "Type": "MultipleStringValues",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "descriptionSize": {
+                                "Type": "MultipleStringValues",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "descriptionMaxNumOfLines": {
+                                "Type": "Integer",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "border": { 
+                                "Type": "Object",
+                                "Fields": {
+                                    "use": {
+                                        "Type": "Bool",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "value": {
+                                        "Type": "String",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "opacity": {
+                                        "Type": "Integer",
+                                        "SupportScreenSizes": true, 
+                                    }
+                                }
+                            },
+                            "gradientOverlay": { 
+                                "Type": "Object",
+                                "Fields": {
+                                    "use": {
+                                        "Type": "Bool",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "value": {
+                                        "Type": "String",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "opacity": {
+                                        "Type": "Integer",
+                                        "SupportScreenSizes": true, 
+                                    }
+                                }
+                            },
+                            "overlay": { 
+                                "Type": "Object",
+                                "Fields": {
+                                    "use": {
+                                        "Type": "Bool",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "value": {
+                                        "Type": "String",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "opacity": {
+                                        "Type": "Integer",
+                                        "SupportScreenSizes": true, 
+                                    }
+                                }
+                            },
+                            "dropShadow": { 
+                                "Type": "Object",
+                                "Fields": {
+                                    "use": {
+                                        "Type": "Bool",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "size": {
+                                        "Type": "String",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "intensity": {
+                                        "Type": "String",
+                                        "SupportScreenSizes": true, 
+                                    }
+                                }
+                            },
+                            "useRoundCorners": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "roundCornersSize": {
+                                "Type": "MultipleStringValues",
+                                "ConfigurationPerScreenSize": true
+                            },
+                        }
+                    }
+                }
+            }
         };
 
         const service = new MyService(client);
