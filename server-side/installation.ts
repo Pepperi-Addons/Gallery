@@ -72,19 +72,19 @@ async function runMigration(client){
                                 "ConfigurationPerScreenSize": true
                             },
                             "cardTextColor": {
-                                "Type": "MultipleStringValues",
+                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "verticalAlign": {
-                                "Type": "MultipleStringValues",
+                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "horizontalAlign": {
-                                "Type": "MultipleStringValues",
+                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "textPosition": {
-                                "Type": "MultipleStringValues",
+                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "useTitle": {
@@ -92,11 +92,11 @@ async function runMigration(client){
                                 "ConfigurationPerScreenSize": true
                             },
                             "titleSize": {
-                                "Type": "MultipleStringValues",
+                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "titleWeight": {
-                                "Type": "MultipleStringValues",
+                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "useDescription": {
@@ -104,11 +104,11 @@ async function runMigration(client){
                                 "ConfigurationPerScreenSize": true
                             },
                             "groupTitleAndDescription": {
-                                "Type": "MultipleStringValues",
+                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "descriptionSize": {
-                                "Type": "MultipleStringValues",
+                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "descriptionMaxNumOfLines": {
@@ -188,7 +188,7 @@ async function runMigration(client){
                                 "ConfigurationPerScreenSize": true
                             },
                             "roundCornersSize": {
-                                "Type": "MultipleStringValues",
+                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                         }
