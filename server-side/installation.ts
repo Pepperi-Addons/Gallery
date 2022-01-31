@@ -54,7 +54,7 @@ async function runMigration(client){
                     "galleryConfig": {
                         "Type": "Object",
                         "Fields": {
-                            "maxColumn": {
+                            "maxColumns": {
                                 "Type": "Integer",
                                 "ConfigurationPerScreenSize": true
                             },

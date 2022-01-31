@@ -25,7 +25,8 @@
     </pep-checkbox>
     
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.CARD_COLOR' | translate}}</label>
-    <pep-group-buttons [buttons]="textColor" 
+    <pep-group-buttons pepResetConfigurationField [fieldKey]="'galleryConfig.cardTextColor'" [position]="'top-end'"
+                        [buttons]="textColor" 
                        [selectedButtonKey]="configuration?.galleryConfig?.cardTextColor" 
                         buttonsClass="md regular" 
                         [buttonsDisabled]="!configuration?.galleryConfig?.useText"

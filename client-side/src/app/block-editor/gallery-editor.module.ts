@@ -23,7 +23,7 @@ import { PepShadowSettingsModule } from '@pepperi-addons/ngx-composite-lib/shado
 import { PepColorSettingsModule } from '@pepperi-addons/ngx-composite-lib/color-settings';
 import { PepGroupButtonsSettingsModule } from '@pepperi-addons/ngx-composite-lib/group-buttons-settings';
 import { config } from '../addon.config';
-
+import { PepNgxCompositeLibModule } from '@pepperi-addons/ngx-composite-lib/';
 const pepIcons = [
     pepIconTextAlignCenter, 
     pepIconTextAlignLeft, 
@@ -62,6 +62,8 @@ const pepIcons = [
         PepShadowSettingsModule,
         PepColorSettingsModule,
         PepGroupButtonsSettingsModule,
+        PepNgxCompositeLibModule,
+
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,

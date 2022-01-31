@@ -4,14 +4,14 @@ import { AppComponent } from './app.component';
 import { GalleryModule } from './block/gallery.module';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        GalleryModule
-    ],
     declarations: [
         AppComponent
-
     ],
+    imports: [
+        BrowserModule,
+        GalleryModule,
+    ],
+    
     providers: [],
     bootstrap: [
         AppComponent

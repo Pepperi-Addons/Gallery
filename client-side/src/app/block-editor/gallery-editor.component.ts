@@ -1,16 +1,19 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Directive, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IGallery, IGalleryEditor, IHostObject, ICardEditor } from '../gallery.model';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorService } from '@pepperi-addons/ngx-lib';
 import { GalleryService } from 'src/common/gallery.service';
 import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
+// import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
+import { PepResetConfigurationFieldDirective } from '@pepperi-addons/ngx-composite-lib';
+
 @Component({
     selector: 'gallery-editor',
     templateUrl: './gallery-editor.component.html',
     styleUrls: ['./gallery-editor.component.scss']
 })
+
 export class GalleryEditorComponent implements OnInit {
     // @Input() hostObject: any;
 
@@ -80,7 +83,7 @@ export class GalleryEditorComponent implements OnInit {
     }
 
     private updateHostObjectField(fieldKey: string, value: any) {
-        debugger;
+        
         this.hostEvents.emit({
             action: 'set-configuration-field',
             key: fieldKey, // 'galleryConfig.maxColumn'
@@ -90,7 +93,7 @@ export class GalleryEditorComponent implements OnInit {
 
     onGalleryFieldChange(key, event){
         const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
-        debugger;
+
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
             this.configuration.galleryConfig[keyObj[0]][keyObj[1]] = value;
@@ -98,7 +101,7 @@ export class GalleryEditorComponent implements OnInit {
         else{
             this.configuration.galleryConfig[key] = value;
         }
-
+        
         this.updateHostObjectField(`galleryConfig.${key}`, value);
 
         if(key === 'groupTitleAndDescription' || key === 'textPosition'){
@@ -135,18 +138,18 @@ export class GalleryEditorComponent implements OnInit {
         return { galleryConfig: new IGalleryEditor(), cards: [this.getDefaultCard()] };
     }
 
-    getSliderBackground( color){
-        let alignTo = 'right';
+    // getSliderBackground( color){
+    //     let alignTo = 'right';
 
-        let col: PepColorSettings = new PepColorSettings();
+    //     let col: PepColorSettings = new PepColorSettings();
 
-        col.value = color;
-        col.opacity = 100;
+    //     col.value = color;
+    //     col.opacity = 100;
 
-        let gradStr = this.galleryService.getRGBAcolor(col,0) +' , '+ this.galleryService.getRGBAcolor(col);
+    //     let gradStr = this.galleryService.getRGBAcolor(col,0) +' , '+ this.galleryService.getRGBAcolor(col);
         
-        return 'linear-gradient(to ' + alignTo +', ' +  gradStr +')';
-    }
+    //     return 'linear-gradient(to ' + alignTo +', ' +  gradStr +')';
+    // }
 
     addNewCardClick() {
         let card = new ICardEditor();
