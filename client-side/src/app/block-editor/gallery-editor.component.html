@@ -25,7 +25,7 @@
     </pep-checkbox>
     
     <label class="body-xs normal ellipsis">{{'GALLERY_EDITOR.CARD_COLOR' | translate}}</label>
-    <pep-group-buttons pepResetConfigurationField [fieldKey]="'galleryConfig.cardTextColor'" [position]="'top-end'"
+    <pep-group-buttons pepResetConfigurationField="galleryConfig.cardTextColor" [resetPosition]="'top-end'" [resetHostEvents]="hostEvents"
                         [buttons]="textColor" 
                        [selectedButtonKey]="configuration?.galleryConfig?.cardTextColor" 
                         buttonsClass="md regular" 
@@ -35,9 +35,10 @@
                         stretch="true">
     </pep-group-buttons>
 
-    <pep-group-buttons-settings [groupType]="'vertical-align'" [subHeader]="'GALLERY_EDITOR.VERTICAL' | translate"
-                                [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.verticalAlign"
-                                (btnkeyChange)="onGalleryFieldChange('verticalAlign',$event)">
+    <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.verticalAlign" [resetPosition]="'bottom-end'" [resetHostEvents]="hostEvents"
+        [groupType]="'vertical-align'" [subHeader]="'GALLERY_EDITOR.VERTICAL' | translate"
+        [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.verticalAlign"
+        (btnkeyChange)="onGalleryFieldChange('verticalAlign',$event)">
     </pep-group-buttons-settings>
 
     <pep-group-buttons-settings [groupType]="'horizontal-align'" [subHeader]="'GALLERY_EDITOR.HORIZONTAL' | translate"

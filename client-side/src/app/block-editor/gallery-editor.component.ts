@@ -6,7 +6,7 @@ import { PepColorService } from '@pepperi-addons/ngx-lib';
 import { GalleryService } from 'src/common/gallery.service';
 import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 // import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
-import { PepResetConfigurationFieldDirective } from '@pepperi-addons/ngx-composite-lib';
+// import { PepResetConfigurationFieldDirective } from '@pepperi-addons/ngx-composite-lib';
 
 @Component({
     selector: 'gallery-editor',
