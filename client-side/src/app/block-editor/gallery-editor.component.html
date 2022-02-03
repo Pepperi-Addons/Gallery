@@ -3,7 +3,7 @@
     <label class="body-xl bold ellipsis">{{'GALLERY_EDITOR.GRID' | translate}}</label>
     <pep-slider pepResetConfigurationField="galleryConfig.maxColumns" [resetPosition]="'bottom-end'" [resetHostEvents]="hostEvents"
             [label]="'GALLERY_EDITOR.MAX_COLUMNS' | translate" 
-            [hint]="configuration?.galleryConfig?.maxColumns.toString()" 
+            [hint]="configuration?.galleryConfig?.maxColumns?.toString()" 
             [minValue]="1" 
             [maxValue]="15"
             [disabled]="false" 
