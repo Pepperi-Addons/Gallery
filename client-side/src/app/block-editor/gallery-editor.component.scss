@@ -48,7 +48,7 @@ html {
                         display: flex;
                         flex-direction: column;
                         padding-inline: 0;
-                        row-gap: .5rem;
+                        row-gap: 1rem;
 
                     }
                 }
@@ -61,8 +61,8 @@ html {
     }
     pep-checkbox{
         // height: 2rem;
-        // min-height: 2rem;
-        margin-bottom: 0;
+        min-height: unset;
+        margin-bottom: -1rem;
 
         ::ng-deep  .pep-checkbox-container{
             background: transparent;
@@ -104,13 +104,23 @@ html {
         }
         }
     }
-
+    .split-cont{
     .split-area {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
 
         .pep-field{
+            margin-bottom: 0 !important;
+        }
+    }
+    label{
+        margin: .5rem 0 0 0;
+    }
+}
+
+    pep-textbox{
+        &.pep-field{
             margin-bottom: 0 !important;
         }
     }
