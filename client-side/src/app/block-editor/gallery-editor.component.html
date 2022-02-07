@@ -114,19 +114,23 @@
     </pep-group-buttons-settings>
 
     <pep-color-settings [title]="'GALLERY_EDITOR.BORDER' | translate"
-                        [color]="configuration?.galleryConfig?.border">
+                        [color]="configuration?.galleryConfig?.border"
+                        (colorChange)="onGalleryFieldChange('border',$event)">
     </pep-color-settings>
 
     <pep-color-settings [title]="'GALLERY_EDITOR.GRADIENT_OVERLAY' | translate"
-                        [color]="configuration?.galleryConfig?.gradientOverlay">
+                        [color]="configuration?.galleryConfig?.gradientOverlay"
+                        (colorChange)="onGalleryFieldChange('gradientOverlay',$event)">
     </pep-color-settings>
   
     <pep-color-settings [title]="'GALLERY_EDITOR.OVERLAY' | translate"
-                        [color]="configuration?.galleryConfig?.overlay">
+                        [color]="configuration?.galleryConfig?.overlay"
+                        (colorChange)="onGalleryFieldChange('overlay',$event)">
     </pep-color-settings> 
 
     <pep-shadow-settings [shadow]="configuration?.galleryConfig?.dropShadow"
-    (shadowChange)="onGalleryFieldChange('dropShadow',$event)"></pep-shadow-settings>
+                         (shadowChange)="onGalleryFieldChange('dropShadow',$event)">
+    </pep-shadow-settings>
     </mat-tab>
 
     <mat-tab cdkDropListGroup label="{{'GALLERY_EDITOR.TABS.CONTENT' | translate}}">

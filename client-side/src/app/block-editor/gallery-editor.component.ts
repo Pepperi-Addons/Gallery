@@ -5,8 +5,6 @@ import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorService } from '@pepperi-addons/ngx-lib';
 import { GalleryService } from 'src/common/gallery.service';
 import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-// import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
-// import { PepResetConfigurationFieldDirective } from '@pepperi-addons/ngx-composite-lib';
 
 @Component({
     selector: 'gallery-editor',
@@ -86,7 +84,7 @@ export class GalleryEditorComponent implements OnInit {
         
         this.hostEvents.emit({
             action: 'set-configuration-field',
-            key: fieldKey, // 'galleryConfig.maxColumn'
+            key: fieldKey, 
             value: value
         });
     }
@@ -101,7 +99,7 @@ export class GalleryEditorComponent implements OnInit {
         else{
             this.configuration.galleryConfig[key] = value;
         }
-        
+  
         this.updateHostObjectField(`galleryConfig.${key}`, value);
 
         if(key === 'groupTitleAndDescription' || key === 'textPosition'){
