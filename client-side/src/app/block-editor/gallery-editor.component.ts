@@ -71,6 +71,15 @@ export class GalleryEditorComponent implements OnInit {
     ngOnChanges(e: any): void {
 
     }
+    
+    public onHostObjectChange(event) {
+        if(event && event.action){
+            if(event.action === 'set-configuration'){
+                this._configuration = event.configuration;
+                this.updateHostObject();
+            }
+        }
+    }
 
     private updateHostObject() {
         
