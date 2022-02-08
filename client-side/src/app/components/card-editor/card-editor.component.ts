@@ -39,7 +39,8 @@ export class CardEditorComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
         this.title = this.configuration?.cards[this.id].titleContent;
-        this.configuration.galleryConfig.editSlideIndex = -1;
+        //debugger;
+        //this.configuration.galleryConfig.editSlideIndex = -1;
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
         
     }

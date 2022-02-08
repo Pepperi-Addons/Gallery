@@ -153,7 +153,8 @@ export class GalleryEditorComponent implements OnInit {
         let card = new ICardEditor();
         card.id = (this.configuration?.cards.length);
 
-        this.configuration?.cards.push( card);   
+        this.configuration?.cards.push( card); 
+        this.updateHostObject();  
     }
 
     onCardEditClick(event){
@@ -164,8 +165,9 @@ export class GalleryEditorComponent implements OnInit {
         else{ 
             this.currentCardindex = this.configuration.galleryConfig.editSlideIndex = parseInt(event.id);
         }
-
-        this.updateHostObject();
+        this.updateHostObjectField(`galleryConfig.editSlideIndex`, this.configuration.galleryConfig.editSlideIndex);
+        //this.cdr.detectChanges();
+        //this.updateHostObject();
     }
     onCardRemoveClick(event){
         this.configuration?.cards.splice(event.id, 1);
