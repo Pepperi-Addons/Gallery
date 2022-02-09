@@ -66,14 +66,14 @@ async function runMigration(client){
                                 "Type": "Integer",
                                 "ConfigurationPerScreenSize": true
                             },
-                            "useText": {
+                            /*"useText": {
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true
                             },
                             "cardTextColor": {
                                 "Type": "String",
                                 "ConfigurationPerScreenSize": true
-                            },
+                            },*/
                             "verticalAlign": {
                                 "Type": "String",
                                 "ConfigurationPerScreenSize": true
@@ -86,22 +86,22 @@ async function runMigration(client){
                                 "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
-                            "useTitle": {
+                            /*"useTitle": {
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true
-                            },
+                            },*/
                             "titleSize": {
                                 "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
-                            "titleWeight": {
+                            /*"titleWeight": {
                                 "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "useDescription": {
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true
-                            },
+                            },*/
                             "groupTitleAndDescription": {
                                 "Type": "String",
                                 "ConfigurationPerScreenSize": true
@@ -114,7 +114,7 @@ async function runMigration(client){
                                 "Type": "Integer",
                                 "ConfigurationPerScreenSize": true
                             },
-                            "border": { 
+                            /*"border": { 
                                 "Type": "Object",
                                 "Fields": {
                                     "use": {
@@ -189,7 +189,7 @@ async function runMigration(client){
                             "roundCornersSize": {
                                 "Type": "String",
                                 "ConfigurationPerScreenSize": true
-                            },
+                            }*/
                         }
                     }
                 }
