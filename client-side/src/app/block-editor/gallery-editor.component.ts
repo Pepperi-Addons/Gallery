@@ -20,9 +20,13 @@ export class GalleryEditorComponent implements OnInit {
     blockLoaded = false;
 
     @Input()
-    set hostObject(value: IHostObject) {
+    //set hostObject(value: IHostObject) {
+    set hostObject(value: any) {
         if (value && value.configuration && Object.keys(value.configuration).length) {
-            this._configuration = value.configuration
+            this._configuration = value.configuration;
+            if(value.configurationSource && Object.keys(value.configuration).length > 0){
+                this.configurationSource = value.configurationSource;
+            }
         } else {
             // TODO - NEED TO ADD DEFAULT CARD
             if(this.blockLoaded){
@@ -30,7 +34,9 @@ export class GalleryEditorComponent implements OnInit {
             }
         }
     }
-    
+
+    public configurationSource: IGallery;
+
     private _configuration: IGallery;
     get configuration(): IGallery {
         return this._configuration;

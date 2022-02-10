@@ -30,7 +30,7 @@
 <ng-template #topHeader>
     <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
                     'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}"
-          class="headerPadding ellipsis">
+          class="ellipsis">
          
         <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && 
                              galleryConfig?.verticalAlign === 'start'">
@@ -61,7 +61,7 @@
 </ng-template>
 
 <ng-template #footer>
-    <div class="headerPadding" [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
+    <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
                     'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
          
     <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && galleryConfig?.verticalAlign === 'end'">
