@@ -1,5 +1,7 @@
 {
     "Ok": "Ok",
+    "DONE": "Done",
+    "CANCEL": "Cancel",
     "Select_Label": "Select Label",
     "Title_Addon": "Hello Addon",
     "Title_Sub_Addon_3": "Hello Block 3",
@@ -62,7 +64,8 @@
         "DESCRIPTION": "Description",
         "IMAGE_URL": "Image URL",
         "LINK_TO": "Link to",
-        "DELETE_IMAGE": "Delete image"
+        "DELETE_IMAGE": "Delete image",
+        "CHOOSE_IMAGE": "Choose Image"
 
     }
 }

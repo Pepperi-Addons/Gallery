@@ -1,0 +1,6 @@
+<label class="body-xs normal ellipsis">{{'IMAGE_EDITOR.CHOOSE_IMAGE' | translate}}</label>
+<div #assetsBtnCont class="assets-btn-cont" [style.background-image]="'url(https://i.pinimg.com/736x/b4/dc/f1/b4dcf16ebce0ec62d3dba507949882e5.jpg)'">
+    <pep-button sizeType="sm" [value]="'Open Asset manager'" iconName="system_file_upload_cloud" (buttonClick)="onOpenAssetsDialog();"></pep-button>
+</div>
+
+<pep-addon-block-loader #addonBlockLoader [hostObject]="assetsHostObject" (hostEvents)="onHostEvents($event);" [blockType]="'assets-manager'"></pep-addon-block-loader>

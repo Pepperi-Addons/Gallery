@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
 import { PepStyleType, PepSizeType, PepColorService} from '@pepperi-addons/ngx-lib';
+import { PepDialogActionButton, PepDialogData, PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { IGallery } from 'src/app/gallery.model';
 
@@ -16,7 +16,7 @@ interface groupButtonArray {
     styleUrls: ['./card-editor.component.scss']
 })
 export class CardEditorComponent implements OnInit {
-    
+
     @Input() configuration: IGallery;
     @Input() id: string;
     
@@ -31,8 +31,8 @@ export class CardEditorComponent implements OnInit {
 
     constructor(
         private translate: TranslateService,
-        private pepColorService: PepColorService
-        // private utilitiesService: PepUtilitiesService
+        private pepColorService: PepColorService,
+        private pepDialogService: PepDialogService
     ) { 
 
     }
@@ -82,6 +82,11 @@ export class CardEditorComponent implements OnInit {
             this.configuration.galleryConfig[key] = event;
         }
 
+        this.updateHostObject();
+    }
+
+    onHostEvents(event: any) {
+        this.configuration.cards[this.id]['imageURL'] = event.url;
         this.updateHostObject();
     }
 

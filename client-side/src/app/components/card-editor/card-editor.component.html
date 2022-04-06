@@ -16,6 +16,7 @@
         <pep-textarea [value]="configuration?.cards[id].description" [label]="'IMAGE_EDITOR.DESCRIPTION' | translate"
                       rowSpan="2" (valueChange)="onCardFieldChange('description',$event)">
         </pep-textarea>
+        <assets-button (hostEvents)="onHostEvents($event);"></assets-button>
         <pep-textbox [label]="'IMAGE_EDITOR.IMAGE_URL' | translate" type="link" [value]="configuration?.cards[id].imageURL" (valueChange)="onCardFieldChange('imageURL',$event)"></pep-textbox>
         <pep-textbox [label]="'IMAGE_EDITOR.LINK_TO' | translate" type="link" [value]="configuration?.cards[id].linkTo" (valueChange)="onCardFieldChange('linkTo',$event)"></pep-textbox>
     </div>

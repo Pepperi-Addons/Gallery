@@ -16,6 +16,7 @@ import { PepGroupButtonsModule } from '@pepperi-addons/ngx-lib/group-buttons';
 import { PepImageModule } from '@pepperi-addons/ngx-lib/image';
 import { PepSelectModule } from '@pepperi-addons/ngx-lib/select';
 import { PepTextareaModule } from '@pepperi-addons/ngx-lib/textarea';
+import { AssetsButtonModule } from '../assets-button/assets-button.module';
 
 @NgModule({
     declarations: [CardEditorComponent],
@@ -35,6 +36,7 @@ import { PepTextareaModule } from '@pepperi-addons/ngx-lib/textarea';
         PepColorModule,
         PepImageModule,
         PepTextareaModule,
+        AssetsButtonModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
