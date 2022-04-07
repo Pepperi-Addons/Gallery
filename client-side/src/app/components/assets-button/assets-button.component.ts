@@ -1,6 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
-import { AddonBlockLoaderComponent } from '@pepperi-addons/ngx-composite-lib/addon-block-loader';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef } from "@angular/core";
+import { AddonBlockLoaderService } from '@pepperi-addons/ngx-composite-lib/addon-block-loader';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
     selector: 'assets-button',
@@ -11,18 +12,24 @@ import { AddonBlockLoaderComponent } from '@pepperi-addons/ngx-composite-lib/add
 export class AssetsButtonComponent implements OnInit {
    
     @ViewChild('assetsBtnCont', { static: false }) assetsBtnCont: ElementRef;
-    @ViewChild(AddonBlockLoaderComponent) addonBlockLoader: AddonBlockLoaderComponent;
-
+    // @ViewChild('addonLoaderContainer', { read: ViewContainerRef }) addonLoaderContainer: ViewContainerRef;
+    
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     
     @Input() imageURL: string = '';
 
+    dialogRef: MatDialogRef<any>;
+
     assetsHostObject = {
         selectionType: 'single',
-        allowedAssetsTypes: 'images'
+        allowedAssetsTypes: 'images',
+        inDialog: true
     }
 
-    constructor(public translate: TranslateService) {
+    constructor(
+        private viewContainerRef: ViewContainerRef,
+        public translate: TranslateService,
+        private addonBlockLoaderService: AddonBlockLoaderService) {
 
     }
 
@@ -36,11 +43,16 @@ export class AssetsButtonComponent implements OnInit {
     }
 
     onOpenAssetsDialog() {
-        this.addonBlockLoader.openDialog('', false, 'full-screen', this.assetsHostObject);
+        this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
+            container: this.viewContainerRef,
+            blockType: 'assets-manager',
+            hostObject: this.assetsHostObject,
+            hostEventsCallback: this.onHostEvents
+        });
     }
 
     onHostEvents(event: any) {
         this.hostEvents.emit(event);
-        this.addonBlockLoader.closeDialog(null);
+        this.dialogRef.close(null);
     }
 }
