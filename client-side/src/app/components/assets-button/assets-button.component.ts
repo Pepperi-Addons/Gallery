@@ -53,6 +53,9 @@ export class AssetsButtonComponent implements OnInit {
 
     onHostEvents(event: any) {
         this.hostEvents.emit(event);
-        this.dialogRef.close(null);
+
+        if (this.dialogRef) {
+            this.dialogRef.close(null);
+        }
     }
 }
