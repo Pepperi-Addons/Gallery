@@ -1,7 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { AddonBlockLoaderComponent } from '@pepperi-addons/ngx-composite-lib/addon-block-loader';
-import { DomSanitizer  } from '@angular/platform-browser';
 
 @Component({
     selector: 'assets-button',
@@ -16,12 +15,14 @@ export class AssetsButtonComponent implements OnInit {
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     
-    imageURL: string = '';
+    @Input() imageURL: string = '';
+
     assetsHostObject = {
-        selectionType: 'single'
+        selectionType: 'single',
+        allowedAssetsTypes: 'images'
     }
 
-    constructor(public translate: TranslateService, private renderer: Renderer2, private sanitizer: DomSanitizer) {
+    constructor(public translate: TranslateService) {
 
     }
 
@@ -39,13 +40,7 @@ export class AssetsButtonComponent implements OnInit {
     }
 
     onHostEvents(event: any) {
-       
         this.hostEvents.emit(event);
-
-        //const style = `url(${event.url})`;
-        // sanitize the style expression
-        this.imageURL = event.url;// this.sanitizer.bypassSecurityTrustStyle(event.url) as string;
-        //this.renderer.setStyle(this.assetsBtnCont.nativeElement,'background-image', this.sanitizer.bypassSecurityTrustStyle(style));
         this.addonBlockLoader.closeDialog(null);
     }
 }

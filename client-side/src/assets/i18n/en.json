@@ -65,7 +65,8 @@
         "IMAGE_URL": "Image URL",
         "LINK_TO": "Link to",
         "DELETE_IMAGE": "Delete image",
-        "CHOOSE_IMAGE": "Choose Image"
+        "CHOOSE_IMAGE": "Choose Image",
+        "OPEN_ASSETS_MANAGER": "Open Assets manager"
 
     }
 }
