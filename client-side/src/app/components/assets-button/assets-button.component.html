@@ -1,0 +1,6 @@
+<label class="body-xs normal ellipsis">{{'IMAGE_EDITOR.CHOOSE_IMAGE' | translate}}</label>
+<div #assetsBtnCont class="assets-btn-cont" [ngStyle]="{'background-image': 'url(' + imageURL + ')'}" (click)="onOpenAssetsDialog();">
+    <pep-button sizeType="sm" [styleType]="'regular'" [value]="'IMAGE_EDITOR.OPEN_ASSETS_MANAGER' | translate"  iconName="system_file_upload_cloud" (buttonClick)="onOpenAssetsDialog();"></pep-button>
+</div>
+
+<pep-addon-block-loader #addonBlockLoader [hostObject]="assetsHostObject" (hostEvents)="onHostEvents($event);" [blockType]="'assets-manager'"></pep-addon-block-loader>

@@ -1,0 +1,22 @@
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/variables' as ngx-variables;
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/functions' as ngx-functions;
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/mixins' as ngx-mixins;
+
+.assets-btn-cont{
+    height: 7.5rem;
+    border-radius: ngx-variables.$border-radius-md;
+    background-color: ngx-functions.get-pep-color(color-system-primary, color-tran-30);
+    width: 100%;
+    padding: 1rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    pep-button{
+        transform: translate(-50%, -50%);
+        position: relative;
+        left: 50%;
+        top: 50%;
+    }
+
+}
