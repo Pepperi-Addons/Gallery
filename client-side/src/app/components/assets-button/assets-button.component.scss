@@ -3,6 +3,7 @@
 @use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/mixins' as ngx-mixins;
 
 .assets-btn-cont{
+    display: grid;
     height: 7.5rem;
     border-radius: ngx-variables.$border-radius-md;
     background-color: ngx-functions.get-pep-color(color-system-primary, color-tran-30);
@@ -11,12 +12,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-
-    pep-button{
-        transform: translate(-50%, -50%);
-        position: relative;
-        left: 50%;
-        top: 50%;
-    }
-
+    margin-bottom: ngx-variables.$form-spacing;
+    align-items: center;
+    justify-content: center;
 }

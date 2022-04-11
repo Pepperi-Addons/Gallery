@@ -86,8 +86,10 @@ export class CardEditorComponent implements OnInit {
     }
 
     onHostEvents(event: any) {
-        this.configuration.cards[this.id]['imageURL'] = event.url;
-        this.updateHostObject();
+        if(event?.url){
+            this.configuration.cards[this.id]['imageURL'] = event.url;
+            this.updateHostObject();
+        }     
     }
 
 }

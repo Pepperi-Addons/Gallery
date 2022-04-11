@@ -39,7 +39,7 @@ export class AssetsButtonComponent implements OnInit {
     }
 
     ngOnInit() {
-        //this.carIdndex = this.card.id;
+
     }
 
     onOpenAssetsDialog() {
@@ -47,7 +47,7 @@ export class AssetsButtonComponent implements OnInit {
             container: this.viewContainerRef,
             blockType: 'assets-manager',
             hostObject: this.assetsHostObject,
-            hostEventsCallback: this.onHostEvents
+            hostEventsCallback: (event) => { this.onHostEvents(event); }
         });
     }
 
