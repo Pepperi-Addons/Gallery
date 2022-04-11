@@ -187,6 +187,7 @@ export class GalleryEditorComponent implements OnInit {
     onCardRemoveClick(event){
         this.configuration?.cards.splice(event.id, 1);
         this.configuration?.cards.forEach(function(card, index, arr) {card.id = index; });
+        this.updateHostObject();
     }
 
     drop(event: CdkDragDrop<string[]>) {
