@@ -39,7 +39,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "@pepperi-addons/ngx-composite-lib": "^0.0.14",
-    "@pepperi-addons/ngx-lib": "^0.3.13",
+    "@pepperi-addons/ngx-lib": "^0.3.14",
     "@pepperi-addons/papi-sdk": "^1.24.0",
     "@tweenjs/tween.js": "^17.1.1",
     "again": "0.0.1",
