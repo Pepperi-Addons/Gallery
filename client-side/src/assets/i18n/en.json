@@ -63,11 +63,11 @@
         "TITLE": "Title",
         "DESCRIPTION": "Description",
         "IMAGE_URL": "Image URL",
-        "LINK_TO": "Link to",
+        "ACTION": "Action",
         "DELETE_IMAGE": "Delete image",
         "CHOOSE_IMAGE": "Choose Image",
-        "OPEN_ASSETS_MANAGER": "Assets Manager"
-
+        "OPEN_ASSETS_MANAGER": "Assets Manager",
+        "CHOOSE_SCRIPT": "Choose Script"
     }
 }
 

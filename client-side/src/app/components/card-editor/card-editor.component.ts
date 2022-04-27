@@ -1,9 +1,11 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PepStyleType, PepSizeType, PepColorService} from '@pepperi-addons/ngx-lib';
 import { PepDialogActionButton, PepDialogData, PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { IGallery } from 'src/app/gallery.model';
+import { MatDialogRef } from '@angular/material/dialog';
+import { PepRemoteLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
 
 interface groupButtonArray {
     key: string; 
@@ -29,11 +31,15 @@ export class CardEditorComponent implements OnInit {
     @Output() removeClick: EventEmitter<any> = new EventEmitter();
     @Output() editClick: EventEmitter<any> = new EventEmitter();
 
+    dialogRef: MatDialogRef<any>;
+    
     constructor(
         private translate: TranslateService,
         private pepColorService: PepColorService,
-        private pepDialogService: PepDialogService
-    ) { 
+        private pepDialogService: PepDialogService,
+        private viewContainerRef: ViewContainerRef,
+        private addonBlockLoaderService: PepRemoteLoaderService) {
+
 
     }
 
@@ -90,6 +96,23 @@ export class CardEditorComponent implements OnInit {
             this.configuration.cards[this.id]['imageURL'] = event.url;
             this.updateHostObject();
         }     
+    }
+
+    openScriptPickerDialog() {
+        this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
+            container: this.viewContainerRef,
+            name: 'ScriptPicker',
+            hostObject: this.configuration.cards[this.id]['script'],
+            hostEventsCallback: (event) => { 
+                if (event.action === 'script-picked') {
+                    this.configuration.cards[this.id]['script'] = event.data;
+                    this.updateHostObject();
+                    this.dialogRef.close();
+                } else if (event.action === 'close') {
+                    this.dialogRef.close();
+                }
+            }
+        });
     }
 
 }

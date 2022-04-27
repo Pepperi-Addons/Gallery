@@ -51,5 +51,6 @@ export class ICardEditor {
     title: string = "Gallery";
     description: string = "Description";
     imageURL: string = "";
-    linkTo: string = "";
+    // linkTo: string = "";
+    script: any;
 }

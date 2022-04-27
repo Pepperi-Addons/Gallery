@@ -3,12 +3,12 @@
     [ngStyle]="{'width': '100%',
                 'display': galleryConfig?.textPosition === 'overlyed' ? 'block' : 'grid',
                 'height' : galleryConfig?.cardHeight + 'rem',
-                'cursor' : card?.linkTo != '' ? 'pointer' : 'inherit',
+                'cursor' : card?.script != '' ? 'pointer' : 'inherit',
                 'border': getGalleryBorder()}"
     [ngClass]="['textColor_'+ galleryConfig?.cardTextColor,
                 galleryConfig?.dropShadow?.use ? 'shadow-' + this.galleryConfig?.dropShadow?.size : '',
                 galleryConfig?.dropShadow?.use ? this.galleryConfig?.dropShadow?.intensity : '',
-                galleryConfig?.useRoundCorners ? 'roundness-' + galleryConfig?.roundCornersSize : '']"
+                galleryConfig?.useRoundCorners ? 'border-radius-' + galleryConfig?.roundCornersSize : '']"
     (click)="onCardClicked()">
 
     <ng-container *ngIf="galleryConfig?.useText && 

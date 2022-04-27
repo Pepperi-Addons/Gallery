@@ -110,9 +110,11 @@ export class CardComponent implements OnInit {
     }
 
     onCardClicked(){
-        if(this.card?.linkTo && this.card.linkTo != ''){
-            var linkTo = window.open('', '_blank');
-            linkTo.location.href = this.card.linkTo;
+        if(this.card?.script) {
+            // var linkTo = window.open('', '_blank');
+            // linkTo.location.href = this.card.linkTo;
+
+            // TODO: Implement script click
         }
     }
 

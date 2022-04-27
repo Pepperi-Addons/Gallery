@@ -20,6 +20,10 @@
         padding-top: .75rem;
         grid-column: 1 / 4;
         grid-row: 2 / 4;
+
+        .script-button {
+            margin-bottom: ngx-variables.$form-spacing;
+        }
     }
 
     .title-container {

@@ -10,7 +10,7 @@
             [disabled]="false" 
             [value]="configuration?.galleryConfig?.maxColumns"
             [background]="'RGBA(0,0,0,50%)'"
-            (valueChange)="onGalleryFieldChange('maxColumns',$event)">
+            (inputChange)="onGalleryFieldChange('maxColumns',$event)">
     </pep-slider>
     <div class="split-cont">
         <div class="split-area">
