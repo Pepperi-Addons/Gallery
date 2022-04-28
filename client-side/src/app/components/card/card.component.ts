@@ -20,6 +20,7 @@ export class CardComponent implements OnInit {
     @Input() card : ICardEditor;
     @Input() showSlide: boolean;
 
+    @Output() cardClick: EventEmitter<any> = new EventEmitter();
   //public slideIndex;
 
     constructor(
@@ -114,7 +115,8 @@ export class CardComponent implements OnInit {
             // var linkTo = window.open('', '_blank');
             // linkTo.location.href = this.card.linkTo;
 
-            // TODO: Implement script click
+            // Implement script click
+            this.cardClick.emit(this.card?.script);
         }
     }
 

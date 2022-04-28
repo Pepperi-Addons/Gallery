@@ -79,4 +79,18 @@ export class GalleryComponent implements OnInit {
     counter(i: number) {
         return new Array(i);
     }
+
+    onCardClicked(event) {
+        // TODO: parse the params if exist.
+        const params = {};//event.Data;
+        
+        this.hostEvents.emit({
+            action: 'emit-event',
+            eventKey: 'RunScript',
+            eventData: {
+                ScriptKey: event.Key,
+                ScriptParams: params
+            }
+        });
+    }
 }
