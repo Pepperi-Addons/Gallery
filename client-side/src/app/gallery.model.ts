@@ -9,6 +9,7 @@ export type FontWeight = 'normal' | 'bold' | 'bolder';
 
 export interface IHostObject {
     configuration: IGallery;
+    parameters: any;
     // pageConfiguration?: PageConfiguration;
     // pageType?: any;
     // context?: any;

@@ -21,7 +21,8 @@ export class CardEditorComponent implements OnInit {
 
     @Input() configuration: IGallery;
     @Input() id: string;
-    
+    @Input() pageParameters: any = {};
+
     public title: string;
     
     @Input() isDraggable = false;
@@ -99,10 +100,14 @@ export class CardEditorComponent implements OnInit {
     }
 
     openScriptPickerDialog() {
+        const script = this.configuration.cards[this.id]['script'];
+        // script
+// debugger;
+
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
             name: 'ScriptPicker',
-            hostObject: this.configuration.cards[this.id]['script'],
+            hostObject: script,
             hostEventsCallback: (event) => { 
                 if (event.action === 'script-picked') {
                     this.configuration.cards[this.id]['script'] = event.data;

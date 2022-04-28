@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Directive, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IGallery, IGalleryEditor, IHostObject, ICardEditor } from '../gallery.model';
+import { IGallery, IGalleryEditor, ICardEditor } from '../gallery.model';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorService } from '@pepperi-addons/ngx-lib';
 import { GalleryService } from 'src/common/gallery.service';
@@ -20,8 +20,8 @@ export class GalleryEditorComponent implements OnInit {
     blockLoaded = false;
 
     @Input()
-    //set hostObject(value: IHostObject) {
     set hostObject(value: any) {
+        debugger;
         if (value && value.configuration && Object.keys(value.configuration).length) {
             this._configuration = value.configuration;
             if(value.configurationSource && Object.keys(value.configuration).length > 0){
@@ -33,7 +33,11 @@ export class GalleryEditorComponent implements OnInit {
                 this.loadDefaultConfiguration();
             }
         }
+
+        this.pageParameters = value?.pageParameters || {};
     }
+
+    pageParameters: any;
 
     public configurationSource: IGallery;
 

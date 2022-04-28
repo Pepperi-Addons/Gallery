@@ -15,6 +15,8 @@ export class GalleryComponent implements OnInit {
     @Input()
     set hostObject(value: IHostObject) {
         this._configuration = value?.configuration;
+        this._parameters = value?.parameters || {};
+
             //check if MaxColumns has been changed , and calc the cards width;
             //if(this.configuration && this.configuration.galleryConfig.maxColumns !== value?.configuration?.galleryConfig.maxColumns){
                    this.setCardWidth();
@@ -23,6 +25,8 @@ export class GalleryComponent implements OnInit {
            
 
     }
+
+    private _parameters: any;
 
     private _configuration: IGallery;
     get configuration(): IGallery {

@@ -34,15 +34,14 @@ module.exports = {
             name: blockName,
             filename: `${blockName}.js`,
             exposes: {
-                './GalleryModule': './src/app/block/index',
-                './GalleryEditorModule': './src/app/block-editor/index'
+                './GalleryModule': './src/app/block/index.ts',
+                './GalleryEditorModule': './src/app/block-editor/index.ts'
             },
             shared: share({
                 "@angular/core": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
                 "@angular/common": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
                 "@angular/common/http": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
                 "@angular/router": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' },
-                "@pepperi-addons/ngx-lib": {eager: true,  singleton: true, strictVersion: true, requiredVersion: 'auto' },
                 
                 ...sharedMappings.getDescriptors()
             })

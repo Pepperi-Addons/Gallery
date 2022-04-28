@@ -110,11 +110,8 @@ export class CardComponent implements OnInit {
        return  this.galleryConfig?.overlay?.use ?  'inset 0 0 0 100vh ' + this.galleryService.getRGBAcolor(this.galleryConfig?.overlay) : 'unset' ;
     }
 
-    onCardClicked(){
+    onCardClicked() {
         if(this.card?.script) {
-            // var linkTo = window.open('', '_blank');
-            // linkTo.location.href = this.card.linkTo;
-
             // Implement script click
             this.cardClick.emit(this.card?.script);
         }
