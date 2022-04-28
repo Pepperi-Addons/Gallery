@@ -3,7 +3,8 @@
      [ngClass]="[false ? 'oneColumnView' : '']">
      <gallery-card #cardContainer *ngFor="let currentCard of configuration?.cards" [ngStyle]="{'width': cardWidth}"
                    [card]="currentCard" 
-                   [galleryConfig]="configuration?.galleryConfig">
+                   [galleryConfig]="configuration?.galleryConfig"
+                   (cardClick)="onCardClicked($event)">
      </gallery-card>
      <div *ngIf="!configuration?.cards || configuration?.cards.length === 0" class="noImageFound">No Images</div>
 </div>
