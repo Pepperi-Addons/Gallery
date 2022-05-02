@@ -19,6 +19,6 @@
         <assets-button [imageURL]="configuration?.cards[id].imageURL" (hostEvents)="onHostEvents($event);"></assets-button>
         <!-- <pep-textbox [label]="'IMAGE_EDITOR.LINK_TO' | translate" type="link" [value]="configuration?.cards[id].linkTo" (valueChange)="onCardFieldChange('linkTo',$event)"></pep-textbox> -->
         <label class="body-xs normal ellipsis">{{'IMAGE_EDITOR.ACTION' | translate}}</label>
-        <pep-button class="script-button" [value]="configuration?.cards[id].script ? configuration?.cards[id].script?.Key : ('IMAGE_EDITOR.CHOOSE_SCRIPT' | translate)" (buttonClick)="openScriptPickerDialog();"></pep-button>
+        <pep-button class="script-button" [value]="configuration?.cards[id].script ? configuration?.cards[id].script?.runScriptData?.ScriptKey : ('IMAGE_EDITOR.CHOOSE_SCRIPT' | translate)" (buttonClick)="openScriptPickerDialog();"></pep-button>
     </div>
 </div>

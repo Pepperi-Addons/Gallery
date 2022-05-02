@@ -5,6 +5,7 @@ import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorService } from '@pepperi-addons/ngx-lib';
 import { GalleryService } from 'src/common/gallery.service';
 import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { PageConfiguration, PageConfigurationParameterBase } from '@pepperi-addons/papi-sdk';
 
 @Component({
     selector: 'gallery-editor',
@@ -21,7 +22,6 @@ export class GalleryEditorComponent implements OnInit {
 
     @Input()
     set hostObject(value: any) {
-        debugger;
         if (value && value.configuration && Object.keys(value.configuration).length) {
             this._configuration = value.configuration;
             if(value.configurationSource && Object.keys(value.configuration).length > 0){
@@ -34,10 +34,10 @@ export class GalleryEditorComponent implements OnInit {
             }
         }
 
-        this.pageParameters = value?.pageParameters || {};
+        this._pageParameters = value?.pageParameters || {};
+        this._pageConfiguration = value?.pageConfiguration || this.defaultPageConfiguration;
     }
 
-    pageParameters: any;
 
     public configurationSource: IGallery;
 
@@ -46,6 +46,15 @@ export class GalleryEditorComponent implements OnInit {
         return this._configuration;
     }
 
+    // All the page parameters to set in page configuration when needed (for ScriptPicker addon usage).
+    private _pageParameters: any;
+    get pageParameters(): any {
+        return this._pageParameters;
+    }
+
+    private defaultPageConfiguration: PageConfiguration = { "Parameters": [] };
+    private _pageConfiguration: PageConfiguration = this.defaultPageConfiguration;
+    
     public textColor: Array<PepButton> = [];
     public TextPositionStyling: Array<PepButton> = [];
     public GroupTitleAndDescription: Array<PepButton> = [];
@@ -73,8 +82,6 @@ export class GalleryEditorComponent implements OnInit {
             { key: 'ungrouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.UNGROUPED'), callback: (event: any) => this.onGalleryFieldChange('groupTitleAndDescription',event) }
         ]
 
-        // When finish load raise block-editor-loaded.
-        this.hostEvents.emit({action: 'block-editor-loaded'});
         this.blockLoaded = true;
     }
 
@@ -83,10 +90,15 @@ export class GalleryEditorComponent implements OnInit {
     }
     
     public onHostObjectChange(event) {
-        if(event && event.action){
-            if(event.action === 'set-configuration'){
+        if(event && event.action) {
+            if (event.action === 'set-configuration') {
                 this._configuration = event.configuration;
                 this.updateHostObject();
+
+                // Update page configuration only if updatePageConfiguration
+                if (event.updatePageConfiguration) {
+                    this.updatePageConfigurationObject();
+                }
             }
         }
     }
@@ -100,13 +112,57 @@ export class GalleryEditorComponent implements OnInit {
     }
 
     private updateHostObjectField(fieldKey: string, value: any) {
-        
         this.hostEvents.emit({
             action: 'set-configuration-field',
             key: fieldKey, 
             value: value
         });
     }
+
+    private getPageConfigurationParametersNames(): Array<string> {
+        const parameters = new Set<string>();
+
+        // Go for all cards scripts and add parameters to page configuration if Source is dynamic.
+        for (let index = 0; index < this._configuration.cards.length; index++) {
+            const card = this._configuration.cards[index];
+            
+            if (card?.script?.runScriptData) {
+                Object.keys(card.script.runScriptData?.ScriptData).forEach(paramKey => {
+                    const param = card.script.runScriptData.ScriptData[paramKey];
+        
+                    if (!parameters.has(param.Value) && param.Source === 'dynamic') {
+                        parameters.add(param.Value);
+                    }
+                });
+            }
+        }
+
+        // Return the parameters as array.
+        return [...parameters];
+    }
+
+    private updatePageConfigurationObject() {
+        const params = this.getPageConfigurationParametersNames();
+        this._pageConfiguration = this.defaultPageConfiguration;
+
+        // Add the parameter to page configuration.
+        for (let paramIndex = 0; paramIndex < params.length; paramIndex++) {
+            const param = params[paramIndex];
+            
+            this._pageConfiguration.Parameters.push({
+                Key: param,
+                Type: 'String',
+                Consume: true,
+                Produce: false
+            });
+        }
+
+        this.hostEvents.emit({
+            action: 'set-page-configuration',
+            pageConfiguration: this._pageConfiguration
+        });
+    }
+
 
     onGalleryFieldChange(key, event){
         const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;

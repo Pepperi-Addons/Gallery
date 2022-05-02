@@ -84,15 +84,35 @@ export class GalleryComponent implements OnInit {
         return new Array(i);
     }
 
+    private getScriptParams(scriptData: any) {
+        const res = {};
+        
+        if (scriptData) {
+            // Go for all the script data and parse the params.
+            Object.keys(scriptData).forEach(paramKey => {
+                const scriptDataParam = scriptData[paramKey];
+                
+                // If the param source is dynamic get the value from the _parameters with the param value as key, else it's a simple param.
+                if (scriptDataParam.Source === 'dynamic') {
+                    res[paramKey] = this._parameters[scriptDataParam.Value] || '';
+                } else { // if (scriptDataParam.Source === 'static')
+                    res[paramKey] = scriptDataParam.Value;
+                }
+            });
+        }
+
+        return res;
+    }
+
     onCardClicked(event) {
-        // TODO: parse the params if exist.
-        const params = {};//event.Data;
+        // Parse the params if exist.
+        const params = this.getScriptParams(event.ScriptData);
         
         this.hostEvents.emit({
             action: 'emit-event',
             eventKey: 'RunScript',
             eventData: {
-                ScriptKey: event.Key,
+                ScriptKey: event.ScriptKey,
                 ScriptParams: params
             }
         });

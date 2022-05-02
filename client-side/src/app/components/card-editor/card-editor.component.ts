@@ -21,7 +21,12 @@ export class CardEditorComponent implements OnInit {
 
     @Input() configuration: IGallery;
     @Input() id: string;
-    @Input() pageParameters: any = {};
+
+    private _pageParameters: any = {};
+    @Input()
+    set pageParameters(value: any) {
+        this._pageParameters = value;
+    }
 
     public title: string;
     
@@ -73,11 +78,11 @@ export class CardEditorComponent implements OnInit {
         this.updateHostObject();
     }
 
-    private updateHostObject() {
-        
+    private updateHostObject(updatePageConfiguration = false) {
         this.hostEvents.emit({
             action: 'set-configuration',
-            configuration: this.configuration
+            configuration: this.configuration,
+            updatePageConfiguration: updatePageConfiguration
         });
     }
 
@@ -101,8 +106,14 @@ export class CardEditorComponent implements OnInit {
 
     openScriptPickerDialog() {
         const script = this.configuration.cards[this.id]['script'];
-        // script
-// debugger;
+        const fields = {};
+        Object.keys(this._pageParameters).forEach(paramKey => {
+            fields[paramKey] = {
+                Type: 'String'
+            }
+        });
+
+        script['fields'] = fields;
 
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
@@ -111,7 +122,7 @@ export class CardEditorComponent implements OnInit {
             hostEventsCallback: (event) => { 
                 if (event.action === 'script-picked') {
                     this.configuration.cards[this.id]['script'] = event.data;
-                    this.updateHostObject();
+                    this.updateHostObject(true);
                     this.dialogRef.close();
                 } else if (event.action === 'close') {
                     this.dialogRef.close();

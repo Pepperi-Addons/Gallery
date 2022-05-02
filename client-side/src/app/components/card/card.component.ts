@@ -111,10 +111,10 @@ export class CardComponent implements OnInit {
     }
 
     onCardClicked() {
-        if(this.card?.script) {
+        const runScriptData = this.card?.script?.runScriptData;
+        if (runScriptData) {
             // Implement script click
-            this.cardClick.emit(this.card?.script);
+            this.cardClick.emit(runScriptData);
         }
     }
-
 }
