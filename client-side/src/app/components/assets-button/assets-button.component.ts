@@ -1,7 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef } from "@angular/core";
 import { PepRemoteLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
-import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
     selector: 'assets-button',
@@ -17,8 +16,6 @@ export class AssetsButtonComponent implements OnInit {
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     
     @Input() imageURL: string = '';
-
-    dialogRef: MatDialogRef<any>;
 
     assetsHostObject = {
         selectionType: 'single',
@@ -43,19 +40,19 @@ export class AssetsButtonComponent implements OnInit {
     }
 
     onOpenAssetsDialog() {
-        this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
+        const dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
             name: 'Assets',
             hostObject: this.assetsHostObject,
-            hostEventsCallback: (event) => { this.onHostEvents(event); }
+            hostEventsCallback: (event) => { this.onHostEvents(event, dialogRef); }
         });
     }
 
-    onHostEvents(event: any) {
+    onHostEvents(event: any, dialogRef) {
         this.hostEvents.emit(event);
 
-        if (this.dialogRef) {
-            this.dialogRef.close(null);
+        if (dialogRef) {
+            dialogRef.close(null);
         }
     }
 }
