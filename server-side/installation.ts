@@ -11,10 +11,28 @@ The error Message is importent! it will be written in the audit log and help the
 import { Client, Request } from '@pepperi-addons/debug-server'
 import { Relation } from '@pepperi-addons/papi-sdk'
 import MyService from './my.service';
+import { DimxRelations, GalleryScheme } from './metadata';
+
+// export async function install(client: Client, request: Request): Promise<any> {
+//     const res = await runMigration(client);
+//     return res;
+// }
 
 export async function install(client: Client, request: Request): Promise<any> {
-    const res = await runMigration(client);
-    return res;
+
+    const galleryRelationsRes = await runMigration(client);
+    //const dimxRes = await createDimxRelations(client);
+    //const dimxSchemeRes = await addDimxScheme(client);
+   
+    // return {
+    //     success: galleryRelationsRes.success && dimxRes.success && dimxSchemeRes.success,
+    //     errorMessage: `galleryRelationsRes: ${galleryRelationsRes.errorMessage}, userDeviceResourceRes: ${dimxRes.errorMessage}, userDeviceResourceRes: ${dimxSchemeRes.errorMessage}`
+    // };
+
+    return {
+        success: galleryRelationsRes.success ,
+        errorMessage: `galleryRelationsRes: ${galleryRelationsRes.errorMessage}`
+    };
 }
 
 export async function uninstall(client: Client, request: Request): Promise<any> {
@@ -198,8 +216,50 @@ async function runMigration(client){
 
         const service = new MyService(client);
         const result = await service.upsertRelation(pageComponentRelation);
-        return { success:true, resultObject: result };
-    } catch(err) {
-        return { success: false, resultObject: err };
+        return {success:true, errorMessage: '' };
+    } catch(e) {
+        return { success: false, errorMessage: e.message || '' };
+    }
+}
+
+async function createDimxRelations(client) {
+    
+    let relations: Relation[] = DimxRelations;
+    let relationName = '';
+
+    try {
+        const service = new MyService(client);
+
+        relations.forEach(async (relation) => {
+            relationName = relation.RelationName;
+            const result = await service.upsertRelation(relation);
+        });
+        return {
+            success: true,
+            errorMessage: ''
+        }
+    }
+    catch (err) {
+        return {
+            success: false,
+            errorMessage: relationName + ' ' + (err ? err : 'Unknown Error Occured'),
+        }
+    }
+}
+
+async function addDimxScheme(client) {
+    try {
+        const service = new MyService(client);
+        service.papiClient.addons.data.schemes.post(GalleryScheme);
+        return {
+            success: true,
+            errorMessage: ''
+        }
+    }
+    catch (err) {
+            return {
+                success: false,
+                errorMessage: `Error in creating gallery scheme for dimx . error - ${err}`
+            }
     }
 }
