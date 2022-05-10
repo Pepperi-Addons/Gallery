@@ -18,12 +18,19 @@
             "dom"
         ],
         "paths": {
-            "test": [
-                "dist/test/test",
-                "dist/test"
-            ]
-        },
-        "jsx": "react"
+            // "@ngx-translate/core": [
+            //   "node_modules/@ngx-translate/core"
+            // ],
+            // "@ngx-translate/http-loader": [
+            //   "node_modules/@ngx-translate/http-loader"
+            // ]
+            // ,"@pepperi-addons/ngx-lib": [
+            //     "../../ngx-lib/dist/ngx-lib"
+            // ],
+            // "@pepperi-addons/ngx-lib/*": [
+            //     "../../ngx-lib/dist/ngx-lib/*"
+            // ]
+        }
     }
 
 }

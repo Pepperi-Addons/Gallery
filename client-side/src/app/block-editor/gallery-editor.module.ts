@@ -75,13 +75,7 @@ const pepIcons = [
     ],
     exports: [GalleryEditorComponent],
     providers: [
-        HttpClient,
         TranslateStore,
-        PepHttpService,
-        PepAddonService,
-        PepFileService,
-        PepCustomizationService,
-        PepDialogService
         // Add here all used services.
     ]
 })
