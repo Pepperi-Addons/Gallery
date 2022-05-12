@@ -1,7 +1,7 @@
 import config from '../addon.config.json';
 import { AddonDataScheme, Relation } from '@pepperi-addons/papi-sdk';
 
-const blockName = 'Gallery';
+export const blockName = 'Gallery';
 
 export const DimxRelations: Relation[] = [{
         AddonUUID: config.AddonUUID,
@@ -21,8 +21,8 @@ export const DimxRelations: Relation[] = [{
     }];
 
 export const GalleryScheme: AddonDataScheme = {
-    Name: '',
-    Type: 'data',
+    Name: blockName,
+    Type: 'meta_data',
     Fields: {
         'galleryConfig': {
             'Type': 'Object',

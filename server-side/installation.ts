@@ -11,7 +11,7 @@ The error Message is importent! it will be written in the audit log and help the
 import { Client, Request } from '@pepperi-addons/debug-server'
 import { Relation } from '@pepperi-addons/papi-sdk'
 import MyService from './my.service';
-import { DimxRelations, GalleryScheme } from './metadata';
+import { blockName, DimxRelations, GalleryScheme } from './metadata';
 
 // export async function install(client: Client, request: Request): Promise<any> {
 //     const res = await runMigration(client);
@@ -53,8 +53,6 @@ export async function downgrade(client: Client, request: Request): Promise<any> 
 
 async function runMigration(client){
     try {
-        const blockName = 'Gallery';
-
         const pageComponentRelation: Relation = {
             RelationName: "PageBlock",
             Name: blockName,
