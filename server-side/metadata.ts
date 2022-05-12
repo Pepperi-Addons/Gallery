@@ -5,7 +5,7 @@ export const blockName = 'Gallery';
 
 export const DimxRelations: Relation[] = [{
         AddonUUID: config.AddonUUID,
-        Name: `${blockName}`,
+        Name: `${blockName}Import`,
         RelationName: 'DataImportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Import Relation`,
@@ -13,7 +13,7 @@ export const DimxRelations: Relation[] = [{
     },
     {
         AddonUUID: config.AddonUUID,
-        Name: `${blockName}`,
+        Name: `${blockName}Export`,
         RelationName: 'DataExportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Export Relation`,
