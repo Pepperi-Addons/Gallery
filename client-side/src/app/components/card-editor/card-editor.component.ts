@@ -98,14 +98,14 @@ export class CardEditorComponent implements OnInit {
     }
 
     onHostEvents(event: any) {
-        if(event?.url){
+        if(event?.url) {
             this.configuration.cards[this.id]['imageURL'] = event.url;
             this.updateHostObject();
         }     
     }
 
     openScriptPickerDialog() {
-        const script = this.configuration.cards[this.id]['script'];
+        const script = this.configuration.cards[this.id]['script'] || {};
         const fields = {};
         Object.keys(this._pageParameters).forEach(paramKey => {
             fields[paramKey] = {
