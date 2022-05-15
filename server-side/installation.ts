@@ -21,17 +21,12 @@ import { blockName, DimxRelations, GalleryScheme } from './metadata';
 export async function install(client: Client, request: Request): Promise<any> {
 
     const galleryRelationsRes = await runMigration(client);
-    //const dimxRes = await createDimxRelations(client);
-    //const dimxSchemeRes = await addDimxScheme(client);
+    const dimxRes = await createDimxRelations(client);
+    const dimxSchemeRes = await addDimxScheme(client);
    
-    // return {
-    //     success: galleryRelationsRes.success && dimxRes.success && dimxSchemeRes.success,
-    //     errorMessage: `galleryRelationsRes: ${galleryRelationsRes.errorMessage}, userDeviceResourceRes: ${dimxRes.errorMessage}, userDeviceResourceRes: ${dimxSchemeRes.errorMessage}`
-    // };
-
     return {
-        success: galleryRelationsRes.success ,
-        errorMessage: `galleryRelationsRes: ${galleryRelationsRes.errorMessage}`
+        success: galleryRelationsRes.success && dimxRes.success && dimxSchemeRes.success,
+        errorMessage: `galleryRelationsRes: ${galleryRelationsRes.errorMessage}, userDeviceResourceRes: ${dimxRes.errorMessage}, userDeviceResourceRes: ${dimxSchemeRes.errorMessage}`
     };
 }
 
