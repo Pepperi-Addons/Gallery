@@ -23,7 +23,9 @@ export class GalleryEditorComponent implements OnInit {
     @Input()
     set hostObject(value: any) {
         if (value && value.configuration && Object.keys(value.configuration).length) {
-            this._configuration = value.configuration;
+            if(!this._configuration){
+                this._configuration = value.configuration;
+            }
             if(value.configurationSource && Object.keys(value.configuration).length > 0){
                 this.configurationSource = value.configurationSource;
             }

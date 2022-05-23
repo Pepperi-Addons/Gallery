@@ -9,7 +9,7 @@ export const DimxRelations: Relation[] = [{
         RelationName: 'DataImportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Import Relation`,
-        FixRelativeURL: '/api/import_mapping'
+        FixRelativeURL: '/api/import_fix_object'
     },
     {
         AddonUUID: config.AddonUUID,
@@ -17,7 +17,7 @@ export const DimxRelations: Relation[] = [{
         RelationName: 'DataExportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Export Relation`,
-        FixRelativeURL: '/api/export_mapping'
+        AddonRelativeURL: ''
     }];
 
 export const GalleryScheme: AddonDataScheme = {

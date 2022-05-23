@@ -46,7 +46,6 @@ export class CardEditorComponent implements OnInit {
         private viewContainerRef: ViewContainerRef,
         private addonBlockLoaderService: PepRemoteLoaderService) {
 
-
     }
 
     async ngOnInit(): Promise<void> {
