@@ -1,6 +1,6 @@
 {
   "AddonUUID": "5adbc9e0-ed1d-4b2d-98e9-9c50891812ea",
-  "AddonVersion": "0.0.25",
+  "AddonVersion": "0.0.27",
   "DebugPort": 4500,
   "WebappBaseUrl": "https://app.sandbox.pepperi.com",
   "DefaultEditor": "main",
@@ -19,7 +19,8 @@
     "ClientStack": "ng10",
     "Dependencies": {
       "cpi_node_scripts": "0.0.76",
-      "assets_manager_client": "0.0.19"
+      "assets_manager_client": "0.0.19",
+      "cpi-node-scripts": "0.0.87" 
     },
     "CPISide": []
   }
