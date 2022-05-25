@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef } from "@angular/core";
-import { PepRemoteLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
+import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
 
 @Component({
     selector: 'assets-button',
@@ -26,7 +26,7 @@ export class AssetsButtonComponent implements OnInit {
     constructor(
         private viewContainerRef: ViewContainerRef,
         public translate: TranslateService,
-        private addonBlockLoaderService: PepRemoteLoaderService) {
+        private addonBlockLoaderService: PepAddonBlockLoaderService) {
 
     }
 
