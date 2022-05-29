@@ -62,21 +62,23 @@
 
     .title-sm{
         font-size: calc(#{ngx-variables.$fs-sm} * 1.75) !important; 
-        height: calc(#{ngx-variables.$fs-sm} * 1.75);    
+        height: calc(#{ngx-variables.$fs-sm} * 1.75);
+        line-height: calc(#{ngx-variables.$fs-sm} * 1.75) !important;    
     }
     .title-md{
         font-size: calc(#{ngx-variables.$fs-md} * 1.75) !important;  
         height: calc(#{ngx-variables.$fs-md} * 1.75);   
+        line-height: calc(#{ngx-variables.$fs-md} * 1.75) !important;   
     }
     .title-lg{
         font-size: calc(#{ngx-variables.$fs-lg} * 2.25) !important; 
         height: calc(#{ngx-variables.$fs-lg} * 2.25);  
-        line-height: calc(#{ngx-variables.$fs-lg} * 1.85) !important;  
+        line-height: calc(#{ngx-variables.$fs-lg} * 2.25) !important;
     }
     .title-xl{
         font-size: calc(#{ngx-variables.$fs-xl} * 2.5) !important; 
         height: calc(#{ngx-variables.$fs-xl} * 2.5); 
-        line-height: calc(#{ngx-variables.$fs-xl} * 2) !important;     
+        line-height: calc(#{ngx-variables.$fs-xl} * 2.5) !important;     
     }
 
     &.shadow-xs{

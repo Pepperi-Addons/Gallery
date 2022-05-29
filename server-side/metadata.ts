@@ -147,6 +147,9 @@ export const GalleryScheme: AddonDataScheme = {
                     'description': {
                         'Type': 'String'
                     },
+                    'imageURL':{
+
+                    },
                     'script': {
                         'Type': 'Object',
                          'Fields': {
