@@ -16,6 +16,11 @@ export interface IHostObject {
     // filter?: any;
 }
 
+export class Asset {
+    url: string;
+    key: string;
+}
+
 export interface IGallery{
     galleryConfig: IGalleryEditor,
     cards: Array<ICardEditor>
@@ -51,7 +56,11 @@ export class ICardEditor {
     id: number;
     title: string = "Gallery";
     description: string = "Description";
-    imageURL: string = "";
+    asset: Asset = {
+        url: '',
+        key: ''
+    };
+    //imageURL: string = "";
     // linkTo: string = "";
     script: any;
 }
