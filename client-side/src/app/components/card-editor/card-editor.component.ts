@@ -5,7 +5,7 @@ import { PepDialogActionButton, PepDialogData, PepDialogService } from '@pepperi
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { IGallery } from 'src/app/gallery.model';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PepRemoteLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
+import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
 
 interface groupButtonArray {
     key: string; 
@@ -44,7 +44,7 @@ export class CardEditorComponent implements OnInit {
         private pepColorService: PepColorService,
         private pepDialogService: PepDialogService,
         private viewContainerRef: ViewContainerRef,
-        private addonBlockLoaderService: PepRemoteLoaderService) {
+        private addonBlockLoaderService: PepAddonBlockLoaderService) {
 
     }
 
