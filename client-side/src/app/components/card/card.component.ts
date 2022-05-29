@@ -29,7 +29,6 @@ export class CardComponent implements OnInit {
         public translate: TranslateService,
         private galleryService: GalleryService
     ) {
-
         this.layoutService.onResize$.subscribe(size => {
             this.screenSize = size;
         });
@@ -41,7 +40,7 @@ export class CardComponent implements OnInit {
     }
 
     getCardImageURL() {
-           return this.card?.imageURL !== '' ? 'url("' + this.card.imageURL + '")' : '';
+           return this.card?.asset?.url !== '' ? 'url("' + this.card.asset.url + '")' : '';
     }
 
     ngOnChanges(changes) { 
@@ -87,7 +86,7 @@ export class CardComponent implements OnInit {
 
         let colorsStr =  direction ! == 'circle' ? this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) :
                                                    this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
-        let imageSrc = this.card?.imageURL !== '' ? 'url('+this.card?.imageURL + ')' : '';
+        let imageSrc = this.card?.asset?.url !== '' ? 'url('+this.card.asset.url + ')' : '';
         let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
         
         let gradStr = this.galleryConfig.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
