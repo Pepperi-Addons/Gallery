@@ -3,7 +3,7 @@ import { PepShadowSettings} from "@pepperi-addons/ngx-composite-lib/shadow-setti
 import { PepColorSettings } from "@pepperi-addons/ngx-composite-lib/color-settings";
 export type textColor = 'system-primary' | 'dimmed' | 'invert' | 'strong';
 export type verticalAlignment = 'start' | 'center' | 'end';
-export type textPositionStyling = 'overlyed' | 'separated';
+export type textPositionStyling = 'overlaid' | 'separated';
 export type groupTitleAndDescription = 'grouped' | 'ungrouped';
 export type FontWeight = 'normal' | 'bold' | 'bolder';
 
@@ -16,11 +16,6 @@ export interface IHostObject {
     // filter?: any;
 }
 
-export class Asset {
-    url: string;
-    key: string;
-}
-
 export interface IGallery{
     galleryConfig: IGalleryEditor,
     cards: Array<ICardEditor>
@@ -28,13 +23,13 @@ export interface IGallery{
 
 export class IGalleryEditor {
     maxColumns: number = 1;
-    gap: number = 0.5;
+    gap: PepSizeType = 'xl';
     cardHeight: number = 16;
     useText: boolean = true;
     cardTextColor: textColor = 'system-primary';
     verticalAlign: verticalAlignment  = 'center';
     horizontalAlign: PepHorizontalAlignment = 'center';
-    textPosition: textPositionStyling = 'overlyed';
+    textPosition: textPositionStyling = 'overlaid';
     useTitle: boolean = true;
     titleSize: PepSizeType = 'xl';
     titleWeight: FontWeight = 'normal';
@@ -56,11 +51,7 @@ export class ICardEditor {
     id: number;
     title: string = "Gallery";
     description: string = "Description";
-    asset: Asset = {
-        url: '',
-        key: ''
-    };
-    //imageURL: string = "";
-    // linkTo: string = "";
+    asset: string = '';
+    assetURL: string = '';
     script: any;
 }

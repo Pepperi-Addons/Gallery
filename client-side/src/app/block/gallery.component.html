@@ -1,7 +1,7 @@
 <div class="galleryCardsCont" #galleryContainer
-     [ngStyle]="{'gap': configuration?.galleryConfig?.gap + 'rem'}"
-     [ngClass]="[false ? 'oneColumnView' : '']">
-     <gallery-card #cardContainer *ngFor="let currentCard of configuration?.cards" [ngStyle]="{'width': cardWidth}"
+     [ngClass]="['columnGap_'+ configuration?.galleryConfig?.gap]">
+     <gallery-card #cardContainer *ngFor="let currentCard of configuration?.cards" 
+          [ngStyle]="{'width': 'calc((100%  - (var(--pep-spacing-'+ configuration?.galleryConfig?.gap +') * '+ (configuration?.galleryConfig?.maxColumns - 1) +')) / '+ configuration?.galleryConfig?.maxColumns +' )  '}"
                    [card]="currentCard" 
                    [galleryConfig]="configuration?.galleryConfig"
                    (cardClick)="onCardClicked($event)">

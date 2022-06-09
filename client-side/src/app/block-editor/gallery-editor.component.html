@@ -12,19 +12,30 @@
             [background]="'RGBA(0,0,0,50%)'"
             (inputChange)="onGalleryFieldChange('maxColumns',$event)">
     </pep-slider>
-    <div class="split-cont">
+    
+    <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="decimal"
+                 pepResetConfigurationField="galleryConfig.cardHeight" [hideReset]="configuration?.galleryConfig?.cardHeight === configurationSource?.galleryConfig?.cardHeight" 
+                 [resetHostEvents]="hostEvents"
+                 [value]="configuration?.galleryConfig?.cardHeight" (valueChange)="onGalleryFieldChange('cardHeight',$event)">
+    </pep-textbox>
+
+    <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.gap" [hideReset]="configuration?.galleryConfig?.gap === configurationSource?.galleryConfig?.gap" 
+                [resetHostEvents]="hostEvents"
+                [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.GAP' | translate"
+                [btnKey]="configuration?.galleryConfig?.gap" [excludeKeys]="['xxl']"
+                (btnkeyChange)="onGalleryFieldChange('gap',$event)">
+    </pep-group-buttons-settings>
+
+    <!-- <div class="split-cont">
         <div class="split-area">
             <pep-textbox [label]="'GALLERY_EDITOR.GAP' | translate" type="decimal" 
                 pepResetConfigurationField="galleryConfig.gap" [hideReset]="configuration?.galleryConfig?.gap === configurationSource?.galleryConfig?.gap" 
                  [resetHostEvents]="hostEvents"
                 [value]="configuration?.galleryConfig?.gap" (valueChange)="onGalleryFieldChange('gap',$event)"></pep-textbox>
-            <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="decimal"
-                pepResetConfigurationField="galleryConfig.cardHeight" [hideReset]="configuration?.galleryConfig?.cardHeight === configurationSource?.galleryConfig?.cardHeight" 
-                 [resetHostEvents]="hostEvents"
-                [value]="configuration?.galleryConfig?.cardHeight" (valueChange)="onGalleryFieldChange('cardHeight',$event)"></pep-textbox>
+          
         </div>
         <label class="body-xs normal">{{'GALLERY_EDITOR.GRID_EXPLANATION' | translate}}</label>
-    </div>
+    </div> -->
     
     <pep-checkbox [value]="configuration?.galleryConfig?.useText"
         [label]="'GALLERY_EDITOR.TEXT' | translate" 

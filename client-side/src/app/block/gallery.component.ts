@@ -65,7 +65,8 @@ export class GalleryComponent implements OnInit {
                     this.cardWidth = '100%';
         }
         else{
-            this.cardWidth = ('calc((100%  - ' + (this.configuration?.galleryConfig?.gap) * (this.configuration?.galleryConfig?.maxColumns - 1) + 'rem) /' + this.configuration?.galleryConfig?.maxColumns + ')' );
+            //this.cardWidth = ('calc(100% / ' + this.configuration?.galleryConfig?.maxColumns + ')' );
+            this.cardWidth = ('calc(100% /' + this.configuration?.galleryConfig?.maxColumns + ')' );
         }
         // if(galleryWidth > 361 ){ //from 360 it's a mobile size / xs size
         //     this.cardWidth = ('calc((100%  - ' + (this.configuration?.galleryConfig?.gap) * (this.configuration?.galleryConfig?.maxColumns - 1) + 'rem) /' + this.configuration?.galleryConfig?.maxColumns + ')' );

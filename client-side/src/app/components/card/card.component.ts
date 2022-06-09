@@ -40,7 +40,7 @@ export class CardComponent implements OnInit {
     }
 
     getCardImageURL() {
-           return this.card?.asset?.url !== '' ? 'url("' + this.card.asset.url + '")' : '';
+           return this.card?.assetURL !== '' ? 'url("' + this.card.assetURL + '")' : '';
     }
 
     ngOnChanges(changes) { 
@@ -86,7 +86,7 @@ export class CardComponent implements OnInit {
 
         let colorsStr =  direction ! == 'circle' ? this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) :
                                                    this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
-        let imageSrc = this.card?.asset?.url !== '' ? 'url('+this.card.asset.url + ')' : '';
+        let imageSrc = this.card?.assetURL !== '' ? 'url('+this.card.assetURL + ')' : '';
         let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
         
         let gradStr = this.galleryConfig.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';

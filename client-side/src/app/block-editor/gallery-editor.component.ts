@@ -23,9 +23,7 @@ export class GalleryEditorComponent implements OnInit {
     @Input()
     set hostObject(value: any) {
         if (value && value.configuration && Object.keys(value.configuration).length) {
-            if(!this._configuration){
                 this._configuration = value.configuration;
-            }
             if(value.configurationSource && Object.keys(value.configuration).length > 0){
                 this.configurationSource = value.configurationSource;
             }
@@ -75,7 +73,7 @@ export class GalleryEditorComponent implements OnInit {
         ]
 
         this.TextPositionStyling =  [
-            { key: 'overlyed', value: this.translate.instant('GALLERY_EDITOR.TEXT_POSITION.OVERLYED'), callback: (event: any) => this.onGalleryFieldChange('textPosition',event) },
+            { key: 'overlaid', value: this.translate.instant('GALLERY_EDITOR.TEXT_POSITION.OVERLAID'), callback: (event: any) => this.onGalleryFieldChange('textPosition',event) },
             { key: 'separated', value: this.translate.instant('GALLERY_EDITOR.TEXT_POSITION.SEPARATED'), callback: (event: any) => this.onGalleryFieldChange('textPosition',event) }
         ];
 
@@ -187,7 +185,7 @@ export class GalleryEditorComponent implements OnInit {
                 this.configuration.galleryConfig.verticalAlign = 'start';
             }*/
             
-            /*let isDisabled = this.configuration?.galleryConfig?.textPosition == 'overlyed' && 
+            /*let isDisabled = this.configuration?.galleryConfig?.textPosition == 'overlaid' && 
             this.configuration?.galleryConfig?.groupTitleAndDescription === 'ungrouped' ? true : false;
             
             this.VerticalAlign[0].disabled = this.VerticalAlign[2].disabled = isDisabled;*/

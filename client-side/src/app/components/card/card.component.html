@@ -1,7 +1,7 @@
 
 <div class="galleryCardCont" 
     [ngStyle]="{'width': '100%',
-                'display': galleryConfig?.textPosition === 'overlyed' ? 'block' : 'grid',
+                'display': galleryConfig?.textPosition === 'overlaid' ? 'block' : 'grid',
                 'height' : galleryConfig?.cardHeight + 'rem',
                 'cursor' : card?.script != '' ? 'pointer' : 'inherit',
                 'border': getGalleryBorder()}"
@@ -51,11 +51,11 @@
 
 <ng-template #image>
     <div class="imageCont"
-    [ngStyle]="{'justify-content': (galleryConfig?.textPosition == 'overlyed' && galleryConfig?.groupTitleAndDescription === 'ungrouped') ? 'space-between' :  galleryConfig?.verticalAlign,
+    [ngStyle]="{'justify-content': (galleryConfig?.textPosition == 'overlaid' && galleryConfig?.groupTitleAndDescription === 'ungrouped') ? 'space-between' :  galleryConfig?.verticalAlign,
                  'box-shadow': getOverlay(),
                  'background-image' : getGradientOverlay()}">
         <ng-container *ngIf="galleryConfig?.useText && 
-                         galleryConfig?.textPosition === 'overlyed'; 
+                         galleryConfig?.textPosition === 'overlaid'; 
                          then overlayedText; else empty"></ng-container>
     </div>
 </ng-template>
