@@ -211,19 +211,6 @@ export class GalleryEditorComponent implements OnInit {
         return { galleryConfig: new IGalleryEditor(), cards: [this.getDefaultCard()] };
     }
 
-    // getSliderBackground( color){
-    //     let alignTo = 'right';
-
-    //     let col: PepColorSettings = new PepColorSettings();
-
-    //     col.value = color;
-    //     col.opacity = 100;
-
-    //     let gradStr = this.galleryService.getRGBAcolor(col,0) +' , '+ this.galleryService.getRGBAcolor(col);
-        
-    //     return 'linear-gradient(to ' + alignTo +', ' +  gradStr +')';
-    // }
-
     addNewCardClick() {
         let card = new ICardEditor();
         card.id = (this.configuration?.cards.length);

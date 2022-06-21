@@ -22,7 +22,7 @@
     <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.gap" [hideReset]="configuration?.galleryConfig?.gap === configurationSource?.galleryConfig?.gap" 
                 [resetHostEvents]="hostEvents"
                 [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.GAP' | translate"
-                [btnKey]="configuration?.galleryConfig?.gap" [excludeKeys]="['xxl']"
+                [btnKey]="configuration?.galleryConfig?.gap" [useNone]="true" [excludeKeys]="['xl','xxl']"
                 (btnkeyChange)="onGalleryFieldChange('gap',$event)">
     </pep-group-buttons-settings>
 
@@ -135,16 +135,19 @@
     </pep-group-buttons-settings>
 
     <pep-color-settings [title]="'GALLERY_EDITOR.BORDER' | translate"
+                        [checkAAComplient]="false"
                         [color]="configuration?.galleryConfig?.border"
                         (colorChange)="onGalleryFieldChange('border',$event)">
     </pep-color-settings>
 
     <pep-color-settings [title]="'GALLERY_EDITOR.GRADIENT_OVERLAY' | translate"
+                        [checkAAComplient]="false"
                         [color]="configuration?.galleryConfig?.gradientOverlay"
                         (colorChange)="onGalleryFieldChange('gradientOverlay',$event)">
     </pep-color-settings>
   
     <pep-color-settings [title]="'GALLERY_EDITOR.OVERLAY' | translate"
+                        [checkAAComplient]="false"
                         [color]="configuration?.galleryConfig?.overlay"
                         (colorChange)="onGalleryFieldChange('overlay',$event)">
     </pep-color-settings> 

@@ -118,6 +118,7 @@ export class CardEditorComponent implements OnInit {
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
             name: 'ScriptPicker',
+            size: 'large',
             hostObject: script,
             hostEventsCallback: (event) => { 
                 if (event.action === 'script-picked') {

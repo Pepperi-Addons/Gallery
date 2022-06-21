@@ -57,28 +57,13 @@ export class GalleryComponent implements OnInit {
     ngOnChanges(e: any): void {
    
     }
+    
+    setCardWidth(){
+        const gap = this.configuration?.galleryConfig?.gap || 'none';
+        const maxColumns = this.configuration?.galleryConfig?.maxColumns || 1;
+        const spacing = gap == 'none' ? '0px' : '(var(--pep-spacing-'+ gap +') * '+ (maxColumns - 1) +')';
 
-    setCardWidth (){
-        const galleryWidth = this.galleryContainer.nativeElement.clientWidth;
-
-        if(this.configuration?.galleryConfig?.maxColumns === 1){
-                    this.cardWidth = '100%';
-        }
-        else{
-            //this.cardWidth = ('calc(100% / ' + this.configuration?.galleryConfig?.maxColumns + ')' );
-            this.cardWidth = ('calc(100% /' + this.configuration?.galleryConfig?.maxColumns + ')' );
-        }
-        // if(galleryWidth > 361 ){ //from 360 it's a mobile size / xs size
-        //     this.cardWidth = ('calc((100%  - ' + (this.configuration?.galleryConfig?.gap) * (this.configuration?.galleryConfig?.maxColumns - 1) + 'rem) /' + this.configuration?.galleryConfig?.maxColumns + ')' );
-        // }
-        // else{ // FOR EXTRA SMALL SCREENS
-        //     if(this.configuration?.galleryConfig?.maxColumns === 1){
-        //         this.cardWidth = '100%';
-        //     }
-        //     else{
-        //         this.cardWidth = ('calc((100%  - ' + (this.configuration?.galleryConfig?.gap) + 'rem) /' + 2 + ')' );
-        //     }
-        // }
+        this.cardWidth = 'calc((100%  - '+ spacing +' ) / '+ maxColumns +' )';
     }
 
     counter(i: number) {
