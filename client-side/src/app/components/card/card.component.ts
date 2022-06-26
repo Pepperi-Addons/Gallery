@@ -18,6 +18,7 @@ export class CardComponent implements OnInit {
     
     @Input() galleryConfig: IGalleryEditor;
     @Input() card : ICardEditor;
+    @Input() cardWidth: string;
     @Input() showSlide: boolean;
 
     @Output() cardClick: EventEmitter<any> = new EventEmitter();
@@ -27,7 +28,7 @@ export class CardComponent implements OnInit {
         public layoutService: PepLayoutService,
         private pepColorService: PepColorService,
         public translate: TranslateService,
-        private galleryService: GalleryService
+        public galleryService: GalleryService
     ) {
         this.layoutService.onResize$.subscribe(size => {
             this.screenSize = size;
@@ -39,9 +40,9 @@ export class CardComponent implements OnInit {
         return { galleryConfig: new IGalleryEditor(), cards: Array<ICardEditor>() };
     }
 
-    getCardImageURL() {
-           return this.card?.assetURL !== '' ? 'url("' + this.card.assetURL + '")' : '';
-    }
+    // getCardImageURL() {
+    //        return this.card?.assetURL !== '' ? 'url("' + this.card.assetURL + '")' : '';
+    // }
 
     ngOnChanges(changes) { 
         if (changes) {
@@ -64,7 +65,7 @@ export class CardComponent implements OnInit {
     getGradientOverlay(){
         let gradient = this.galleryConfig?.gradientOverlay;
         let horAlign = this.galleryConfig?.horizontalAlign;
-        let verAlign = this.galleryConfig?.verticalAlign;
+        let verAlign = this.galleryConfig?.verticalAlign; // 'top' | 'middle' | 'bottom'
 
         let direction = '0';
 
@@ -85,24 +86,31 @@ export class CardComponent implements OnInit {
             direction = direction === 'circle' ? direction : direction + 'deg';
 
         let colorsStr =  direction ! == 'circle' ? this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) :
-                                                   this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
-        let imageSrc = this.card?.assetURL !== '' ? 'url('+this.card.assetURL + ')' : '';
-        let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
+                                                 this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
         
+                                                 let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
+
         let gradStr = this.galleryConfig.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
-        if(gradStr != '' && imageSrc != ''){
-            return gradStr + ',' + imageSrc;
-        }
-        else if(gradStr != '' && imageSrc == ''){
+
+        if(gradStr != ''){
             return gradStr ;
-        }
-        else if(gradStr == '' && imageSrc != ''){
-            return imageSrc ;
         }
         else{
             return 'unset';
         }
     
+    }
+
+    getAssetWithPos(){
+        
+        let imageSrc = this.card?.assetURL !== '' ? 'url(' +this.card?.assetURL + ')' : '';
+
+        if(imageSrc != ''){
+            return imageSrc ;
+        }
+        else{
+            return 'unset';
+        }
     }
 
     getOverlay(){
