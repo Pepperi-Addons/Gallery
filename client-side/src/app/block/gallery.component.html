@@ -3,6 +3,7 @@
      <gallery-card #cardContainer *ngFor="let currentCard of configuration?.cards" 
           [ngStyle]="{'width': cardWidth}"
                    [card]="currentCard" 
+                   [cardWidth]="cardWidth"
                    [galleryConfig]="configuration?.galleryConfig"
                    (cardClick)="onCardClicked($event)">
      </gallery-card>

@@ -21,7 +21,6 @@
     pointer-events: none;
 }
 .galleryCardCont{
-    width: calc((100% - 0rem) / 1);
     grid-template-rows: min-content auto min-content;
     transition: transform .2s;
     overflow: hidden;
@@ -29,14 +28,20 @@
     div{
         display: flex;
 
+        &.gradCont{
+            height: inherit;
+            position: absolute;
+            z-index: 0;
+        }
         &.imageCont{
-            height: 100%;
-            width: 100%;
-            background-size: cover;
-            background-size: cover;
-            background-position: center;
+            height: inherit;
+            
+            background-size: cover !important;
+            background-position: center !important;
             flex-direction: column;
             padding: ngx-variables.$spacing-lg;
+            //position: absolute;
+            //z-index: -1;
         }
 
         .groupedText{
@@ -56,9 +61,9 @@
         color: ngx-functions.get-pep-color(color-text, color-invert) !important;
     }
 
-    &:hover {
-        transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-    }
+    // &:hover {
+    //     transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    // }
 
     .title-sm{
         font-size: calc(#{ngx-variables.$fs-sm} * 1.75) !important; 

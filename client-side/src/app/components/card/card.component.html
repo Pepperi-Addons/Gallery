@@ -1,7 +1,6 @@
 
 <div class="galleryCardCont" 
-    [ngStyle]="{'width': '100%',
-                'display': galleryConfig?.textPosition === 'overlaid' ? 'block' : 'grid',
+    [ngStyle]="{'display': galleryConfig?.textPosition === 'overlaid' ? 'block' : 'grid',
                 'height' : galleryConfig?.cardHeight + 'rem',
                 'cursor' : card?.script != '' ? 'pointer' : 'inherit',
                 'border': getGalleryBorder()}"
@@ -50,13 +49,18 @@
 </ng-template>
 
 <ng-template #image>
+    <div class='gradCont' [ngStyle]="{'background' : getGradientOverlay(), 'width': cardWidth}" 
+    [ngClass]="[galleryConfig?.useRoundCorners ? 'border-radius-' + galleryConfig?.roundCornersSize : '']" >
+
+    </div>
     <div class="imageCont"
-    [ngStyle]="{'justify-content': (galleryConfig?.textPosition == 'overlaid' && galleryConfig?.groupTitleAndDescription === 'ungrouped') ? 'space-between' :  galleryConfig?.verticalAlign,
-                 'box-shadow': getOverlay(),
-                 'background-image' : getGradientOverlay()}">
+    [ngStyle]="{'background' : getAssetWithPos(),
+                'justify-content': (galleryConfig?.textPosition == 'overlaid' && galleryConfig?.groupTitleAndDescription === 'ungrouped') ? 'space-between' :  galleryConfig?.verticalAlign,
+                'box-shadow': galleryConfig?.overlay?.use ?  'inset 0 0 0 100vh ' + galleryService.getRGBAcolor(galleryConfig?.overlay) : 'unset'}">
         <ng-container *ngIf="galleryConfig?.useText && 
                          galleryConfig?.textPosition === 'overlaid'; 
-                         then overlayedText; else empty"></ng-container>
+                         then overlayedText; else empty">
+        </ng-container>
     </div>
 </ng-template>
 
