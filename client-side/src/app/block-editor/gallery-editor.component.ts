@@ -1,18 +1,17 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, Directive, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IGallery, IGalleryEditor, ICardEditor } from '../gallery.model';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorService } from '@pepperi-addons/ngx-lib';
-import { GalleryService } from 'src/common/gallery.service';
-import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { PageConfiguration, PageConfigurationParameterBase } from '@pepperi-addons/papi-sdk';
+import  { GalleryService } from '../../common/gallery.service';
+import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray} from '@angular/cdk/drag-drop';
+import { PageConfiguration } from '@pepperi-addons/papi-sdk';
 
 @Component({
     selector: 'gallery-editor',
     templateUrl: './gallery-editor.component.html',
     styleUrls: ['./gallery-editor.component.scss']
 })
-
 export class GalleryEditorComponent implements OnInit {
     // @Input() hostObject: any;
 

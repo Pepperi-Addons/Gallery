@@ -98,10 +98,10 @@
              [ngClass]="['body-' + galleryConfig?.descriptionSize]"
              [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}"
             [rows]="galleryConfig?.descriptionMaxNumOfLines"
-            [minRows]="1"
-            [maxRows]="galleryConfig?.descriptionMaxNumOfLines"
-        class="textarea">{{card.description}}
-</textarea>
+            minRows="1"
+            class="textarea">{{card.description}}
+        </textarea>
+        <!-- [maxRows]="galleryConfig?.descriptionMaxNumOfLines" -->
 
 </ng-template>
 

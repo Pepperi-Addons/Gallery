@@ -1,9 +1,7 @@
 import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { GalleryEditorComponent } from './gallery-editor.component';
-import { PepAddonService, PepCustomizationService, PepFileService, PepHttpService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
+import { PepAddonService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PepSliderModule } from '@pepperi-addons/ngx-lib/slider';
 import { PepButtonModule } from '@pepperi-addons/ngx-lib/button';
@@ -16,14 +14,17 @@ import { PepImageModule } from '@pepperi-addons/ngx-lib/image';
 import { PepTextareaModule, } from '@pepperi-addons/ngx-lib/textarea';
 import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
 import { pepIconTextAlignCenter, pepIconTextAlignLeft, pepIconTextAlignRight, pepIconArrowBackRight, pepIconArrowBackLeft, pepIconArrowBack, pepIconArrowLeftAlt,pepIconArrowDown, pepIconArrowUp, PepIconModule, pepIconNumberPlus, PepIconRegistry, pepIconSystemBin, pepIconSystemBolt, pepIconSystemClose, pepIconSystemEdit, pepIconSystemMove } from '@pepperi-addons/ngx-lib/icon';
-import { PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { CardEditorModule } from '../components/card-editor/card-editor.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PepShadowSettingsModule } from '@pepperi-addons/ngx-composite-lib/shadow-settings';
 import { PepColorSettingsModule } from '@pepperi-addons/ngx-composite-lib/color-settings';
 import { PepGroupButtonsSettingsModule } from '@pepperi-addons/ngx-composite-lib/group-buttons-settings';
+import { PepNgxCompositeLibModule } from '@pepperi-addons/ngx-composite-lib';
 import { config } from '../addon.config';
-import { PepNgxCompositeLibModule } from '@pepperi-addons/ngx-composite-lib/';
+import { GalleryService } from '../../common/gallery.service';
+
+import { GalleryEditorComponent } from './index';
+
 const pepIcons = [
     pepIconTextAlignCenter, 
     pepIconTextAlignLeft, 
@@ -45,9 +46,12 @@ const pepIcons = [
 @NgModule({
     declarations: [GalleryEditorComponent],
     imports: [
+        CommonModule,
         PepButtonModule,
         PepSliderModule,
         CardEditorModule,
+        PepNgxLibModule,
+        PepColorModule,
         PepTextboxModule,
         PepSelectModule,
         PepCheckboxModule,
@@ -57,13 +61,11 @@ const pepIcons = [
         PepColorModule,
         PepImageModule,
         PepTextareaModule,
-        CommonModule,
         DragDropModule,
         PepShadowSettingsModule,
         PepColorSettingsModule,
         PepGroupButtonsSettingsModule,
         PepNgxCompositeLibModule,
-
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
@@ -77,6 +79,7 @@ const pepIcons = [
     providers: [
         TranslateStore,
         // Add here all used services.
+        GalleryService
     ]
 })
 export class GalleryEditorModule {

@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CardModule } from '../components/card/card.module';
 import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
-import { PepAddonService, PepFileService } from '@pepperi-addons/ngx-lib';
-import { GalleryComponent } from './gallery.component';
+import { PepAddonService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
+import { PepColorModule } from '@pepperi-addons/ngx-lib/color';
 
 import { config } from '../addon.config';
+import { GalleryService } from '../../common/gallery.service';
+import { GalleryComponent } from './index';
 
 @NgModule({
     declarations: [GalleryComponent],
     imports: [
         CommonModule,
         CardModule,
+        PepNgxLibModule,
+        PepColorModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
@@ -26,6 +29,7 @@ import { config } from '../addon.config';
     providers: [
         TranslateStore,
         // Add here all used services.
+        GalleryService
     ]
 })
 export class GalleryModule {
