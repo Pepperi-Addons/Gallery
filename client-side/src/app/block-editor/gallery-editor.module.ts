@@ -23,7 +23,7 @@ import { PepNgxCompositeLibModule } from '@pepperi-addons/ngx-composite-lib';
 import { config } from '../addon.config';
 import { GalleryService } from '../../common/gallery.service';
 
-import { GalleryEditorComponent } from './index';
+import { GalleryEditorComponent } from './gallery-editor.component';
 
 const pepIcons = [
     pepIconTextAlignCenter, 

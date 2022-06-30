@@ -11,7 +11,7 @@
             },
             "root": "",
             "sourceRoot": "src",
-            "prefix": "app",
+            "prefix": "block",
             "architect": {
                 "build": {
                     "builder": "ngx-build-plus:browser",
@@ -22,6 +22,7 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.json",
                         "extraWebpackConfig": "webpack.config.js",
+                        "commonChunk": false,
                         "stylePreprocessorOptions": {
                             "includePaths": [
                                 "node_modules/@pepperi-addons",

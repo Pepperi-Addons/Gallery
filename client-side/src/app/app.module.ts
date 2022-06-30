@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { GalleryModule } from './block/gallery.module';
+// import { GalleryModule } from './block/gallery.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { PepAddonService } from '@pepperi-addons/ngx-lib';
 
@@ -11,7 +11,7 @@ import { PepAddonService } from '@pepperi-addons/ngx-lib';
     ],
     imports: [
         BrowserModule,
-        GalleryModule,
+        // GalleryModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

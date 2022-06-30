@@ -7,7 +7,7 @@ import { PepColorModule } from '@pepperi-addons/ngx-lib/color';
 
 import { config } from '../addon.config';
 import { GalleryService } from '../../common/gallery.service';
-import { GalleryComponent } from './index';
+import { GalleryComponent } from './gallery.component';
 
 @NgModule({
     declarations: [GalleryComponent],
