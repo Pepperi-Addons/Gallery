@@ -49,19 +49,21 @@
 </ng-template>
 
 <ng-template #image>
-    <div class='gradCont' [ngStyle]="{'background' : getGradientOverlay(), 'width': cardWidth}" 
-    [ngClass]="[galleryConfig?.useRoundCorners ? 'border-radius-' + galleryConfig?.roundCornersSize : '']" >
-
+    <div class='overlayCont' [ngStyle]="{'background' : getAssetWithPos(), 'width': cardWidth ,
+        'justify-content': (galleryConfig?.textPosition == 'overlaid' && galleryConfig?.groupTitleAndDescription === 'ungrouped') ? 'space-between' :  galleryConfig?.verticalAlign,
+        'box-shadow': galleryConfig?.overlay?.use ?  'inset 0 0 0 100vh ' + galleryService.getRGBAcolor(galleryConfig?.overlay) : 'unset'}"
+        [ngClass]="[galleryConfig?.useRoundCorners ? 'border-radius-' + galleryConfig?.roundCornersSize : '']">
     </div>
-    <div class="imageCont"
-    [ngStyle]="{'background' : getAssetWithPos(),
-                'justify-content': (galleryConfig?.textPosition == 'overlaid' && galleryConfig?.groupTitleAndDescription === 'ungrouped') ? 'space-between' :  galleryConfig?.verticalAlign,
-                'box-shadow': galleryConfig?.overlay?.use ?  'inset 0 0 0 100vh ' + galleryService.getRGBAcolor(galleryConfig?.overlay) : 'unset'}">
+    <div class='gradCont' [ngStyle]="{'background' : getGradientOverlay(), 'width': cardWidth}" 
+         [ngClass]="[galleryConfig?.useRoundCorners ? 'border-radius-' + galleryConfig?.roundCornersSize : '']">
+    </div>
+    <div class="imageCont">
         <ng-container *ngIf="galleryConfig?.useText && 
                          galleryConfig?.textPosition === 'overlaid'; 
                          then overlayedText; else empty">
         </ng-container>
     </div>
+    
 </ng-template>
 
 <ng-template #footer>
