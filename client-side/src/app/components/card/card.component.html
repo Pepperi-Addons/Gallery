@@ -57,7 +57,7 @@
     <div class='gradCont' [ngStyle]="{'background' : getGradientOverlay(), 'width': cardWidth}" 
          [ngClass]="[galleryConfig?.useRoundCorners ? 'border-radius-' + galleryConfig?.roundCornersSize : '']">
     </div>
-    <div class="imageCont">
+    <div class="imageCont" [ngStyle]="{'width': cardWidth, 'justify-content': galleryConfig?.verticalAlign === 'middle' ? 'center' : galleryConfig?.verticalAlign}" >
         <ng-container *ngIf="galleryConfig?.useText && 
                          galleryConfig?.textPosition === 'overlaid'; 
                          then overlayedText; else empty">
