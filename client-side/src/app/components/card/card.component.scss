@@ -33,16 +33,18 @@
         &.gradCont{
             height: inherit;
             position: absolute;
-            z-index: -1;
+           // z-index: -1;
+        }
+
+        &.overlayCont{
+            background-size: cover !important;
+            background-position: center !important;
         }
         &.imageCont{
             height: inherit;
-            
-            background-size: cover !important;
-            background-position: center !important;
             flex-direction: column;
             padding: ngx-variables.$spacing-lg;
-            //position: absolute;
+            position: absolute;
             //z-index: -1;
         }
 

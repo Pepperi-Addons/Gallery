@@ -19,8 +19,9 @@
     "ClientStack": "ng14",
     "Dependencies": {
       "cpi_node_scripts": "0.0.76",
-      "assets_manager_client": "0.0.19",
-      "cpi-node-scripts": "0.0.87"
+      "assets_manager_client": "0.7.1",
+      "cpi-node-scripts": "0.0.87",
+      "pfs": "1.0.2"
     },
     "CPISide": []
   }
