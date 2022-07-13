@@ -36,10 +36,10 @@ export async function uninstall(client: Client, request: Request): Promise<any> 
 
 export async function upgrade(client: Client, request: Request): Promise<any> {
     // If there is any change run migration code here
-    // const res = await runMigration(client);
-    // return {success:true,resultObject:{res}}
+    const res = await runMigration(client);
+    return {success:true,resultObject:{res}}
     
-    return {success:true,resultObject:{}}
+    // return {success:true,resultObject:{}}
 }
 
 export async function downgrade(client: Client, request: Request): Promise<any> {
@@ -53,7 +53,7 @@ async function runMigration(client){
             Name: blockName,
             Description: `${blockName} block`,
             Type: "NgComponent",
-            SubType: "NG11",
+            SubType: "NG14",
             AddonUUID: client.AddonUUID,
             AddonRelativeURL: blockName.toLowerCase(),
             ComponentName: `${blockName}Component`,

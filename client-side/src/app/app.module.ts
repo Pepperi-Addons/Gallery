@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 // import { GalleryModule } from './block/gallery.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { PepAddonService } from '@pepperi-addons/ngx-lib';
+import { config } from './addon.config';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,7 @@ import { PepAddonService } from '@pepperi-addons/ngx-lib';
             loader: {
                 provide: TranslateLoader,
                 useFactory: (addonService: PepAddonService) => 
-                    PepAddonService.createMultiTranslateLoader(addonService, ['ngx-lib', 'ngx-composite-lib']),
+                    PepAddonService.createMultiTranslateLoader(config.AddonUUID, addonService, ['ngx-lib', 'ngx-composite-lib']),
                 deps: [PepAddonService]
             }
         })
