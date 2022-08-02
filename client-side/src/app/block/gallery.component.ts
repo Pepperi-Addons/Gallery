@@ -21,9 +21,6 @@ export class GalleryComponent implements OnInit {
             //if(this.configuration && this.configuration.galleryConfig.maxColumns !== value?.configuration?.galleryConfig.maxColumns){
                    this.setCardWidth();
             //}
-
-           
-
     }
 
     private _parameters: any;

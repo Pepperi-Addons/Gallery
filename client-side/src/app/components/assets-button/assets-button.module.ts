@@ -25,6 +25,7 @@ import { PepRemoteLoaderModule } from '@pepperi-addons/ngx-lib/remote-loader';
             }, isolate: false
         }),
     ],
-    exports: [AssetsButtonComponent]
+    exports: [AssetsButtonComponent],
+    providers: []
 })
 export class AssetsButtonModule { }
