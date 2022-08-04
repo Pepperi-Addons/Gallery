@@ -61,8 +61,8 @@ async function runMigration(client){
             EditorComponentName: `${blockName}EditorComponent`,
             EditorModuleName: `${blockName}EditorModule`,
             ElementsModule: 'WebComponents',
-            ElementName: `${blockName.toLocaleLowerCase()}-element`,
-            EditorElementName: `${blockName.toLocaleLowerCase()}-editor-element`,
+            ElementName: `gallery-element-${client.AddonUUID}`,
+            EditorElementName: `gallery-editor-element-${client.AddonUUID}`,
             Schema: {
                 "Fields": {
                     "galleryConfig": {

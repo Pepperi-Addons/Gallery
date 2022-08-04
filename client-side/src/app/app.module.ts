@@ -4,7 +4,6 @@ import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-// import { GalleryModule } from './block/gallery.module';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PepAddonService } from '@pepperi-addons/ngx-lib';
 import { config } from './addon.config';
@@ -46,10 +45,7 @@ export class AppModule implements DoBootstrap {
     }
 
     ngDoBootstrap() {
-        // const ce = createCustomElement(AppComponent, {injector: this.injector});
-        // customElements.define('gallery', ce);
-    
-        customElements.define('gallery-element', createCustomElement(GalleryComponent, {injector: this.injector}));
-        customElements.define('gallery-editor-element', createCustomElement(GalleryEditorComponent, {injector: this.injector}));
+        customElements.define(`gallery-element-${config.AddonUUID}`, createCustomElement(GalleryComponent, {injector: this.injector}));
+        customElements.define(`gallery-editor-element-${config.AddonUUID}`, createCustomElement(GalleryEditorComponent, {injector: this.injector}));
     }
 }
