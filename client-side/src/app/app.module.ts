@@ -1,4 +1,4 @@
-import { DoBootstrap, Injector, NgModule } from '@angular/core';
+import { Component, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +9,17 @@ import { PepAddonService } from '@pepperi-addons/ngx-lib';
 import { config } from './addon.config';
 import { GalleryComponent, GalleryModule } from './block';
 import { GalleryEditorComponent, GalleryEditorModule } from './block-editor';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+@Component({
+    selector: 'app-empty-route',
+    template: '<div>Route is not exist.</div>',
+})
+export class EmptyRouteComponent {}
+
+const routes: Routes = [
+    { path: '**', component: EmptyRouteComponent }
+];
 
 @NgModule({
     declarations: [
@@ -28,7 +38,7 @@ import { RouterModule } from '@angular/router';
                 deps: [PepAddonService]
             }
         }),
-        RouterModule.forRoot([]),
+        RouterModule.forRoot(routes),
     ],
     providers: [],
     bootstrap: [

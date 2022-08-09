@@ -16,5 +16,5 @@ import { bootstrap } from '@angular-architects/module-federation-tools';
 
 bootstrap(AppModule, {
     production: environment.production,
-    // appType: 'microfrontend' // Only if we have routes use this!!!
+    appType: 'microfrontend' // Only if we have routes use this!!!
 });
