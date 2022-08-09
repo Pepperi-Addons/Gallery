@@ -46,8 +46,6 @@ export class GalleryComponent implements OnInit {
 
     ngOnInit(): void {
         this.setCardWidth();
-        // When finish load raise block-loaded.
-        this.hostEvents.emit({action: 'block-loaded'});
     }
 
     ngOnChanges(e: any): void {
