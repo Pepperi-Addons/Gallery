@@ -1,4 +1,4 @@
-import { Component, DoBootstrap, Injector, NgModule } from '@angular/core';
+import { Component, DoBootstrap, Injector, NgModule, Type } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -54,8 +54,14 @@ export class AppModule implements DoBootstrap {
         this.pepAddonService.setDefaultTranslateLang(translate);
     }
 
+    private defineCustomElement(elementName: string, component: Type<any>) {
+        if (!customElements.get(elementName)) {  
+            customElements.define(elementName, createCustomElement(component, {injector: this.injector}));
+        }
+    }
+
     ngDoBootstrap() {
-        customElements.define(`gallery-element-${config.AddonUUID}`, createCustomElement(GalleryComponent, {injector: this.injector}));
-        customElements.define(`gallery-editor-element-${config.AddonUUID}`, createCustomElement(GalleryEditorComponent, {injector: this.injector}));
+        this.defineCustomElement(`gallery-element-${config.AddonUUID}`, GalleryComponent);
+        this.defineCustomElement(`gallery-editor-element-${config.AddonUUID}`, GalleryEditorComponent);
     }
 }
