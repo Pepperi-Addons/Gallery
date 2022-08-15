@@ -54,14 +54,8 @@ export class AppModule implements DoBootstrap {
         this.pepAddonService.setDefaultTranslateLang(translate);
     }
 
-    private defineCustomElement(elementName: string, component: Type<any>) {
-        if (!customElements.get(elementName)) {  
-            customElements.define(elementName, createCustomElement(component, {injector: this.injector}));
-        }
-    }
-
     ngDoBootstrap() {
-        this.defineCustomElement(`gallery-element-${config.AddonUUID}`, GalleryComponent);
-        this.defineCustomElement(`gallery-editor-element-${config.AddonUUID}`, GalleryEditorComponent);
+        this.pepAddonService.defineCustomElement(`gallery-element-${config.AddonUUID}`, GalleryComponent, this.injector);
+        this.pepAddonService.defineCustomElement(`gallery-editor-element-${config.AddonUUID}`, GalleryEditorComponent, this.injector);
     }
 }
