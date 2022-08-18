@@ -24,6 +24,7 @@ export interface IGallery{
 export class IGalleryEditor {
     maxColumns: number = 2;
     gap: PepSizeType = 'md';
+    fillHeight: boolean = false;
     cardHeight: number = 16;
     useText: boolean = true;
     cardTextColor: textColor = 'system-primary';

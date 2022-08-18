@@ -59,6 +59,10 @@ html {
                 }
             }
         }
+
+        .mat-slider-disabled{
+            opacity: 0.6;
+        }
     }
     
     pep-color-settings{

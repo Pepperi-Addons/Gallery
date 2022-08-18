@@ -1,7 +1,7 @@
 
 <div class="galleryCardCont" 
     [ngStyle]="{'display': galleryConfig?.textPosition === 'overlaid' ? 'block' : 'grid',
-                'height' : galleryConfig?.cardHeight + 'rem',
+                'height' : galleryConfig?.fillHeight ? '100%' : (galleryConfig?.cardHeight + 'rem'),
                 'cursor' : card?.script != '' ? 'pointer' : 'inherit',
                 'border': getGalleryBorder()}"
     [ngClass]="['textColor_'+ galleryConfig?.cardTextColor,

@@ -1,5 +1,6 @@
 <mat-tab-group  #tabGroup class="editor-tabs" animationDuration="0ms">
     <mat-tab label="{{'GALLERY_EDITOR.TABS.GENERAL' | translate}}">
+
         <label class="body-xl bold ellipsis">{{'GALLERY_EDITOR.GRID' | translate}}</label>
         <pep-slider pepResetConfigurationField="galleryConfig.maxColumns" [hideReset]="configuration?.galleryConfig?.maxColumns === configurationSource?.galleryConfig?.maxColumns"  
         [resetHostEvents]="hostEvents"
@@ -13,7 +14,12 @@
                 (inputChange)="onGalleryFieldChange('maxColumns',$event)">
         </pep-slider>
         
-        <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="decimal"
+        <div>
+            <pep-checkbox class="checkbox-as-title" [value]="configuration?.galleryConfig?.fillHeight" [label]="'GALLERY_EDITOR.FILL_HEIGHT_SECTION_TITLE' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('fillHeight',$event)"></pep-checkbox>
+            <span class="header-title body-xs checkbox-description">{{('GALLERY_EDITOR.FILL_HEIGHT_SECTION_DESCRIPTION' | translate)}}</span>
+        </div>
+
+        <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="decimal" [disabled]="configuration?.galleryConfig?.fillHeight"
                     pepResetConfigurationField="galleryConfig.cardHeight" [hideReset]="configuration?.galleryConfig?.cardHeight === configurationSource?.galleryConfig?.cardHeight" 
                     [resetHostEvents]="hostEvents"
                     [value]="configuration?.galleryConfig?.cardHeight" (valueChange)="onGalleryFieldChange('cardHeight',$event)">
@@ -21,8 +27,8 @@
 
         <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.gap" [hideReset]="configuration?.galleryConfig?.gap === configurationSource?.galleryConfig?.gap" 
                     [resetHostEvents]="hostEvents"
-                    [groupType]="'sizes'" [header]="'GALLERY_EDITOR.GAP_HEADER' | translate" [subHeader]="'GALLERY_EDITOR.GAP_SUBHEADER' | translate"
-                    [btnKey]="configuration?.galleryConfig?.gap" [useNone]="true" [excludeKeys]="['xs','xl','xxl']"
+                    [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.GAP' | translate"
+                    [btnKey]="configuration?.galleryConfig?.gap" [useNone]="true" [excludeKeys]="['xl','xxl']"
                     (btnkeyChange)="onGalleryFieldChange('gap',$event)">
         </pep-group-buttons-settings>
 
@@ -87,7 +93,7 @@
 
         <pep-group-buttons-settings [groupType]="'font-weight'" [subHeader]="'GALLERY_EDITOR.TITLE_WEIGHT' | translate"
                                     [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
-                                    [btnKey]="configuration?.galleryConfig?.titleWeight" [excludeKeys]="['bolder']"
+                                    [btnKey]="configuration?.galleryConfig?.titleWeight"
                                     (btnkeyChange)="onGalleryFieldChange('titleWeight',$event)">
         </pep-group-buttons-settings>
 
@@ -127,24 +133,6 @@
         <pep-checkbox [value]="configuration?.galleryConfig?.useRoundCorners" [label]="'GALLERY_EDITOR.ROUND_CORNER' | translate" 
                     [renderTitle]="false" (valueChange)="onGalleryFieldChange('useRoundCorners',$event)">
         </pep-checkbox>
-        
-        <pep-group-buttons-settings [groupType]="'sizes'"
-                                    [disabled]="!configuration?.galleryConfig?.useRoundCorners" 
-                                    [btnKey]="configuration?.galleryConfig?.roundCornersSize" [excludeKeys]="['xs']"
-                                    (btnkeyChange)="onGalleryFieldChange('roundCornersSize',$event)">
-        </pep-group-buttons-settings>
-
-        <pep-color-settings [title]="'GALLERY_EDITOR.BORDER' | translate"
-                            [checkAAComplient]="false"
-                            [color]="configuration?.galleryConfig?.border"
-                            (colorChange)="onGalleryFieldChange('border',$event)">
-        </pep-color-settings>
-
-        <pep-color-settings [title]="'GALLERY_EDITOR.GRADIENT_OVERLAY' | translate"
-                            [checkAAComplient]="false"
-                            [color]="configuration?.galleryConfig?.gradientOverlay"
-                            (colorChange)="onGalleryFieldChange('gradientOverlay',$event)">
-        </pep-color-settings>
     
         <pep-color-settings [title]="'GALLERY_EDITOR.OVERLAY' | translate"
                             [checkAAComplient]="false"
