@@ -2,7 +2,7 @@ import { PepHorizontalAlignment, PepSizeType} from "@pepperi-addons/ngx-lib";
 import { PepShadowSettings} from "@pepperi-addons/ngx-composite-lib/shadow-settings";
 import { PepColorSettings } from "@pepperi-addons/ngx-composite-lib/color-settings";
 export type textColor = 'system-primary' | 'dimmed' | 'invert' | 'strong';
-export type verticalAlignment = 'start' | 'center' | 'end';
+export type verticalAlignment = 'start' | 'middle' | 'end';
 export type textPositionStyling = 'overlaid' | 'separated';
 export type groupTitleAndDescription = 'grouped' | 'ungrouped';
 export type FontWeight = 'normal' | 'bold' | 'bolder';
@@ -23,11 +23,11 @@ export interface IGallery{
 
 export class IGalleryEditor {
     maxColumns: number = 1;
-    gap: PepSizeType = 'xl';
+    gap: PepSizeType = 'md';
     cardHeight: number = 16;
     useText: boolean = true;
     cardTextColor: textColor = 'system-primary';
-    verticalAlign: verticalAlignment  = 'center';
+    verticalAlign: verticalAlignment  = 'middle';
     horizontalAlign: PepHorizontalAlignment = 'center';
     textPosition: textPositionStyling = 'overlaid';
     useTitle: boolean = true;

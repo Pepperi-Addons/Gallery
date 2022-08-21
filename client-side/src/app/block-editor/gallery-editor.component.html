@@ -21,8 +21,8 @@
 
         <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.gap" [hideReset]="configuration?.galleryConfig?.gap === configurationSource?.galleryConfig?.gap" 
                     [resetHostEvents]="hostEvents"
-                    [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.GAP' | translate"
-                    [btnKey]="configuration?.galleryConfig?.gap" [useNone]="true" [excludeKeys]="['xl','xxl']"
+                    [groupType]="'sizes'" [header]="'GALLERY_EDITOR.GAP_HEADER' | translate" [subHeader]="'GALLERY_EDITOR.GAP_SUBHEADER' | translate"
+                    [btnKey]="configuration?.galleryConfig?.gap" [useNone]="true" [excludeKeys]="['xs','xl','xxl']"
                     (btnkeyChange)="onGalleryFieldChange('gap',$event)">
         </pep-group-buttons-settings>
 
@@ -87,7 +87,7 @@
 
         <pep-group-buttons-settings [groupType]="'font-weight'" [subHeader]="'GALLERY_EDITOR.TITLE_WEIGHT' | translate"
                                     [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
-                                    [btnKey]="configuration?.galleryConfig?.titleWeight"
+                                    [btnKey]="configuration?.galleryConfig?.titleWeight" [excludeKeys]="['bolder']"
                                     (btnkeyChange)="onGalleryFieldChange('titleWeight',$event)">
         </pep-group-buttons-settings>
 

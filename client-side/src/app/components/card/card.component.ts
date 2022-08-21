@@ -71,15 +71,15 @@ export class CardComponent implements OnInit {
 
         switch(horAlign){
             case 'left':{
-                direction = verAlign === 'start' ? '135' : verAlign === 'center' ? '90' : '45';
+                direction = verAlign === 'start' ? '135' : verAlign === 'middle' ? '90' : '45';
                 break;
             }
             case 'center':{
-                direction = verAlign === 'start' ? '180' : verAlign === 'center' ? 'circle' : '0';
+                direction = verAlign === 'start' ? '180' : verAlign === 'middle' ? 'circle' : '0';
                 break;
             }
             case 'right':{
-                direction = verAlign === 'start' ? '225' : verAlign === 'center' ? '135' : '315';
+                direction = verAlign === 'start' ? '225' : verAlign === 'middle' ? '135' : '315';
                 break;
             }
         }
