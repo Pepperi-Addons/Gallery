@@ -17,7 +17,7 @@ export const DimxRelations: Relation[] = [{
         RelationName: 'DataExportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Export Relation`,
-        AddonRelativeURL: ''
+        AddonRelativeURL: 'api/dimx_expot'
     }];
 
 export const GalleryScheme: AddonDataScheme = {

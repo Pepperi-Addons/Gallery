@@ -23,3 +23,12 @@ export function import_fix_object(client: Client, request: Request) {
     }
 }
 
+export async function dimx_export(client:Client, request: Request): Promise<any> {
+    try {
+        const service = new MyService(client);
+        return await service.exportPages(request.body);
+    } catch(err) {
+        throw err;
+    }
+}
+
