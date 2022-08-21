@@ -86,7 +86,7 @@ export class CardComponent implements OnInit {
             direction = direction === 'circle' ? direction : direction + 'deg';
 
         let colorsStr =  direction ! == 'circle' ? this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) :
-                                                 this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
+                                                 this.galleryService.getRGBAcolor(gradient,100) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
         
                                                  let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 

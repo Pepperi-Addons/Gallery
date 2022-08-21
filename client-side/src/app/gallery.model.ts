@@ -22,7 +22,7 @@ export interface IGallery{
 }
 
 export class IGalleryEditor {
-    maxColumns: number = 1;
+    maxColumns: number = 2;
     gap: PepSizeType = 'md';
     cardHeight: number = 16;
     useText: boolean = true;
@@ -31,19 +31,19 @@ export class IGalleryEditor {
     horizontalAlign: PepHorizontalAlignment = 'center';
     textPosition: textPositionStyling = 'overlaid';
     useTitle: boolean = true;
-    titleSize: PepSizeType = 'xl';
+    titleSize: PepSizeType = 'lg';
     titleWeight: FontWeight = 'normal';
     useDescription: boolean = true;
-    groupTitleAndDescription: groupTitleAndDescription = 'ungrouped';
-    descriptionSize: PepSizeType = 'sm';
+    groupTitleAndDescription: groupTitleAndDescription = 'grouped';
+    descriptionSize: PepSizeType = 'md';
     descriptionMaxNumOfLines: number = 1;
     border: PepColorSettings = new PepColorSettings();
-    gradientOverlay: PepColorSettings = new PepColorSettings();
-    overlay: PepColorSettings = new PepColorSettings();
+    overlay: PepColorSettings = new PepColorSettings(true, 'hsl(190, 100%, 50%)', 100);
+    gradientOverlay: PepColorSettings  = new PepColorSettings(true, 'hsl(0, 0%, 90%)', 100);
     editSlideIndex: number = -1;
 
     dropShadow: PepShadowSettings = new PepShadowSettings();
-    useRoundCorners: boolean = false;
+    useRoundCorners: boolean = true;
     roundCornersSize: PepSizeType = 'md';
 }
 

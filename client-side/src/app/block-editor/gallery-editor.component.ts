@@ -207,7 +207,7 @@ export class GalleryEditorComponent implements OnInit {
     }
 
     private getDefaultHostObject(): IGallery {
-        return { galleryConfig: new IGalleryEditor(), cards: [this.getDefaultCard()] };
+        return { galleryConfig: new IGalleryEditor(), cards: [this.getDefaultCard(),this.getDefaultCard()] };
     }
 
     addNewCardClick() {
