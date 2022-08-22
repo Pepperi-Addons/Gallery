@@ -6,6 +6,7 @@ import { PepColorService } from '@pepperi-addons/ngx-lib';
 import  { GalleryService } from '../../common/gallery.service';
 import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray} from '@angular/cdk/drag-drop';
 import { PageConfiguration } from '@pepperi-addons/papi-sdk';
+import { createReadStream } from 'fs';
 
 @Component({
     selector: 'gallery-editor',
@@ -199,21 +200,36 @@ export class GalleryEditorComponent implements OnInit {
         this.updateHostObject();
     }
 
-    private getDefaultCard(): ICardEditor {
-        let card = new ICardEditor();
-        card.id = 0;
+    private getDefaultCards(numOfCards: number = 0): Array<ICardEditor> {
+        let cards: Array<ICardEditor> = [];
+        for(var i=0; i < numOfCards; i++){
+            let card = new ICardEditor();
+            card.id = i;
+            
+            card.title = this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+            card.description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+            cards.push(card);
+        }
 
-        return card;
+        return cards;
+    }
+
+    getOrdinal(n) {
+        var s = ["th ", "st ", "nd ", "rd "];
+        var v = n%100;
+        return n + (s[(v-20)%10] || s[v] || s[0]);
     }
 
     private getDefaultHostObject(): IGallery {
-        return { galleryConfig: new IGalleryEditor(), cards: [this.getDefaultCard(),this.getDefaultCard()] };
+        return { galleryConfig: new IGalleryEditor(), cards: this.getDefaultCards(2) };
     }
 
     addNewCardClick() {
         let card = new ICardEditor();
         card.id = (this.configuration?.cards.length);
-
+        card.title = this.getOrdinal(card.id+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+        card.description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(card.id+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+        
         this.configuration?.cards.push( card); 
         this.updateHostObject();  
     }

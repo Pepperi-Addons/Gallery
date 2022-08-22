@@ -49,10 +49,16 @@ export class CardEditorComponent implements OnInit {
     }
 
     async ngOnInit(): Promise<void> {
-        this.title = this.configuration?.cards[this.id].titleContent;
+        //this.title = this.configuration?.cards[this.id].titleContent;
         //this.configuration.galleryConfig.editSlideIndex = -1;
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
         
+    }
+
+    getOrdinal(n) {
+        var s = ["th ", "st ", "nd ", "rd "];
+        var v = n%100;
+        return n + (s[(v-20)%10] || s[v] || s[0]);
     }
 
     onRemoveClick() {

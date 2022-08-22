@@ -50,8 +50,8 @@ export class IGalleryEditor {
 
 export class ICardEditor {
     id: number;
-    title: string = "Gallery";
-    description: string = "Description";
+    title: string = "defaultTitle";
+    description: string = "defaultDescription";
     asset: string = '';
     assetURL: string = '';
     script: any;

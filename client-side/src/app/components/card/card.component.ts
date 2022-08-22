@@ -15,7 +15,7 @@ export class CardComponent implements OnInit {
    //@ViewChild('mainSlideCont', { static: true }) slideContainer: ElementRef;
 
     screenSize: PepScreenSizeType;
-    
+    @Input() cardIndex: number;
     @Input() galleryConfig: IGalleryEditor;
     @Input() card : ICardEditor;
     @Input() cardWidth: string;
@@ -50,8 +50,9 @@ export class CardComponent implements OnInit {
     }
 
     ngOnInit() {
-        //this.carIdndex = this.card.id;
+
     }
+    
     getGalleryBorder() {
         if(this.galleryConfig?.border?.use){
             let col: PepColorSettings = this.galleryConfig?.border;
@@ -99,6 +100,12 @@ export class CardComponent implements OnInit {
             return 'unset';
         }
     
+    }
+
+    getOrdinal(n) {
+        var s = ["th ", "st ", "nd ", "rd "];
+        var v = n%100;
+        return n + (s[(v-20)%10] || s[v] || s[0]);
     }
 
     getAssetWithPos(){
