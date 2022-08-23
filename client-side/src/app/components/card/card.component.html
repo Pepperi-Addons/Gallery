@@ -28,7 +28,7 @@
 
 <ng-template #topHeader>
     <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
-                    'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}"
+                    'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}"        
           class="ellipsis">
          
         <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && 
@@ -98,12 +98,12 @@
     <div *ngIf="entry === 'title' && galleryConfig?.useTitle"
          [ngClass]="['title-' + galleryConfig?.titleSize,
                       galleryConfig?.titleWeight, 'ellipsis']"
-         [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}">
+         [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign, 'margin': '.75rem .75rem 0'}">
          {{card.title}}
 </div>
     <textarea *ngIf="entry === 'description' && galleryConfig?.useDescription" 
              [ngClass]="['body-' + galleryConfig?.descriptionSize]"
-             [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign}"
+             [ngStyle]="{'display' : 'block', 'text-align': galleryConfig?.horizontalAlign, 'margin': '0 .75rem .75rem'}"
             [rows]="galleryConfig?.descriptionMaxNumOfLines"
             minRows="1"
             class="textarea">{{card.description}}
