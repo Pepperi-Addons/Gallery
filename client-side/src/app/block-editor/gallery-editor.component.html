@@ -133,7 +133,25 @@
         <pep-checkbox [value]="configuration?.galleryConfig?.useRoundCorners" [label]="'GALLERY_EDITOR.ROUND_CORNER' | translate" 
                     [renderTitle]="false" (valueChange)="onGalleryFieldChange('useRoundCorners',$event)">
         </pep-checkbox>
-    
+        
+        <pep-group-buttons-settings [groupType]="'sizes'"
+            [disabled]="!configuration?.galleryConfig?.useRoundCorners" 
+            [btnKey]="configuration?.galleryConfig?.roundCornersSize" [excludeKeys]="['xs']"
+            (btnkeyChange)="onGalleryFieldChange('roundCornersSize',$event)">
+        </pep-group-buttons-settings>
+
+        <pep-color-settings [title]="'GALLERY_EDITOR.BORDER' | translate"
+            [checkAAComplient]="false"
+            [color]="configuration?.galleryConfig?.border"
+            (colorChange)="onGalleryFieldChange('border',$event)">
+        </pep-color-settings>
+
+        <pep-color-settings [title]="'GALLERY_EDITOR.GRADIENT_OVERLAY' | translate"
+            [checkAAComplient]="false"
+            [color]="configuration?.galleryConfig?.gradientOverlay"
+            (colorChange)="onGalleryFieldChange('gradientOverlay',$event)">
+        </pep-color-settings>
+
         <pep-color-settings [title]="'GALLERY_EDITOR.OVERLAY' | translate"
                             [checkAAComplient]="false"
                             [color]="configuration?.galleryConfig?.overlay"
