@@ -19,7 +19,19 @@ class MyService {
         return this.papiClient.post('/addons/data/relations', relation);
     }
 
-    async exportPages(body: any): Promise<any> {
+    async importDataSource(body) {
+        console.log(`@@@@importing Gallery: ${JSON.stringify(body)}@@@@`);
+        body.DIMXObjects = await Promise.all(body.DIMXObjects.map(async (item) => {
+            // TODO - NEED TO CHANGE THE OBJET TO RETURN.
+            // For example item.Object.Key = "TODO 123"
+            return item;
+        }));
+        console.log('returned object is:', JSON.stringify(body));
+        return body;
+    }
+  
+
+    async exportDataSource(body: any): Promise<any> {
         const res = await this.getDIMXResult(body, false);
         return res;
     }

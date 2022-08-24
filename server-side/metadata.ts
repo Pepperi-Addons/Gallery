@@ -4,22 +4,22 @@ import { AddonDataScheme, Relation } from '@pepperi-addons/papi-sdk';
 export const blockName = 'Gallery';
 
 export const DimxRelations: Relation[] = [{
-        AddonUUID: config.AddonUUID,
-        Name: `${blockName}Import`,
-        RelationName: 'DataImportResource',
-        Type: 'AddonAPI',
-        Description: `${blockName} Import Relation`,
-        FixRelativeURL: '/api/import_fix_object',
-        AddonRelativeURL: ''
-    },
-    {
-        AddonUUID: config.AddonUUID,
-        Name: `${blockName}Export`,
-        RelationName: 'DataExportResource',
-        Type: 'AddonAPI',
-        Description: `${blockName} Export Relation`,
-        AddonRelativeURL: 'api/dimx_expot'
-    }];
+    AddonUUID: config.AddonUUID,
+    Name: `${blockName}Import`,
+    RelationName: 'DataImportResource',
+    Type: 'AddonAPI',
+    Description: `${blockName} Import Relation`,
+    FixRelativeURL: '/api/dimx_import',
+    AddonRelativeURL: ''
+},
+{
+    AddonUUID: config.AddonUUID,
+    Name: `${blockName}Export`,
+    RelationName: 'DataExportResource',
+    Type: 'AddonAPI',
+    Description: `${blockName} Export Relation`,
+    AddonRelativeURL: '/api/dimx_export'
+}];
 
 export const GalleryScheme: AddonDataScheme = {
     Name: blockName,
