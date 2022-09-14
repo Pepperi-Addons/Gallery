@@ -20,13 +20,8 @@ class MyService {
     }
 
     async importDataSource(body,distUUID) {
-       // console.log(`**Gallery** body: ${JSON.stringify(body)}`);
-       // console.log(`**Gallery**  body.Object.cards: ${JSON.stringify(body['Object'].cards)}`);
+      
         body['Object'].cards = await Promise.all(body['Object'].cards.map(async (card) => {
-
-            console.log(`**Gallery import** card: ${JSON.stringify(card)}`);
-            console.log(`**Gallery import** distUUID: ${distUUID}`);
-
             //check if distributor uuid included on assets pfs url
             //if not - replace it with empty string;
             if(card?.assetURL.indexOf(distUUID) == -1){
@@ -37,7 +32,6 @@ class MyService {
             return card;
         }));
         
-        console.log('**Gallery** returned body:', JSON.stringify(body));
         return body['Object'];
     }
   
