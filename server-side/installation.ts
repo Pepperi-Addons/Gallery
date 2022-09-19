@@ -35,11 +35,14 @@ export async function uninstall(client: Client, request: Request): Promise<any> 
 }
 
 export async function upgrade(client: Client, request: Request): Promise<any> {
-    // If there is any change run migration code here
-    const res = await runMigration(client);
-    return {success:true,resultObject:{res}}
-    
-    // return {success:true,resultObject:{}}
+    const galleryRelationsRes = await runMigration(client);
+    const dimxRes = await createDimxRelations(client);
+    const dimxSchemeRes = await addDimxScheme(client);
+   
+    return {
+        success: galleryRelationsRes.success && dimxRes.success && dimxSchemeRes.success,
+        errorMessage: `galleryRelationsRes: ${galleryRelationsRes.errorMessage}, userDeviceResourceRes: ${dimxRes.errorMessage}, userDeviceResourceRes: ${dimxSchemeRes.errorMessage}`
+    };
 }
 
 export async function downgrade(client: Client, request: Request): Promise<any> {
