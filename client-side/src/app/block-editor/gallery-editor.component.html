@@ -19,7 +19,7 @@
             <span class="header-title body-xs checkbox-description">{{('GALLERY_EDITOR.FILL_HEIGHT_SECTION_DESCRIPTION' | translate)}}</span>
         </div>
 
-        <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="decimal" [disabled]="configuration?.galleryConfig?.fillHeight"
+        <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="real" [disabled]="configuration?.galleryConfig?.fillHeight"
                     pepResetConfigurationField="galleryConfig.cardHeight" [hideReset]="configuration?.galleryConfig?.cardHeight === configurationSource?.galleryConfig?.cardHeight" 
                     [resetHostEvents]="hostEvents"
                     [value]="configuration?.galleryConfig?.cardHeight" (valueChange)="onGalleryFieldChange('cardHeight',$event)">
@@ -28,13 +28,13 @@
         <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.gap" [hideReset]="configuration?.galleryConfig?.gap === configurationSource?.galleryConfig?.gap" 
                     [resetHostEvents]="hostEvents"
                     [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.GAP' | translate"
-                    [btnKey]="configuration?.galleryConfig?.gap" [useNone]="true" [excludeKeys]="['xl','xxl']"
+                    [btnKey]="configuration?.galleryConfig?.gap" [useNone]="true" [excludeKeys]="['xs','xl','xxl']"
                     (btnkeyChange)="onGalleryFieldChange('gap',$event)">
         </pep-group-buttons-settings>
 
         <!-- <div class="split-cont">
             <div class="split-area">
-                <pep-textbox [label]="'GALLERY_EDITOR.GAP' | translate" type="decimal" 
+                <pep-textbox [label]="'GALLERY_EDITOR.GAP' | translate" type="real" 
                     pepResetConfigurationField="galleryConfig.gap" [hideReset]="configuration?.galleryConfig?.gap === configurationSource?.galleryConfig?.gap" 
                     [resetHostEvents]="hostEvents"
                     [value]="configuration?.galleryConfig?.gap" (valueChange)="onGalleryFieldChange('gap',$event)"></pep-textbox>
@@ -93,7 +93,7 @@
 
         <pep-group-buttons-settings [groupType]="'font-weight'" [subHeader]="'GALLERY_EDITOR.TITLE_WEIGHT' | translate"
                                     [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
-                                    [btnKey]="configuration?.galleryConfig?.titleWeight"
+                                    [btnKey]="configuration?.galleryConfig?.titleWeight" [excludeKeys]="['bolder']"
                                     (btnkeyChange)="onGalleryFieldChange('titleWeight',$event)">
         </pep-group-buttons-settings>
 

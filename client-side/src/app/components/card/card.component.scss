@@ -75,6 +75,10 @@
     //     transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     // }
 
+    .regular{
+        font-weight: 400 !important;
+    }
+
     .title-sm{
         font-size: calc(#{ngx-variables.$fs-sm} * 1.75) !important; 
         height: calc(#{ngx-variables.$fs-sm} * 1.75);

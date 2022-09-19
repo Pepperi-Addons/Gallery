@@ -5,7 +5,7 @@ export type textColor = 'system-primary' | 'dimmed' | 'invert' | 'strong';
 export type verticalAlignment = 'start' | 'middle' | 'end';
 export type textPositionStyling = 'overlaid' | 'separated';
 export type groupTitleAndDescription = 'grouped' | 'ungrouped';
-export type FontWeight = 'normal' | 'bold' | 'bolder';
+export type FontWeight = 'regular' | 'bold' | 'bolder';
 
 export interface IHostObject {
     configuration: IGallery;
@@ -33,14 +33,14 @@ export class IGalleryEditor {
     textPosition: textPositionStyling = 'overlaid';
     useTitle: boolean = true;
     titleSize: PepSizeType = 'lg';
-    titleWeight: FontWeight = 'normal';
+    titleWeight: FontWeight = 'regular';
     useDescription: boolean = true;
     groupTitleAndDescription: groupTitleAndDescription = 'grouped';
     descriptionSize: PepSizeType = 'md';
     descriptionMaxNumOfLines: number = 1;
     border: PepColorSettings = new PepColorSettings();
-    overlay: PepColorSettings = new PepColorSettings(true, 'hsl(190, 100%, 50%)', 100);
-    gradientOverlay: PepColorSettings  = new PepColorSettings(true, 'hsl(0, 0%, 90%)', 100);
+    overlay: PepColorSettings = new PepColorSettings(true, 'hsl(190, 100%, 50%)', 75);
+    gradientOverlay: PepColorSettings  = new PepColorSettings(true, 'hsl(0, 0%, 90%)', 75);
     editSlideIndex: number = -1;
 
     dropShadow: PepShadowSettings = new PepShadowSettings();
