@@ -62,11 +62,13 @@ export class GalleryEditorComponent implements OnInit {
     constructor(private translate: TranslateService, private pepColorService: PepColorService, private galleryService: GalleryService) { }
 
     async ngOnInit(): Promise<void> {
+
+         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
+
         if (!this.configuration) {
             this.loadDefaultConfiguration();
         }
-        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
-
+       
         this.textColor = [
             { key: 'system-primary', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.SYSTEM'), callback: (event: any) => this.onGalleryFieldChange('cardTextColor',event) },
             { key: 'invert', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.INVERT'), callback: (event: any) => this.onGalleryFieldChange('cardTextColor',event) }
@@ -202,10 +204,13 @@ export class GalleryEditorComponent implements OnInit {
 
     private getDefaultCards(numOfCards: number = 0): Array<ICardEditor> {
         let cards: Array<ICardEditor> = [];
+       
         for(var i=0; i < numOfCards; i++){
             let card = new ICardEditor();
             card.id = i;
             
+            
+
             card.title = this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
             card.description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
             cards.push(card);
