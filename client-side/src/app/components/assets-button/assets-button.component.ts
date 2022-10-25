@@ -42,7 +42,7 @@ export class AssetsButtonComponent implements OnInit {
     onOpenAssetsDialog() {
         const dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
-            name: 'Assets',
+            name: 'AssetPicker',
             hostObject: this.assetsHostObject,
             hostEventsCallback: (event) => { this.onHostEvents(event, dialogRef); }
         });
