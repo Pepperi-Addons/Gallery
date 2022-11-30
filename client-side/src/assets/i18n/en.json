@@ -15,6 +15,7 @@
             "CONTENT": "Content"
         },
         "ITEM": "Item",
+        "INNER_SPACING": "Inner spacing",
         "AWESOMETEXTFORTHE": "Awesome Text For The",
         "GRID": "Grid",
         "MAX_COLUMNS": "Max Columns",

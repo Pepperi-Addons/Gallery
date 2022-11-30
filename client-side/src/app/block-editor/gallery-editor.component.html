@@ -97,6 +97,13 @@
                                     (btnkeyChange)="onGalleryFieldChange('titleWeight',$event)">
         </pep-group-buttons-settings>
 
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.titleInnerSpacing" [hideReset]="configuration?.galleryConfig?.titleInnerSpacing === configurationSource?.galleryConfig?.titleInnerSpacing" 
+            [resetHostEvents]="hostEvents" [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
+            [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.INNER_SPACING' | translate" [useNone]="true"
+            [btnKey]="configuration?.galleryConfig?.titleInnerSpacing"  [excludeKeys]="['xl','xxl']"
+            (btnkeyChange)="onGalleryFieldChange('titleInnerSpacing',$event)">
+        </pep-group-buttons-settings>
+
         <pep-checkbox
             [value]="configuration?.galleryConfig?.useDescription" 
             [label]="'GALLERY_EDITOR.DESCRIPTION' | translate" 
@@ -120,6 +127,13 @@
                                     [btnKey]="configuration?.galleryConfig?.descriptionSize" [excludeKeys]="['xs']"
                                     (btnkeyChange)="onGalleryFieldChange('descriptionSize',$event)">
         </pep-group-buttons-settings>
+
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.titleInnerSpacing" [hideReset]="configuration?.galleryConfig?.titleInnerSpacing === configurationSource?.galleryConfig?.titleInnerSpacing" 
+        [resetHostEvents]="hostEvents" [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useDescription" 
+        [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.INNER_SPACING' | translate" [useNone]="true"
+        [btnKey]="configuration?.galleryConfig?.descriptionInnerSpacing"  [excludeKeys]="['xl','xxl']"
+        (btnkeyChange)="onGalleryFieldChange('descriptionInnerSpacing',$event)">
+    </pep-group-buttons-settings>
 
         <pep-textbox pepResetConfigurationField="galleryConfig.descriptionMaxNumOfLines" [hideReset]="configuration?.galleryConfig?.descriptionMaxNumOfLines === configurationSource?.galleryConfig?.descriptionMaxNumOfLines" 
                     [resetHostEvents]="hostEvents"

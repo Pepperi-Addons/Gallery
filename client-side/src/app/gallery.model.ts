@@ -34,9 +34,11 @@ export class IGalleryEditor {
     useTitle: boolean = true;
     titleSize: PepSizeType = 'lg';
     titleWeight: FontWeight = 'regular';
+    titleInnerSpacing: PepSizeType = 'sm';
     useDescription: boolean = true;
     groupTitleAndDescription: groupTitleAndDescription = 'grouped';
     descriptionSize: PepSizeType = 'md';
+    descriptionInnerSpacing: PepSizeType = 'sm';
     descriptionMaxNumOfLines: number = 1;
     border: PepColorSettings = new PepColorSettings();
     overlay: PepColorSettings = new PepColorSettings(true, 'hsl(190, 100%, 50%)', 75);
