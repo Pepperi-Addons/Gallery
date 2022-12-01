@@ -29,6 +29,11 @@
         "TEXT": "Text",
         "CARD_COLOR": "Card Color",
         "VERTICAL": "Vertical Position",
+        "VERTICAL_ALIGN":{
+            "TOP": "Top",
+            "MIDDLE": "Middle",
+            "BOTTOM": "Bottom"
+        },
         "HORIZONTAL": "Content Align -> Horizontal",
         "TEXT_POS_STYLING": "Text Position Styling",
         "TITLE": "Title",

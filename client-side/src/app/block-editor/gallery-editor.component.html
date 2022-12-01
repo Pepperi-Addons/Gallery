@@ -56,9 +56,9 @@
 
         <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.verticalAlign" [hideReset]="configuration?.galleryConfig?.verticalAlign === configurationSource?.galleryConfig?.verticalAlign" 
             [resetHostEvents]="hostEvents" 
-            [groupType]="'vertical-align'" [subHeader]="'GALLERY_EDITOR.VERTICAL' | translate" [excludeKeys]="['center']"
-            [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.verticalAlign"
-            (btnkeyChange)="onGalleryFieldChange('verticalAlign',$event)">
+            [groupType]="'custom'" [btnsArray]="verticalAlign"
+            [subHeader]="'GALLERY_EDITOR.VERTICAL' | translate" [excludeKeys]="['center']"
+            [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.verticalAlign">
         </pep-group-buttons-settings>
 
         <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.horizontalAlign" [hideReset]="configuration?.galleryConfig?.horizontalAlign === configurationSource?.galleryConfig?.horizontalAlign" 
