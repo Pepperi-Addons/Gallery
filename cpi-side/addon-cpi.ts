@@ -14,18 +14,22 @@ router.post('/prepare_assets', async (req, res)=>{
 });
 
 async function getFilePath(url) {
-    // url =  'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
-    const fixedURL = fixURLIfNeeded(url);
-    const filePath = new URL(fixedURL).pathname;
-    const fileBaseURL = new URL(fixedURL).origin;
-    // TODO need to replace with funtion from Saar
     let fileUrl = '';
-    try {
-        fileUrl = await global['app'].getLocaFilePath(filePath, fileBaseURL);        
-    } catch (error) {
-        console.error(error);
-        fileUrl = url;        
+    // url =  'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
+    // check if the url is a valid url
+    if (!url || !url.startsWith('http')) {
+        const fixedURL = fixURLIfNeeded(url);
+        const filePath = new URL(fixedURL).pathname;
+        const fileBaseURL = new URL(fixedURL).origin;
+        // TODO need to replace with funtion from Saar
+        try {
+            fileUrl = await global['app'].getLocaFilePath(filePath, fileBaseURL);        
+        } catch (error) {
+            console.error(error);
+            fileUrl = url;        
+        }
     }
+
     return fileUrl;
 }
 
