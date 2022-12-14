@@ -14,7 +14,7 @@ router.post('/prepare_assets', async (req, res)=>{
 });
 
 async function getFilePath(url) {
-    // url = 'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
+    // url =  'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
     const fixedURL = fixURLIfNeeded(url);
     const filePath = new URL(fixedURL).pathname;
     const fileBaseURL = new URL(fixedURL).origin;
