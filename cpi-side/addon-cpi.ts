@@ -2,7 +2,6 @@ import '@pepperi-addons/cpi-node'
 export const router:any = Router()
 
 router.post('/prepare_assets', async (req, res)=>{
-    debugger
     const configuration = req.body.Configuration;
     const cards = configuration.Data.cards as any[];
     await Promise.all(cards.map(async (card) => {
@@ -10,15 +9,15 @@ router.post('/prepare_assets', async (req, res)=>{
         return card.assetURL = await getFilePath(card.assetURL)
     }))
     configuration.Data.cards = cards;
-    res.json(configuration);
+    res.json({Configuration: configuration});
 });
 
 async function getFilePath(url) {
     let fileUrl = '';
-    // url =  'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
+    // url =  "'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
     // check if the url is a valid url
-    if (!url || !url.startsWith('http')) {
-        const fixedURL = fixURLIfNeeded(url);
+    const fixedURL = fixURLIfNeeded(url);
+    if (fixedURL && fixedURL.startsWith('http')) {
         const filePath = new URL(fixedURL).pathname;
         const fileBaseURL = new URL(fixedURL).origin;
         // TODO need to replace with funtion from Saar
