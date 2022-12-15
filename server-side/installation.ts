@@ -219,7 +219,7 @@ async function runMigration(client){
                     }
                 }
             },
-            CPINodeEndpoint: "/addon-cpi/prepare_assets",
+            OnPageLoadEndpoint: "/addon-cpi/prepare_assets",
         };
 
         const service = new MyService(client);

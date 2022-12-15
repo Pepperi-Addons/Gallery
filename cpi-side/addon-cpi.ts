@@ -1,5 +1,6 @@
 import '@pepperi-addons/cpi-node'
 export const router:any = Router()
+import path from 'path';
 
 router.post('/prepare_assets', async (req, res)=>{
     const configuration = req.body.Configuration;
@@ -20,10 +21,15 @@ async function getFilePath(url) {
     if (fixedURL && fixedURL.startsWith('http')) {
         const filePath = new URL(fixedURL).pathname;
         const fileBaseURL = new URL(fixedURL).origin;
-        // TODO need to replace with funtion from Saar
+        // TODO need to replace with function from Saar
         try {
-            fileUrl = await global['app'].getLocaFilePath(filePath, fileBaseURL);        
-        } catch (error) {
+            // fileUrl = callToSaar(filePath, fileBaseURL);
+            // remove the below lines
+            fileUrl = await global['app'].getLocaFilePath(filePath, fileBaseURL); 
+            fileUrl = await pepperi["files"].baseURL() + "/" + filePath;
+            // end POC
+            }
+        catch (error) {
             console.error(error);
             fileUrl = url;        
         }
