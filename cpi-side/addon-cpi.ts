@@ -26,7 +26,7 @@ async function getFilePath(url) {
             // fileUrl = callToSaar(filePath, fileBaseURL);
             // remove the below lines
             fileUrl = await global['app'].getLocaFilePath(filePath, fileBaseURL); 
-            fileUrl = await pepperi["files"].baseURL() + "/" + filePath;
+            fileUrl = await pepperi["files"].baseURL() + filePath;
             // end POC
             }
         catch (error) {
