@@ -4,12 +4,14 @@ import path from 'path';
 
 router.post('/prepare_assets', async (req, res)=>{
     const configuration = req.body.Configuration;
-    const cards = configuration.Data.cards as any[];
-    await Promise.all(cards.map(async (card) => {
-        // overwrite the cards assetURL with the local file path
-        return card.assetURL = await getFilePath(card.assetURL)
-    }))
-    configuration.Data.cards = cards;
+    if(!(await pepperi['environment'].isWebApp())) {
+        const cards = configuration.Data.cards as any[];
+        await Promise.all(cards.map(async (card) => {
+            // overwrite the cards assetURL with the local file path
+            return card.assetURL = await getFilePath(card.assetURL)
+        }))
+        configuration.Data.cards = cards;
+    }
     res.json({Configuration: configuration});
 });
 
