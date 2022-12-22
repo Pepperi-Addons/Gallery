@@ -16,20 +16,17 @@ router.post('/prepare_assets', async (req, res)=>{
 });
 
 async function getFilePath(url) {
-    let fileUrl = '';
+    debugger
+    let fileUrl;
     // url =  "'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
     // check if the url is a valid url
     const fixedURL = fixURLIfNeeded(url);
     if (fixedURL && fixedURL.startsWith('http')) {
         const filePath = new URL(fixedURL).pathname;
-        const fileBaseURL = new URL(fixedURL).origin;
-        // TODO need to replace with function from Saar
+        const fileName = path.basename(filePath);
         try {
-            // fileUrl = callToSaar(filePath, fileBaseURL);
-            // remove the below lines
-            fileUrl = await global['app'].getLocaFilePath(filePath, fileBaseURL); 
-            fileUrl = await pepperi["files"].baseURL() + filePath;
-            // end POC
+            const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(fileName).get();
+            fileUrl = res.URL;
             }
         catch (error) {
             console.error(error);
