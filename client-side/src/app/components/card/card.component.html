@@ -27,7 +27,7 @@
 
 
 <ng-template #topHeader>
-    <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
+    <div class="ungroupedText" [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
                     'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
          
         <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && 
@@ -69,7 +69,7 @@
 </ng-template>
 
 <ng-template #footer>
-    <div [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
+    <div class="ungroupedText" [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
                     'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
          
     <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && galleryConfig?.verticalAlign === 'end'">

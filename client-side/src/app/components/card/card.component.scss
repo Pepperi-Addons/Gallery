@@ -53,13 +53,17 @@
             position: absolute;
             //z-index: -1;
         }
-
         .groupedText{
             display: flex; 
             flex-direction: column;
             // padding: ngx-variables.$spacing-md;
             width: 100%;
+            z-index: 1;
         }
+    }
+
+    .ungroupedText{
+        z-index: 1;
     }
 
     &.textColor_system-primary{

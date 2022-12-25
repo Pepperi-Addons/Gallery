@@ -16,7 +16,6 @@ router.post('/prepare_assets', async (req, res)=>{
 });
 
 async function getFilePath(url) {
-    debugger
     let fileUrl;
     // url =  "'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
     // check if the url is a valid url
@@ -33,7 +32,6 @@ async function getFilePath(url) {
             fileUrl = url;        
         }
     }
-
     return fileUrl;
 }
 
