@@ -64,10 +64,10 @@ export class CardComponent implements OnInit {
     }
 
     getGradientOverlay(){
+
         let gradient = this.galleryConfig?.gradientOverlay;
         let horAlign = this.galleryConfig?.horizontalAlign;
         let verAlign = this.galleryConfig?.verticalAlign; // 'top' | 'middle' | 'bottom'
-
         let direction = '0';
 
         switch(horAlign){
@@ -80,16 +80,14 @@ export class CardComponent implements OnInit {
                 break;
             }
             case 'right':{
-                direction = verAlign === 'start' ? '225' : verAlign === 'middle' ? '135' : '315';
+                direction = verAlign === 'start' ? '225' : verAlign === 'middle' ? '270' : '315';
                 break;
             }
         }
             direction = direction === 'circle' ? direction : direction + 'deg';
 
-        let colorsStr =  direction !== 'circle' ? this.galleryService.getRGBAcolor(gradient,0) +' , '+ this.galleryService.getRGBAcolor(gradient) :
-                                                 this.galleryService.getRGBAcolor(gradient,100) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
-        
-                                                 let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
+        let colorsStr =  this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
+        let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 
         let gradStr = this.galleryConfig.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
 
@@ -99,7 +97,6 @@ export class CardComponent implements OnInit {
         else{
             return 'unset';
         }
-    
     }
 
     getOrdinal(n) {

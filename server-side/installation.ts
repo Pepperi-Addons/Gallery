@@ -83,6 +83,14 @@ async function runMigration(client){
                                 "Type": "Integer",
                                 "ConfigurationPerScreenSize": true
                             },
+                            "titleInnerSpacing":{
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "descriptionInnerSpacing":{
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
                             /*"useText": {
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true
@@ -210,7 +218,8 @@ async function runMigration(client){
                         }
                     }
                 }
-            }
+            },
+            OnPageLoadEndpoint: "/addon-cpi/prepare_assets",
         };
 
         const service = new MyService(client);

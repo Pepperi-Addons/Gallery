@@ -56,6 +56,7 @@ export class GalleryEditorComponent implements OnInit {
     private _pageConfiguration: PageConfiguration = this.defaultPageConfiguration;
     
     public textColor: Array<PepButton> = [];
+    public verticalAlign: Array<PepButton> = [];
     public TextPositionStyling: Array<PepButton> = [];
     public GroupTitleAndDescription: Array<PepButton> = [];
 
@@ -84,6 +85,11 @@ export class GalleryEditorComponent implements OnInit {
             { key: 'ungrouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.UNGROUPED'), callback: (event: any) => this.onGalleryFieldChange('groupTitleAndDescription',event) }
         ]
 
+        this.verticalAlign = [
+            { key: 'start', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.TOP'), callback: (event: any) => this.onGalleryFieldChange('verticalAlign',event) },
+            { key: 'middle', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.MIDDLE'), callback: (event: any) => this.onGalleryFieldChange('verticalAlign',event) },
+            { key: 'end', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.BOTTOM'), callback: (event: any) => this.onGalleryFieldChange('verticalAlign',event) }
+        ]
         this.blockLoaded = true;
     }
 
@@ -165,7 +171,6 @@ export class GalleryEditorComponent implements OnInit {
         });
     }
 
-
     onGalleryFieldChange(key, event){
         const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
 
@@ -180,21 +185,24 @@ export class GalleryEditorComponent implements OnInit {
         this.updateHostObjectField(`galleryConfig.${key}`, value);
 
         if(key === 'groupTitleAndDescription' || key === 'textPosition'){
-            /*this.VerticalAlign[1].disabled = this.configuration?.galleryConfig?.groupTitleAndDescription === 'ungrouped' || 
-                                             this.configuration?.galleryConfig?.textPosition === 'separated';
-            //check if the vertical align was center, if true set it automateclly to top
-            if( this.configuration?.galleryConfig?.verticalAlign === 'center'){
-                this.configuration.galleryConfig.verticalAlign = 'start';
-            }*/
-            
-            /*let isDisabled = this.configuration?.galleryConfig?.textPosition == 'overlaid' && 
-            this.configuration?.galleryConfig?.groupTitleAndDescription === 'ungrouped' ? true : false;
-            
-            this.VerticalAlign[0].disabled = this.VerticalAlign[2].disabled = isDisabled;*/
-               
+            if(this.configuration?.galleryConfig?.textPosition === 'separated'){
+                if(this.configuration.galleryConfig.groupTitleAndDescription ==='ungrouped'){ //disable Vertical Position (all potions)
+                    this.verticalAlign[0].disabled = true;
+                    this.verticalAlign[1].disabled = true;
+                    this.verticalAlign[2].disabled = true;
+                }
+                else{ // disable Vertical Position > Middle (Top & Bottom are still available
+                    this.verticalAlign[0].disabled = false;
+                    this.verticalAlign[1].disabled = true;
+                    this.verticalAlign[2].disabled = false;
+                }
+            }
+            else{ // Overlaid
+                    this.verticalAlign[0].disabled = false;
+                    this.verticalAlign[1].disabled = false;
+                    this.verticalAlign[2].disabled = false;
+            }      
         }
-
-  
     }
 
     private loadDefaultConfiguration() {

@@ -57,11 +57,10 @@
         .groupedText{
             display: flex; 
             flex-direction: column;
-            padding: ngx-variables.$spacing-lg;
+            // padding: ngx-variables.$spacing-md;
+            width: 100%;
         }
     }
-
-
 
     &.textColor_system-primary{
         color: ngx-functions.get-pep-color(color-text, color-regular) !important;
@@ -80,25 +79,46 @@
     }
 
     .title-sm{
+        line-height: unset !important;
         font-size: calc(#{ngx-variables.$fs-sm} * 1.75) !important; 
-        height: calc(#{ngx-variables.$fs-sm} * 1.75);
-        line-height: calc(#{ngx-variables.$fs-sm} * 1.75) !important;    
+        // height: calc(#{ngx-variables.$fs-sm} * 1.75);
+        // line-height: calc(#{ngx-variables.$fs-sm} * 1.75) !important;    
     }
     .title-md{
+        line-height: unset !important;
         font-size: calc(#{ngx-variables.$fs-md} * 1.75) !important;  
-        height: calc(#{ngx-variables.$fs-md} * 1.75);   
-        line-height: calc(#{ngx-variables.$fs-md} * 1.75) !important;   
+        // height: calc(#{ngx-variables.$fs-md} * 1.75);   
+        // line-height: calc(#{ngx-variables.$fs-md} * 1.75) !important;   
     }
     .title-lg{
+        line-height: unset !important;
         font-size: calc(#{ngx-variables.$fs-lg} * 2.25) !important; 
-        height: calc(#{ngx-variables.$fs-lg} * 2.25);  
-        line-height: calc(#{ngx-variables.$fs-lg} * 2.25) !important;
+        // height: calc(#{ngx-variables.$fs-lg} * 2.25);  
+        // line-height: calc(#{ngx-variables.$fs-lg} * 2.25) !important;
     }
     .title-xl{
+        line-height: unset !important;
         font-size: calc(#{ngx-variables.$fs-xl} * 2.5) !important; 
-        height: calc(#{ngx-variables.$fs-xl} * 2.5); 
-        line-height: calc(#{ngx-variables.$fs-xl} * 2.5) !important;     
+        // height: calc(#{ngx-variables.$fs-xl} * 2.5); 
+        // line-height: calc(#{ngx-variables.$fs-xl} * 2.5) !important;     
     }
+
+    .padding-block_xs{
+        padding-block: ngx-variables.$spacing-xs;
+    }
+    .padding-block_sm{
+            padding-block: ngx-variables.$spacing-sm;
+    }
+    .padding-block_md{
+        padding-block: ngx-variables.$spacing-md;
+    }
+    .padding-block_lg{
+        padding-block: ngx-variables.$spacing-lg;
+    }
+    .padding-block_xl{
+        padding-block: ngx-variables.$spacing-xl;
+    }
+   
 
     &.shadow-xs{
         &.soft{
