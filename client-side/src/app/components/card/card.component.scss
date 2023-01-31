@@ -24,6 +24,7 @@
     grid-template-rows: min-content auto min-content min-content min-content;
     transition: transform .2s;
     overflow: hidden;
+    box-sizing: content-box;
     width: 100%;
 
     div{
