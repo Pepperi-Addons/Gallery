@@ -1,4 +1,6 @@
-import '@pepperi-addons/cpi-node'
+import '@pepperi-addons/cpi-node';
+import GalleryCpiService from './gallery-cpi.service';
+import { CLIENT_ACTION_ON_GALLERY_CARD_CLICKED, CLIENT_ACTION_ON_GALLERY_LOAD } from 'shared';
 export const router:any = Router()
 import path from 'path';
 
@@ -17,24 +19,16 @@ router.post('/prepare_assets', async (req, res)=>{
 
 async function getFilePath(card) {
     let fileUrl;
-    // url =  "'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
-    // check if the url is a valid url
-    //const fixedURL = fixURLIfNeeded(url);
-    //if (fixedURL && fixedURL.startsWith('http')) {
-        //const filePath = new URL(fixedURL).pathname;
-        //const fileName = path.basename(filePath);
-        const assetKey = card.asset;
-        try {
-            const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(assetKey).get();
-            //const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(fileName).get();
-            fileUrl = res.URL;
-            console.log(fileUrl);
-            }
-        catch (error) {
-            console.error(error);
-            fileUrl = card.assetURL;        
-        }
-    //}
+
+    const assetKey = card.asset;
+    try {
+        const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(assetKey).get();
+        fileUrl = res.URL;
+    }
+    catch (error) {
+        fileUrl = card.assetURL;        
+    }
+
     return fileUrl;
 }
 
@@ -50,4 +44,19 @@ function fixURLIfNeeded(url) {
 export async function load(configuration: any) {
     
 }
+/**********************************  client events starts /**********************************/
+pepperi.events.intercept(CLIENT_ACTION_ON_GALLERY_CARD_CLICKED as any, {}, async (data): Promise<any> => {
+    debugger;
+    const cpiService = new GalleryCpiService();
+    const res = cpiService.runFlowData(data.Key, data);
+    return res;
+
+});
+
+pepperi.events.intercept(CLIENT_ACTION_ON_GALLERY_LOAD as any, {}, async (data): Promise<any> => {
+    let gallery = data.gallery;
+
+    return gallery;
+});
+/***********************************  client events ends /***********************************/
 

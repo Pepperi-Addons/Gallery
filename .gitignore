@@ -1,5 +1,7 @@
-node_modules/**
 build/**
 publish/**
 var_sk
+cpi-side/build
+server-side/build
 client-side/.angular/cache/
+**/node_modules/**
