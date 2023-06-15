@@ -49,10 +49,7 @@ export class CardEditorComponent implements OnInit {
     }
 
     async ngOnInit(): Promise<void> {
-        //this.title = this.configuration?.cards[this.id].titleContent;
-        //this.configuration.galleryConfig.editSlideIndex = -1;
-        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
-        
+        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();    
     }
 
     getOrdinal(n) {
@@ -104,11 +101,8 @@ export class CardEditorComponent implements OnInit {
 
     onHostEvents(event: any) {
         if(event?.url) {
-            this.configuration.cards[this.id].assetURL = "'"+ encodeURI(event.url) +"'";
-            this.configuration.cards[this.id].asset = event.key;
-
-            //this.updateHostObjectField(`slides[${this.id}].image.assetURL`, encodeURI(event.url));
-            //this.updateHostObjectField(`slides[${this.id}].image.asset`, event.key);
+            this.configuration.cards[this.id].AssetURL = "'"+ encodeURI(event.url) +"'";
+            this.configuration.cards[this.id].AssetKey = event.key;
 
             this.updateHostObject();
         }     

@@ -1,6 +1,6 @@
 <div class="galleryCardsCont" #galleryContainer
-     [ngClass]="['columnGap_'+ configuration?.galleryConfig?.gap]"
-     [ngStyle]="{'height' : configuration?.galleryConfig?.fillHeight ? '100%' : 'min-content'}">
+     [ngClass]="['columnGap_'+ configuration?.galleryConfig?.Gallery?.Gap]"
+     [ngStyle]="{'height' : configuration?.galleryConfig?.Gallery?.FillHeight ? '100%' : 'min-content'}">
      <gallery-card #cardContainer *ngFor="let currentCard of configuration?.cards; let i = index" 
                    [cardIndex] = i
                    [ngStyle]="{'width': cardWidth}"

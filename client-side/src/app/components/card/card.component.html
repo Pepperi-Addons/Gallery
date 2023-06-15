@@ -1,37 +1,37 @@
 
 <div class="galleryCardCont" 
-    [ngStyle]="{'display': galleryConfig?.textPosition === 'overlaid' ? 'block' : 'grid',
-                'height' : galleryConfig?.fillHeight ? '100%' : (galleryConfig?.cardHeight + 'rem'),
+    [ngStyle]="{'display': galleryConfig?.Text?.Position === 'overlaid' ? 'block' : 'grid',
+                'height' : galleryConfig?.Gallery?.FillHeight ? '100%' : (galleryConfig?.Card?.Height + 'rem'),
                 'cursor' : card?.script != '' ? 'pointer' : 'inherit',
                 'border': getGalleryBorder()}"
-    [ngClass]="['textColor_'+ galleryConfig?.cardTextColor,
-                galleryConfig?.dropShadow?.use ? 'shadow-' + this.galleryConfig?.dropShadow?.size : '',
-                galleryConfig?.dropShadow?.use ? this.galleryConfig?.dropShadow?.intensity : '',
-                galleryConfig?.useRoundCorners ? 'border-radius-' + galleryConfig?.roundCornersSize : '']"
+    [ngClass]="['textColor_'+ galleryConfig?.Card?.TextColor,
+                galleryConfig?.Card?.DropShadow?.use ? 'shadow-' + this.galleryConfig?.Card?.DropShadow?.size : '',
+                galleryConfig?.Card?.DropShadow?.use ? this.galleryConfig?.Card?.DropShadow?.intensity : '',
+                galleryConfig?.Card?.UseRoundCorners ? 'border-radius-' + galleryConfig?.Card?.RoundCornersSize : '']"
     (click)="onCardClicked()">
 
-    <ng-container *ngIf="galleryConfig?.useText && 
-                         galleryConfig?.textPosition === 'separated' &&
-                        (galleryConfig?.useTitle || galleryConfig?.useDescription)
+    <ng-container *ngIf="galleryConfig?.Text.Use && 
+                         galleryConfig?.Text?.Position === 'separated' &&
+                        (galleryConfig?.Title?.Use || galleryConfig?.Description?.Use)
                         then topHeader; else empty">
     </ng-container>
     
     <ng-container *ngTemplateOutlet="image"></ng-container>
     
-    <ng-container *ngIf="galleryConfig?.useText && 
-                        galleryConfig?.textPosition === 'separated' &&
-                        (galleryConfig?.useTitle || galleryConfig?.useDescription)
+    <ng-container *ngIf="galleryConfig?.Text.Use && 
+                        galleryConfig?.Text?.Position === 'separated' &&
+                        (galleryConfig?.Title?.Use || galleryConfig?.Description?.Use)
                         then footer; else empty">
     </ng-container>
 </div>
 
 
 <ng-template #topHeader>
-    <div class="ungroupedText" [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
-                    'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
+    <div class="ungroupedText" [ngStyle]="{'justify-content': galleryConfig?.Text?.HorizontalAlign,
+                    'background-color': galleryConfig?.Card?.TextColor === 'invert' && galleryConfig?.Text?.Position === 'separated' ? '#000' : 'Transparent'}">
          
-        <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && 
-                             galleryConfig?.verticalAlign === 'start'">
+        <ng-container *ngIf="galleryConfig?.Text?.GroupTitleAndDescription === 'grouped' && 
+                             galleryConfig?.Text.VerticalAlign === 'start'">
             <div class="groupedText"> 
                 <ng-container *ngTemplateOutlet="text; context: {entry: 'title'}">
                 </ng-container>
@@ -39,7 +39,7 @@
                 </ng-container>
             </div>
         </ng-container>
-        <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'ungrouped'">
+        <ng-container *ngIf="galleryConfig?.Text?.GroupTitleAndDescription === 'ungrouped'">
             <ng-container *ngTemplateOutlet="text; context: {entry: 'title'}">
             </ng-container>
         </ng-container>
@@ -49,19 +49,19 @@
 
 <ng-template #image>
     <div class='overlayCont' [ngStyle]="{'background' : getAssetWithPos(), 'width': cardWidth ,
-        'justify-content': (galleryConfig?.textPosition == 'overlaid' && galleryConfig?.groupTitleAndDescription === 'ungrouped') ? 'space-between' :  galleryConfig?.verticalAlign,
-        'box-shadow': galleryConfig?.overlay?.use ?  'inset 0 0 0 100vh ' + galleryService.getRGBAcolor(galleryConfig?.overlay) : 'unset'}"
-        [ngClass]="[galleryConfig?.useRoundCorners && 
-                    galleryConfig?.textPosition === 'overlaid' ? 'border-radius-' + galleryConfig?.roundCornersSize : '',
-                    galleryConfig?.textPosition === 'separated' ? 'separated' : '']">
+        'justify-content': (galleryConfig?.Text?.Position == 'overlaid' && galleryConfig?.Text?.GroupTitleAndDescription === 'ungrouped') ? 'space-between' :  galleryConfig?.Text.VerticalAlign,
+        'box-shadow': galleryConfig?.Overlay?.use ?  'inset 0 0 0 100vh ' + galleryService.getRGBAcolor(galleryConfig?.Overlay) : 'unset'}"
+        [ngClass]="[galleryConfig?.Card?.UseRoundCorners && 
+                    galleryConfig?.Text?.Position === 'overlaid' ? 'border-radius-' + galleryConfig?.Card?.RoundCornersSize : '',
+                    galleryConfig?.Text?.Position === 'separated' ? 'separated' : '']">
     </div>
     <div class='gradCont' [ngStyle]="{'background' : getGradientOverlay(), 'width': cardWidth}" 
-         [ngClass]="[galleryConfig?.useRoundCorners && 
-                    galleryConfig?.textPosition === 'overlaid' ? 'border-radius-' + galleryConfig?.roundCornersSize : '']">
+         [ngClass]="[galleryConfig?.Card?.UseRoundCorners && 
+                    galleryConfig?.Text?.Position === 'overlaid' ? 'border-radius-' + galleryConfig?.Card?.RoundCornersSize : '']">
     </div>
-    <div class="imageCont" [ngStyle]="{'width': cardWidth, 'justify-content': galleryConfig?.verticalAlign === 'middle' ? 'center' : galleryConfig?.verticalAlign}" >
-        <ng-container *ngIf="galleryConfig?.useText && 
-                         galleryConfig?.textPosition === 'overlaid'; 
+    <div class="imageCont" [ngStyle]="{'width': cardWidth, 'justify-content': galleryConfig?.Text.VerticalAlign === 'middle' ? 'center' : galleryConfig?.Text.VerticalAlign}" >
+        <ng-container *ngIf="galleryConfig?.Text.Use && 
+                         galleryConfig?.Text?.Position === 'overlaid'; 
                          then overlayedText; else empty">
         </ng-container>
     </div>
@@ -69,10 +69,10 @@
 </ng-template>
 
 <ng-template #footer>
-    <div class="ungroupedText" [ngStyle]="{'justify-content': galleryConfig?.horizontalAlign,
-                    'background-color': galleryConfig?.cardTextColor === 'invert' && galleryConfig?.textPosition === 'separated' ? '#000' : 'Transparent'}">
+    <div class="ungroupedText" [ngStyle]="{'justify-content': galleryConfig?.Text?.HorizontalAlign,
+                    'background-color': galleryConfig?.Card?.TextColor === 'invert' && galleryConfig?.Text?.Position === 'separated' ? '#000' : 'Transparent'}">
          
-    <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'grouped' && galleryConfig?.verticalAlign === 'end'">
+    <ng-container *ngIf="galleryConfig?.Text?.GroupTitleAndDescription === 'grouped' && galleryConfig?.Text.VerticalAlign === 'end'">
             <div class="groupedText"> 
                 <ng-container *ngTemplateOutlet="text; context: {entry: 'title'}">
                 </ng-container>
@@ -80,7 +80,7 @@
                 </ng-container>
             </div>
     </ng-container>
-    <ng-container *ngIf="galleryConfig?.groupTitleAndDescription === 'ungrouped'">
+    <ng-container *ngIf="galleryConfig?.Text?.GroupTitleAndDescription === 'ungrouped'">
             <ng-container *ngTemplateOutlet="text; context: {entry: 'description'}">
             </ng-container>
     </ng-container>
@@ -96,25 +96,23 @@
 
 
 <ng-template #text let-entry="entry">
-    <div *ngIf="entry === 'title' && galleryConfig?.useTitle"
-         [ngClass]="['title-' + galleryConfig?.titleSize,
-                      galleryConfig?.titleWeight, 'ellipsis',
-                      'padding-block_'+galleryConfig?.titleInnerSpacing]"
+    <div *ngIf="entry === 'title' && galleryConfig?.Title?.Use"
+         [ngClass]="['title-' + galleryConfig?.Title?.Size,
+                      galleryConfig?.Title?.Weight, 'ellipsis',
+                      'padding-block_'+galleryConfig?.Title?.InnerSpacing]"
          [ngStyle]="{'display' : 'block', 'padding-inline': '1rem',
-                     'text-align': galleryConfig?.horizontalAlign}">
-         {{card.title}}
+                     'text-align': galleryConfig?.Text?.HorizontalAlign}">
+         {{card.Title}}
 </div>
-    <textarea *ngIf="entry === 'description' && galleryConfig?.useDescription" 
-             [ngClass]="['body-' + galleryConfig?.descriptionSize,
-                        'padding-block_'+galleryConfig?.descriptionInnerSpacing]"
-             [ngStyle]="{'display' : 'block', 'padding-inline': '1rem', 'text-align': galleryConfig?.horizontalAlign}"
-            [rows]="galleryConfig?.descriptionMaxNumOfLines"
+    <textarea *ngIf="entry === 'description' && galleryConfig?.Description?.Use" 
+             [ngClass]="['body-' + galleryConfig?.Description?.Size,
+                        'padding-block_'+galleryConfig?.Description?.InnerSpacing]"
+             [ngStyle]="{'display' : 'block', 'padding-inline': '1rem', 'text-align': galleryConfig?.Text?.HorizontalAlign}"
+            [rows]="galleryConfig?.Description?.MaxNumOfLines"
             minRows="1"
             readonly="readonly"
-            class="textarea">{{card.description}}
-        </textarea>
-        <!-- [maxRows]="galleryConfig?.descriptionMaxNumOfLines" -->
-
+            class="textarea">{{card.Description}}
+        </textarea>      
 </ng-template>
 
 <ng-template #empty><div></div></ng-template>

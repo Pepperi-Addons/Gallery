@@ -18,7 +18,7 @@ export class GalleryComponent implements OnInit {
         this._configuration = value?.configuration;
         this._parameters = value?.parameters || {};
             //check if MaxColumns has been changed , and calc the cards width;
-            //if(this.configuration && this.configuration.galleryConfig.maxColumns !== value?.configuration?.galleryConfig.maxColumns){
+            //if(this.configuration && this.configuration.galleryConfig.Gallery.MaxColumns !== value?.configuration?.galleryConfig.Gallery.MaxColumns){
                    this.setCardWidth();
             //}
     }
@@ -58,8 +58,8 @@ export class GalleryComponent implements OnInit {
     }
     
     setCardWidth(){
-        const gap = this.configuration?.galleryConfig?.gap || 'none';
-        const maxColumns = this.configuration?.galleryConfig?.maxColumns || 1;
+        const gap = this.configuration?.galleryConfig?.Gallery?.Gap || 'none';
+        const maxColumns = this.configuration?.galleryConfig?.Gallery?.MaxColumns || 1;
         const spacing = gap == 'none' ? '0px' : '(var(--pep-spacing-'+ gap +') * '+ (maxColumns - 1) +')';
 
         this.cardWidth = 'calc((100%  - 2px - '+ spacing +' ) / '+ maxColumns +' )';

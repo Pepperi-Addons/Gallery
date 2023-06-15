@@ -24,9 +24,9 @@ class MyService {
         body['Object'].cards = await Promise.all(body['Object'].cards.map(async (card) => {
             //check if distributor uuid included on assets pfs url
             //if not - replace it with empty string;
-            if(card?.assetURL.indexOf(distUUID) == -1){
-                card.asset = '';
-                card.assetURL = '';
+            if(card?.AssetURL.indexOf(distUUID) == -1){
+                card.AssetKey = '';
+                card.AssetURL = '';
             }
            
             return card;

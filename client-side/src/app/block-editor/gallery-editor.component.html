@@ -2,162 +2,151 @@
     <mat-tab label="{{'GALLERY_EDITOR.TABS.GENERAL' | translate}}">
 
         <label class="body-xl bold ellipsis">{{'GALLERY_EDITOR.GRID' | translate}}</label>
-        <pep-slider pepResetConfigurationField="galleryConfig.maxColumns" [hideReset]="configuration?.galleryConfig?.maxColumns === configurationSource?.galleryConfig?.maxColumns"  
+        <pep-slider pepResetConfigurationField="galleryConfig.Gallery?.MaxColumns" [hideReset]="configuration?.galleryConfig?.Gallery?.MaxColumns === configurationSource?.galleryConfig?.Gallery?.MaxColumns"  
         [resetHostEvents]="hostEvents"
                 [label]="'GALLERY_EDITOR.MAX_COLUMNS' | translate" 
-                [hint]="configuration?.galleryConfig?.maxColumns?.toString()" 
+                [hint]="configuration?.galleryConfig?.Gallery?.MaxColumns?.toString()" 
                 [minValue]="1" 
                 [maxValue]="15"
                 [disabled]="false" 
-                [value]="configuration?.galleryConfig?.maxColumns"
+                [value]="configuration?.galleryConfig?.Gallery?.MaxColumns"
                 [background]="'RGBA(0,0,0,50%)'"
-                (inputChange)="onGalleryFieldChange('maxColumns',$event)">
+                (inputChange)="onGalleryFieldChange('Gallery.MaxColumns',$event)">
         </pep-slider>
         
         <div>
-            <pep-checkbox class="checkbox-as-title" [value]="configuration?.galleryConfig?.fillHeight" [label]="'GALLERY_EDITOR.FILL_HEIGHT_SECTION_TITLE' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('fillHeight',$event)"></pep-checkbox>
+            <pep-checkbox class="checkbox-as-title" [value]="configuration?.galleryConfig?.Gallery?.FillHeight" [label]="'GALLERY_EDITOR.FILL_HEIGHT_SECTION_TITLE' | translate" [renderTitle]="false" (valueChange)="onGalleryFieldChange('Gallery.FillHeight',$event)"></pep-checkbox>
             <span class="header-title body-xs checkbox-description">{{('GALLERY_EDITOR.FILL_HEIGHT_SECTION_DESCRIPTION' | translate)}}</span>
         </div>
 
-        <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="real" [disabled]="configuration?.galleryConfig?.fillHeight"
-                    pepResetConfigurationField="galleryConfig.cardHeight" [hideReset]="configuration?.galleryConfig?.cardHeight === configurationSource?.galleryConfig?.cardHeight" 
+        <pep-textbox [label]="'GALLERY_EDITOR.IMAGE_HEIGHT' | translate" type="real" [disabled]="configuration?.galleryConfig?.Gallery?.FillHeight"
+                    pepResetConfigurationField="galleryConfig.Card.Height" [hideReset]="configuration?.galleryConfig?.Card?.Height === configurationSource?.galleryConfig?.Card?.Height" 
                     [resetHostEvents]="hostEvents"
-                    [value]="configuration?.galleryConfig?.cardHeight" (valueChange)="onGalleryFieldChange('cardHeight',$event)">
+                    [value]="configuration?.galleryConfig?.Card?.Height" (valueChange)="onGalleryFieldChange('Card.Height',$event)">
         </pep-textbox>
 
-        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.gap" [hideReset]="configuration?.galleryConfig?.gap === configurationSource?.galleryConfig?.gap" 
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.Gallery.Gap" [hideReset]="configuration?.galleryConfig?.Gallery?.Gap === configurationSource?.galleryConfig?.Gallery?.Gap" 
                     [resetHostEvents]="hostEvents"
                     [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.GAP' | translate"
-                    [btnKey]="configuration?.galleryConfig?.gap" [useNone]="true" [excludeKeys]="['xs','xl','xxl']"
-                    (btnkeyChange)="onGalleryFieldChange('gap',$event)">
+                    [btnKey]="configuration?.galleryConfig?.Gallery?.Gap" [useNone]="true" [excludeKeys]="['xs','xl','xxl']"
+                    (btnkeyChange)="onGalleryFieldChange('Gallery.Gap',$event)">
         </pep-group-buttons-settings>
-
-        <!-- <div class="split-cont">
-            <div class="split-area">
-                <pep-textbox [label]="'GALLERY_EDITOR.GAP' | translate" type="real" 
-                    pepResetConfigurationField="galleryConfig.gap" [hideReset]="configuration?.galleryConfig?.gap === configurationSource?.galleryConfig?.gap" 
-                    [resetHostEvents]="hostEvents"
-                    [value]="configuration?.galleryConfig?.gap" (valueChange)="onGalleryFieldChange('gap',$event)"></pep-textbox>
-            
-            </div>
-            <label class="body-xs normal">{{'GALLERY_EDITOR.GRID_EXPLANATION' | translate}}</label>
-        </div> -->
         
-        <pep-checkbox [value]="configuration?.galleryConfig?.useText"
+        <pep-checkbox [value]="configuration?.galleryConfig?.Text.Use"
             [label]="'GALLERY_EDITOR.TEXT' | translate" 
             [renderTitle]="false" 
-            (valueChange)="onGalleryFieldChange('useText',$event)">
+            (valueChange)="onGalleryFieldChange('Text.Use',$event)">
         </pep-checkbox>
         
         <pep-group-buttons-settings 
             [groupType]="'custom'" [subHeader]="'GALLERY_EDITOR.CARD_COLOR' | translate" [btnsArray]="textColor"
-            [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.cardTextColor">
+            [disabled]="!configuration?.galleryConfig?.Text.Use" [btnKey]="configuration?.galleryConfig?.Card?.TextColor">
         </pep-group-buttons-settings>
 
-        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.verticalAlign" [hideReset]="configuration?.galleryConfig?.verticalAlign === configurationSource?.galleryConfig?.verticalAlign" 
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.Text.VerticalAlign" [hideReset]="configuration?.galleryConfig?.Text.VerticalAlign === configurationSource?.galleryConfig?.Text.VerticalAlign" 
             [resetHostEvents]="hostEvents" 
             [groupType]="'custom'" [btnsArray]="verticalAlign"
             [subHeader]="'GALLERY_EDITOR.VERTICAL' | translate" [excludeKeys]="['center']"
-            [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.verticalAlign">
+            [disabled]="!configuration?.galleryConfig?.Text.Use" [btnKey]="configuration?.galleryConfig?.Text.VerticalAlign">
         </pep-group-buttons-settings>
 
-        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.horizontalAlign" [hideReset]="configuration?.galleryConfig?.horizontalAlign === configurationSource?.galleryConfig?.horizontalAlign" 
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.Text.HorizontalAlign" [hideReset]="configuration?.galleryConfig?.Text?.HorizontalAlign === configurationSource?.galleryConfig?.Text?.HorizontalAlign" 
                                     [resetHostEvents]="hostEvents"
                                     [groupType]="'horizontal-align'" [subHeader]="'GALLERY_EDITOR.HORIZONTAL' | translate"
-                                    [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.horizontalAlign"
-                                    (btnkeyChange)="onGalleryFieldChange('horizontalAlign',$event)">
+                                    [disabled]="!configuration?.galleryConfig?.Text.Use" [btnKey]="configuration?.galleryConfig?.Text?.HorizontalAlign"
+                                    (btnkeyChange)="onGalleryFieldChange('Text.HorizontalAlign',$event)">
         </pep-group-buttons-settings>
 
         <pep-group-buttons-settings 
-            pepResetConfigurationField="galleryConfig.textPosition" [hideReset]="configuration?.galleryConfig?.textPosition === configurationSource?.galleryConfig?.textPosition" 
+            pepResetConfigurationField="galleryConfig.Text.Position" [hideReset]="configuration?.galleryConfig?.Text?.Position === configurationSource?.galleryConfig?.Text?.Position" 
             [resetHostEvents]="hostEvents"
             [groupType]="'custom'" [subHeader]="'GALLERY_EDITOR.TEXT_POS_STYLING' | translate" [btnsArray]="TextPositionStyling"
-            [disabled]="!configuration?.galleryConfig?.useText" [btnKey]="configuration?.galleryConfig?.textPosition">
+            [disabled]="!configuration?.galleryConfig?.Text.Use" [btnKey]="configuration?.galleryConfig?.Text?.Position">
         </pep-group-buttons-settings>
 
         <pep-checkbox
-            [value]="configuration?.galleryConfig?.useTitle" 
+            [value]="configuration?.galleryConfig?.Title?.Use" 
             [label]="'GALLERY_EDITOR.TITLE' | translate" 
             [renderTitle]="false" 
-            (valueChange)="onGalleryFieldChange('useTitle',$event)"
-            [disabled]="!configuration?.galleryConfig?.useText">
+            (valueChange)="onGalleryFieldChange('Title.Use',$event)"
+            [disabled]="!configuration?.galleryConfig?.Text.Use">
         </pep-checkbox>
 
-        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.titleSize" [hideReset]="configuration?.galleryConfig?.titleSize === configurationSource?.galleryConfig?.titleSize" 
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.Title.Size" [hideReset]="configuration?.galleryConfig?.Title?.Size === configurationSource?.galleryConfig?.Title?.Size" 
                                     [resetHostEvents]="hostEvents"
                                     [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.TITLE_SIZE' | translate"
-                                    [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
-                                    [btnKey]="configuration?.galleryConfig?.titleSize" [excludeKeys]="['xs']"
-                                    (btnkeyChange)="onGalleryFieldChange('titleSize',$event)">
+                                    [disabled]="!configuration?.galleryConfig?.Text.Use || !configuration?.galleryConfig?.Title?.Use" 
+                                    [btnKey]="configuration?.galleryConfig?.Title?.Size" [excludeKeys]="['xs']"
+                                    (btnkeyChange)="onGalleryFieldChange('Title.Size',$event)">
         </pep-group-buttons-settings>
 
         <pep-group-buttons-settings [groupType]="'font-weight'" [subHeader]="'GALLERY_EDITOR.TITLE_WEIGHT' | translate"
-                                    [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
-                                    [btnKey]="configuration?.galleryConfig?.titleWeight" [excludeKeys]="['bolder']"
-                                    (btnkeyChange)="onGalleryFieldChange('titleWeight',$event)">
+                                    [disabled]="!configuration?.galleryConfig?.Text.Use || !configuration?.galleryConfig?.Title?.Use" 
+                                    [btnKey]="configuration?.galleryConfig?.Title?.Weight" [excludeKeys]="['bolder']"
+                                    (btnkeyChange)="onGalleryFieldChange('Title.Weight',$event)">
         </pep-group-buttons-settings>
 
-        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.titleInnerSpacing" [hideReset]="configuration?.galleryConfig?.titleInnerSpacing === configurationSource?.galleryConfig?.titleInnerSpacing" 
-            [resetHostEvents]="hostEvents" [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle" 
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.Title.InnerSpacing" [hideReset]="configuration?.galleryConfig?.Title?.InnerSpacing === configurationSource?.galleryConfig?.Title?.InnerSpacing" 
+            [resetHostEvents]="hostEvents" [disabled]="!configuration?.galleryConfig?.Text.Use || !configuration?.galleryConfig?.Title?.Use" 
             [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.INNER_SPACING' | translate" [useNone]="true"
-            [btnKey]="configuration?.galleryConfig?.titleInnerSpacing"  [excludeKeys]="['xl','xxl']"
-            (btnkeyChange)="onGalleryFieldChange('titleInnerSpacing',$event)">
+            [btnKey]="configuration?.galleryConfig?.Title?.InnerSpacing"  [excludeKeys]="['xl','xxl']"
+            (btnkeyChange)="onGalleryFieldChange('Title.InnerSpacing',$event)">
         </pep-group-buttons-settings>
 
         <pep-checkbox
-            [value]="configuration?.galleryConfig?.useDescription" 
+            [value]="configuration?.galleryConfig?.Description?.Use" 
             [label]="'GALLERY_EDITOR.DESCRIPTION' | translate" 
             [renderTitle]="false" 
-            (valueChange)="onGalleryFieldChange('useDescription',$event)"
-            [disabled]="!configuration?.galleryConfig?.useText">
+            (valueChange)="onGalleryFieldChange('Description.Use',$event)"
+            [disabled]="!configuration?.galleryConfig?.Text.Use">
         </pep-checkbox>
 
-        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.groupTitleAndDescription" [hideReset]="configuration?.galleryConfig?.groupTitleAndDescription === configurationSource?.galleryConfig?.groupTitleAndDescription" 
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.Text.GroupTitleAndDescription" [hideReset]="configuration?.galleryConfig?.Text?.GroupTitleAndDescription === configurationSource?.galleryConfig?.Text?.GroupTitleAndDescription" 
                                     [resetHostEvents]="hostEvents"
                                     [groupType]="'custom'" [btnsArray]="GroupTitleAndDescription" [subHeader]="'GALLERY_EDITOR.GROUP_TITLE_DESCRIPTION' | translate"
-                                    [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useTitle && !configuration?.galleryConfig?.useDescription"
-                                    [btnKey]="configuration?.galleryConfig?.groupTitleAndDescription">
+                                    [disabled]="!configuration?.galleryConfig?.Text.Use || !configuration?.galleryConfig?.Title?.Use && !configuration?.galleryConfig?.Description?.Use"
+                                    [btnKey]="configuration?.galleryConfig?.Text?.GroupTitleAndDescription">
         </pep-group-buttons-settings>
 
 
-        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.descriptionSize" [hideReset]="configuration?.galleryConfig?.descriptionSize === configurationSource?.galleryConfig?.descriptionSize" 
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.Description.Size" [hideReset]="configuration?.galleryConfig?.Description?.Size === configurationSource?.galleryConfig?.Description?.Size" 
                                     [resetHostEvents]="hostEvents"
                                     [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.DESCRIPTION_SIZE' | translate"
-                                    [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useDescription" 
-                                    [btnKey]="configuration?.galleryConfig?.descriptionSize" [excludeKeys]="['xs']"
-                                    (btnkeyChange)="onGalleryFieldChange('descriptionSize',$event)">
+                                    [disabled]="!configuration?.galleryConfig?.Text.Use || !configuration?.galleryConfig?.Description?.Use" 
+                                    [btnKey]="configuration?.galleryConfig?.Description?.Size" [excludeKeys]="['xs']"
+                                    (btnkeyChange)="onGalleryFieldChange('Description.Size',$event)">
         </pep-group-buttons-settings>
 
-        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.titleInnerSpacing" [hideReset]="configuration?.galleryConfig?.titleInnerSpacing === configurationSource?.galleryConfig?.titleInnerSpacing" 
-        [resetHostEvents]="hostEvents" [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useDescription" 
+        <pep-group-buttons-settings pepResetConfigurationField="galleryConfig.Title.InnerSpacing" [hideReset]="configuration?.galleryConfig?.Title?.InnerSpacing === configurationSource?.galleryConfig?.Title?.InnerSpacing" 
+        [resetHostEvents]="hostEvents" [disabled]="!configuration?.galleryConfig?.Text.Use || !configuration?.galleryConfig?.Description?.Use" 
         [groupType]="'sizes'" [subHeader]="'GALLERY_EDITOR.INNER_SPACING' | translate" [useNone]="true"
-        [btnKey]="configuration?.galleryConfig?.descriptionInnerSpacing"  [excludeKeys]="['xl','xxl']"
-        (btnkeyChange)="onGalleryFieldChange('descriptionInnerSpacing',$event)">
+        [btnKey]="configuration?.galleryConfig?.Description?.InnerSpacing"  [excludeKeys]="['xl','xxl']"
+        (btnkeyChange)="onGalleryFieldChange('Description.InnerSpacing',$event)">
     </pep-group-buttons-settings>
 
-        <pep-textbox pepResetConfigurationField="galleryConfig.descriptionMaxNumOfLines" [hideReset]="configuration?.galleryConfig?.descriptionMaxNumOfLines === configurationSource?.galleryConfig?.descriptionMaxNumOfLines" 
+        <pep-textbox pepResetConfigurationField="galleryConfig.Description.MaxNumOfLines" [hideReset]="configuration?.galleryConfig?.Description?.MaxNumOfLines === configurationSource?.galleryConfig?.Description?.MaxNumOfLines" 
                     [resetHostEvents]="hostEvents"
-                    [value]="configuration?.galleryConfig?.descriptionMaxNumOfLines" 
+                    [value]="configuration?.galleryConfig?.Description?.MaxNumOfLines" 
                     [label]="'GALLERY_EDITOR.MAX_NUM_OF_LINES' | translate" 
-                    (valueChange)="onGalleryFieldChange('descriptionMaxNumOfLines',$event)"
-                    [disabled]="!configuration?.galleryConfig?.useText || !configuration?.galleryConfig?.useDescription"
+                    (valueChange)="onGalleryFieldChange('Description.MaxNumOfLines',$event)"
+                    [disabled]="!configuration?.galleryConfig?.Text.Use || !configuration?.galleryConfig?.Description?.Use"
                     type="int" >
         </pep-textbox>
         
-        <pep-checkbox [value]="configuration?.galleryConfig?.useRoundCorners" [label]="'GALLERY_EDITOR.ROUND_CORNER' | translate" 
-                    [renderTitle]="false" (valueChange)="onGalleryFieldChange('useRoundCorners',$event)">
+        <pep-checkbox [value]="configuration?.galleryConfig?.Card?.UseRoundCorners" [label]="'GALLERY_EDITOR.ROUND_CORNER' | translate" 
+                    [renderTitle]="false" (valueChange)="onGalleryFieldChange('Card.UseRoundCorners',$event)">
         </pep-checkbox>
         
         <pep-group-buttons-settings [groupType]="'sizes'"
-            [disabled]="!configuration?.galleryConfig?.useRoundCorners" 
-            [btnKey]="configuration?.galleryConfig?.roundCornersSize" [excludeKeys]="['xs']"
-            (btnkeyChange)="onGalleryFieldChange('roundCornersSize',$event)">
+            [disabled]="!configuration?.galleryConfig?.Card?.UseRoundCorners" 
+            [btnKey]="configuration?.galleryConfig?.Card?.RoundCornersSize" [excludeKeys]="['xs']"
+            (btnkeyChange)="onGalleryFieldChange('Card.RoundCornersSize',$event)">
         </pep-group-buttons-settings>
 
         <pep-color-settings [title]="'GALLERY_EDITOR.BORDER' | translate"
             [checkAAComplient]="false"
-            [color]="configuration?.galleryConfig?.border"
-            (colorChange)="onGalleryFieldChange('border',$event)">
+            [color]="configuration?.galleryConfig?.Card?.Border"
+            (colorChange)="onGalleryFieldChange('Card.Border',$event)">
         </pep-color-settings>
 
         <pep-color-settings [title]="'GALLERY_EDITOR.GRADIENT_OVERLAY' | translate"
@@ -168,12 +157,12 @@
 
         <pep-color-settings [title]="'GALLERY_EDITOR.OVERLAY' | translate"
                             [checkAAComplient]="false"
-                            [color]="configuration?.galleryConfig?.overlay"
-                            (colorChange)="onGalleryFieldChange('overlay',$event)">
+                            [color]="configuration?.galleryConfig?.Overlay"
+                            (colorChange)="onGalleryFieldChange('Overlay',$event)">
         </pep-color-settings> 
 
-        <pep-shadow-settings [shadow]="configuration?.galleryConfig?.dropShadow"
-                            (shadowChange)="onGalleryFieldChange('dropShadow',$event)">
+        <pep-shadow-settings [shadow]="configuration?.galleryConfig?.Card?.DropShadow"
+                            (shadowChange)="onGalleryFieldChange('Card.DropShadow',$event)">
         </pep-shadow-settings>
     </mat-tab>
 

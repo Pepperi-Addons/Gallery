@@ -9,8 +9,8 @@ router.post('/prepare_assets', async (req, res)=>{
     if(!(await pepperi['environment'].isWebApp())) {
         const cards = configuration.Data.cards as any[];
         await Promise.all(cards.map(async (card) => {
-            // overwrite the cards assetURL with the local file path
-            return card.assetURL = await getFilePath(card)
+            // overwrite the cards AssetURL with the local file path
+            return card.AssetURL = await getFilePath(card)
         }))
         configuration.Data.cards = cards;
     }
@@ -20,13 +20,13 @@ router.post('/prepare_assets', async (req, res)=>{
 async function getFilePath(card) {
     let fileUrl;
 
-    const assetKey = card.asset;
+    const assetKey = card.AssetKey;
     try {
         const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(assetKey).get();
         fileUrl = res.URL;
     }
     catch (error) {
-        fileUrl = card.assetURL;        
+        fileUrl = card.AssetURL;        
     }
 
     return fileUrl;

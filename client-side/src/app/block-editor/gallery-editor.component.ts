@@ -71,24 +71,24 @@ export class GalleryEditorComponent implements OnInit {
         }
        
         this.textColor = [
-            { key: 'system-primary', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.SYSTEM'), callback: (event: any) => this.onGalleryFieldChange('cardTextColor',event) },
-            { key: 'invert', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.INVERT'), callback: (event: any) => this.onGalleryFieldChange('cardTextColor',event) }
+            { key: 'system-primary', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.SYSTEM'), callback: (event: any) => this.onGalleryFieldChange('Card.TextColor',event) },
+            { key: 'invert', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.INVERT'), callback: (event: any) => this.onGalleryFieldChange('Card.TextColor',event) }
         ]
 
         this.TextPositionStyling =  [
-            { key: 'overlaid', value: this.translate.instant('GALLERY_EDITOR.TEXT_POSITION.OVERLAID'), callback: (event: any) => this.onGalleryFieldChange('textPosition',event) },
-            { key: 'separated', value: this.translate.instant('GALLERY_EDITOR.TEXT_POSITION.SEPARATED'), callback: (event: any) => this.onGalleryFieldChange('textPosition',event) }
+            { key: 'overlaid', value: this.translate.instant('GALLERY_EDITOR.TEXT_POSITION.OVERLAID'), callback: (event: any) => this.onGalleryFieldChange('Text.Position',event) },
+            { key: 'separated', value: this.translate.instant('GALLERY_EDITOR.TEXT_POSITION.SEPARATED'), callback: (event: any) => this.onGalleryFieldChange('Text.Position',event) }
         ];
 
         this.GroupTitleAndDescription = [
-            { key: 'grouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.GROUPED'), callback: (event: any) => this.onGalleryFieldChange('groupTitleAndDescription',event) },
-            { key: 'ungrouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.UNGROUPED'), callback: (event: any) => this.onGalleryFieldChange('groupTitleAndDescription',event) }
+            { key: 'grouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.GROUPED'), callback: (event: any) => this.onGalleryFieldChange('Text.GroupTitleAndDescription',event) },
+            { key: 'ungrouped', value: this.translate.instant('GALLERY_EDITOR.GROUP.UNGROUPED'), callback: (event: any) => this.onGalleryFieldChange('Text.GroupTitleAndDescription',event) }
         ]
 
         this.verticalAlign = [
-            { key: 'start', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.TOP'), callback: (event: any) => this.onGalleryFieldChange('verticalAlign',event) },
-            { key: 'middle', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.MIDDLE'), callback: (event: any) => this.onGalleryFieldChange('verticalAlign',event) },
-            { key: 'end', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.BOTTOM'), callback: (event: any) => this.onGalleryFieldChange('verticalAlign',event) }
+            { key: 'start', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.TOP'), callback: (event: any) => this.onGalleryFieldChange('Text.VerticalAlign',event) },
+            { key: 'middle', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.MIDDLE'), callback: (event: any) => this.onGalleryFieldChange('Text.VerticalAlign',event) },
+            { key: 'end', value: this.translate.instant('GALLERY_EDITOR.VERTICAL_ALIGN.BOTTOM'), callback: (event: any) => this.onGalleryFieldChange('Text.VerticalAlign',event) }
         ]
         this.blockLoaded = true;
     }
@@ -184,9 +184,9 @@ export class GalleryEditorComponent implements OnInit {
   
         this.updateHostObjectField(`galleryConfig.${key}`, value);
 
-        if(key === 'groupTitleAndDescription' || key === 'textPosition'){
-            if(this.configuration?.galleryConfig?.textPosition === 'separated'){
-                if(this.configuration.galleryConfig.groupTitleAndDescription ==='ungrouped'){ //disable Vertical Position (all potions)
+        if(key === 'Text.GroupTitleAndDescription' || key === 'Text.Position'){
+            if(this.configuration?.galleryConfig?.Text?.Position === 'separated'){
+                if(this.configuration.galleryConfig.Text.GroupTitleAndDescription ==='ungrouped'){ //disable Vertical Position (all potions)
                     this.verticalAlign[0].disabled = true;
                     this.verticalAlign[1].disabled = true;
                     this.verticalAlign[2].disabled = true;
@@ -219,8 +219,8 @@ export class GalleryEditorComponent implements OnInit {
             
             
 
-            card.title = this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
-            card.description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+            card.Title = this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+            card.Description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
             cards.push(card);
         }
 
@@ -240,8 +240,8 @@ export class GalleryEditorComponent implements OnInit {
     addNewCardClick() {
         let card = new ICardEditor();
         card.id = (this.configuration?.cards.length);
-        card.title = this.getOrdinal(card.id+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
-        card.description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(card.id+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+        card.Title = this.getOrdinal(card.id+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+        card.Description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(card.id+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
         
         this.configuration?.cards.push( card); 
         this.updateHostObject();  

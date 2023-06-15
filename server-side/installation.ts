@@ -70,151 +70,81 @@ async function runMigration(client){
                 "Fields": {
                     "galleryConfig": {
                         "Type": "Object",
-                        "Fields": {
-                            "maxColumns": {
-                                "Type": "Integer",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "gap": {
-                                "Type": "Integer",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "cardHeight": {
-                                "Type": "Integer",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "titleInnerSpacing":{
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "descriptionInnerSpacing":{
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            /*"useText": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "cardTextColor": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },*/
-                            "verticalAlign": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "horizontalAlign": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "textPosition": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            /*"useTitle": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },*/
-                            "titleSize": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            /*"titleWeight": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "useDescription": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },*/
-                            "groupTitleAndDescription": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "descriptionSize": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "descriptionMaxNumOfLines": {
-                                "Type": "Integer",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            /*"border": { 
+                        "Fields": { // Gallery.MaxColumns
+                            "Gallery": {
                                 "Type": "Object",
-                                "Fields": {
-                                    "use": {
-                                        "Type": "Bool",
-                                        "SupportScreenSizes": true, 
-                                    },
-                                    "value": {
-                                        "Type": "String",
-                                        "SupportScreenSizes": true, 
-                                    },
-                                    "opacity": {
+                                "Fields": { 
+                                    "MaxColumns": {
                                         "Type": "Integer",
-                                        "SupportScreenSizes": true, 
-                                    }
-                                }
-                            },
-                            "gradientOverlay": { 
-                                "Type": "Object",
-                                "Fields": {
-                                    "use": {
-                                        "Type": "Bool",
-                                        "SupportScreenSizes": true, 
+                                        "ConfigurationPerScreenSize": true
                                     },
-                                    "value": {
-                                        "Type": "String",
-                                        "SupportScreenSizes": true, 
-                                    },
-                                    "opacity": {
+                                    "Gap": {
                                         "Type": "Integer",
-                                        "SupportScreenSizes": true, 
+                                        "ConfigurationPerScreenSize": true
                                     }
                                 }
                             },
-                            "overlay": { 
+                            "Card": {
                                 "Type": "Object",
-                                "Fields": {
-                                    "use": {
-                                        "Type": "Bool",
-                                        "SupportScreenSizes": true, 
-                                    },
-                                    "value": {
-                                        "Type": "String",
-                                        "SupportScreenSizes": true, 
-                                    },
-                                    "opacity": {
+                                "Fields": { 
+                                    "Height": {
                                         "Type": "Integer",
-                                        "SupportScreenSizes": true, 
+                                        "ConfigurationPerScreenSize": true
                                     }
                                 }
                             },
-                            "dropShadow": { 
+                            "Text": {
                                 "Type": "Object",
-                                "Fields": {
-                                    "use": {
-                                        "Type": "Bool",
-                                        "SupportScreenSizes": true, 
-                                    },
-                                    "size": {
+                                "Fields": { 
+                                    "Position": {
                                         "Type": "String",
-                                        "SupportScreenSizes": true, 
+                                        "ConfigurationPerScreenSize": true
                                     },
-                                    "intensity": {
+                                    "VerticalAlign": {
                                         "Type": "String",
-                                        "SupportScreenSizes": true, 
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "HorizontalAlign": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "GroupTitleAndDescription": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    }
+
+                                }
+                            },
+                            "Title": {
+                                "Type": "Object",
+                                "Fields": { 
+                                    "Size": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "InnerSpacing":{
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
                                     }
                                 }
                             },
-                            "useRoundCorners": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "roundCornersSize": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            }*/
+                            "Description": {
+                                "Type": "Object",
+                                "Fields": { 
+                                    "Size": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "InnerSpacing":{
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "MaxNumOfLines": {
+                                        "Type": "Integer",
+                                        "ConfigurationPerScreenSize": true
+                                    }
+                                }
+                            }  
                         }
                     }
                 }

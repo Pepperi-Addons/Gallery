@@ -41,7 +41,7 @@ export class CardComponent implements OnInit {
     }
 
     // getCardImageURL() {
-    //        return this.card?.assetURL !== '' ? 'url("' + this.card.assetURL + '")' : '';
+    //        return this.card?.AssetURL !== '' ? 'url("' + this.card.AssetURL + '")' : '';
     // }
 
     ngOnChanges(changes) { 
@@ -53,8 +53,8 @@ export class CardComponent implements OnInit {
     }
     
     getGalleryBorder() {
-        if(this.galleryConfig?.border?.use){
-            let col: PepColorSettings = this.galleryConfig?.border;
+        if(this.galleryConfig?.Card?.Border.use){
+            let col: PepColorSettings = this.galleryConfig?.Card?.Border;
             return  '1px solid ' + this.galleryService.getRGBAcolor(col);
         }
         else{
@@ -64,9 +64,9 @@ export class CardComponent implements OnInit {
 
     getGradientOverlay(){
 
-        let gradient = this.galleryConfig?.gradientOverlay;
-        let horAlign = this.galleryConfig?.horizontalAlign;
-        let verAlign = this.galleryConfig?.verticalAlign; // 'top' | 'middle' | 'bottom'
+        let gradient = this.galleryConfig?.GradientOverlay;
+        let horAlign = this.galleryConfig?.Text?.HorizontalAlign;
+        let verAlign = this.galleryConfig?.Text?.VerticalAlign; // 'top' | 'middle' | 'bottom'
         let direction = '0';
 
         switch(horAlign){
@@ -88,7 +88,7 @@ export class CardComponent implements OnInit {
         let colorsStr =  this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
         let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 
-        let gradStr = this.galleryConfig.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
+        let gradStr = this.galleryConfig.GradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
 
         if(gradStr != ''){
             return gradStr ;
@@ -106,7 +106,7 @@ export class CardComponent implements OnInit {
 
     getAssetWithPos(){
         
-        let imageSrc = this.card?.assetURL !== '' ? 'url(' +this.card?.assetURL + ')' : '';
+        let imageSrc = this.card?.AssetURL !== '' ? 'url(' +this.card?.AssetURL + ')' : '';
 
         if(imageSrc != ''){
             return imageSrc ;
@@ -117,7 +117,7 @@ export class CardComponent implements OnInit {
     }
 
     getOverlay(){
-       return  this.galleryConfig?.overlay?.use ?  'inset 0 0 0 100vh ' + this.galleryService.getRGBAcolor(this.galleryConfig?.overlay) : 'unset' ;
+       return  this.galleryConfig?.Overlay?.use ?  'inset 0 0 0 100vh ' + this.galleryService.getRGBAcolor(this.galleryConfig?.Overlay) : 'unset' ;
     }
 
     onCardClicked() {
