@@ -17,8 +17,8 @@ export interface IHostObject {
 }
 
 export interface IGallery{
-    galleryConfig: IGalleryEditor,
-    cards: Array<ICardEditor>
+    GalleryConfig: IGalleryEditor,
+    Cards: Array<ICardEditor>
 }
 
 export class Gallery{
@@ -104,10 +104,10 @@ export class ICardEditor {
     Description: string = "defaultDescription";
     AssetKey: string = '';
     AssetURL: string = '';
-    Script: any;
+    Flow: any;
     //title: string = "defaultTitle";
     //description: string = "defaultDescription";
     //asset: string = '';
     //AssetURL: string = '';
-    script: any;
+    //script: any;
 }

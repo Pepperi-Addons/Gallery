@@ -21,7 +21,7 @@ class MyService {
 
     async importDataSource(body,distUUID) {
       
-        body['Object'].cards = await Promise.all(body['Object'].cards.map(async (card) => {
+        body['Object'].Cards = await Promise.all(body['Object'].Cards.map(async (card) => {
             //check if distributor uuid included on assets pfs url
             //if not - replace it with empty string;
             if(card?.AssetURL.indexOf(distUUID) == -1){

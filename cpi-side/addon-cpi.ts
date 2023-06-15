@@ -7,12 +7,12 @@ import path from 'path';
 router.post('/prepare_assets', async (req, res)=>{
     const configuration = req.body.Configuration;
     if(!(await pepperi['environment'].isWebApp())) {
-        const cards = configuration.Data.cards as any[];
+        const cards = configuration.Data.Cards as any[];
         await Promise.all(cards.map(async (card) => {
             // overwrite the cards AssetURL with the local file path
             return card.AssetURL = await getFilePath(card)
         }))
-        configuration.Data.cards = cards;
+        configuration.Data.Cards = cards;
     }
     res.json({Configuration: configuration});
 });
@@ -46,9 +46,9 @@ export async function load(configuration: any) {
 }
 /**********************************  client events starts /**********************************/
 pepperi.events.intercept(CLIENT_ACTION_ON_GALLERY_CARD_CLICKED as any, {}, async (data): Promise<any> => {
-    debugger;
+   
     const cpiService = new GalleryCpiService();
-    const res = cpiService.runFlowData(data.Key, data);
+    const res = cpiService.runFlowData(data);
     return res;
 
 });

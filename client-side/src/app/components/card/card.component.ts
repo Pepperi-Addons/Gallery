@@ -16,7 +16,7 @@ export class CardComponent implements OnInit {
 
     screenSize: PepScreenSizeType;
     @Input() cardIndex: number;
-    @Input() galleryConfig: IGalleryEditor;
+    @Input() GalleryConfig: IGalleryEditor;
     @Input() card : ICardEditor;
     @Input() cardWidth: string;
     @Input() showSlide: boolean;
@@ -37,7 +37,7 @@ export class CardComponent implements OnInit {
     }
     
     private getDefaultHostObject(): IGallery {
-        return { galleryConfig: new IGalleryEditor(), cards: Array<ICardEditor>() };
+        return { GalleryConfig: new IGalleryEditor(), Cards: Array<ICardEditor>() };
     }
 
     // getCardImageURL() {
@@ -53,8 +53,8 @@ export class CardComponent implements OnInit {
     }
     
     getGalleryBorder() {
-        if(this.galleryConfig?.Card?.Border.use){
-            let col: PepColorSettings = this.galleryConfig?.Card?.Border;
+        if(this.GalleryConfig?.Card?.Border.use){
+            let col: PepColorSettings = this.GalleryConfig?.Card?.Border;
             return  '1px solid ' + this.galleryService.getRGBAcolor(col);
         }
         else{
@@ -64,9 +64,9 @@ export class CardComponent implements OnInit {
 
     getGradientOverlay(){
 
-        let gradient = this.galleryConfig?.GradientOverlay;
-        let horAlign = this.galleryConfig?.Text?.HorizontalAlign;
-        let verAlign = this.galleryConfig?.Text?.VerticalAlign; // 'top' | 'middle' | 'bottom'
+        let gradient = this.GalleryConfig?.GradientOverlay;
+        let horAlign = this.GalleryConfig?.Text?.HorizontalAlign;
+        let verAlign = this.GalleryConfig?.Text?.VerticalAlign; // 'top' | 'middle' | 'bottom'
         let direction = '0';
 
         switch(horAlign){
@@ -88,7 +88,7 @@ export class CardComponent implements OnInit {
         let colorsStr =  this.galleryService.getRGBAcolor(gradient) +' , '+ this.galleryService.getRGBAcolor(gradient,0);
         let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 
-        let gradStr = this.galleryConfig.GradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
+        let gradStr = this.GalleryConfig.GradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
 
         if(gradStr != ''){
             return gradStr ;
@@ -117,14 +117,14 @@ export class CardComponent implements OnInit {
     }
 
     getOverlay(){
-       return  this.galleryConfig?.Overlay?.use ?  'inset 0 0 0 100vh ' + this.galleryService.getRGBAcolor(this.galleryConfig?.Overlay) : 'unset' ;
+       return  this.GalleryConfig?.Overlay?.use ?  'inset 0 0 0 100vh ' + this.galleryService.getRGBAcolor(this.GalleryConfig?.Overlay) : 'unset' ;
     }
 
     onCardClicked() {
-        const runScriptData = this.card?.script?.runScriptData;
-        if (runScriptData) {
+        const flowData = this.card?.Flow;
+        if (flowData) {
             // Implement script click
-            this.cardClick.emit(runScriptData);
+            this.cardClick.emit(flowData);
         }
     }
 }

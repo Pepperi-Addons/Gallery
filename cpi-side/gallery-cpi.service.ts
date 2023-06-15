@@ -16,13 +16,12 @@ class GalleryCpiService {
         return {};
     }
 
-    public async runFlowData(flowData, context){
-
+    public async runFlowData(flowData){
         let res;
         try{
                 const flow = JSON.parse(Buffer.from(flowData, 'base64').toString('utf8'));
-                //todo - change to pepperi.flows(script.ScriptKey).run
-                res = await pepperi.scripts.key(flow.Key).run(flow.FlowData, context);
+                //todo - change to pepperi.flows(script.FlowKey).run
+                res = await pepperi.flows.run(flow);
         }
         catch(err){
             res = {

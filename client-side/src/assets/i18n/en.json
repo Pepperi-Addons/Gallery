@@ -75,11 +75,11 @@
         "TITLE": "Title",
         "DESCRIPTION": "Description",
         "IMAGE_URL": "Image URL",
-        "ACTION": "Action",
+        "FLOW": "Flow",
         "DELETE_IMAGE": "Delete image",
         "CHOOSE_IMAGE": "Choose Image",
         "OPEN_ASSETS_MANAGER": "Assets Manager",
-        "CHOOSE_SCRIPT": "Choose Script"
+        "CHOOSE_FLOW": "Choose Flow"
     }
 }
 

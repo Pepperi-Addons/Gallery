@@ -25,10 +25,10 @@ export const GalleryScheme: AddonDataScheme = {
     Name: blockName,
     Type: 'data',
     Fields: {
-        galleryConfig: {
+        GalleryConfig: {
             Type: "Object"
         },
-        cards: {
+        Cards: {
             Type: 'Array',
             Items: {
                 Type: 'Object',

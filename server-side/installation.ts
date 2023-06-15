@@ -68,7 +68,7 @@ async function runMigration(client){
             EditorElementName: `gallery-editor-element-${client.AddonUUID}`,
             Schema: {
                 "Fields": {
-                    "galleryConfig": {
+                    "GalleryConfig": {
                         "Type": "Object",
                         "Fields": { // Gallery.MaxColumns
                             "Gallery": {

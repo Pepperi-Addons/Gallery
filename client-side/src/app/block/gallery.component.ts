@@ -18,7 +18,7 @@ export class GalleryComponent implements OnInit {
         this._configuration = value?.configuration;
         this._parameters = value?.parameters || {};
             //check if MaxColumns has been changed , and calc the cards width;
-            //if(this.configuration && this.configuration.galleryConfig.Gallery.MaxColumns !== value?.configuration?.galleryConfig.Gallery.MaxColumns){
+            //if(this.configuration && this.configuration.GalleryConfig.Gallery.MaxColumns !== value?.configuration?.GalleryConfig.Gallery.MaxColumns){
                    this.setCardWidth();
             //}
     }
@@ -58,8 +58,8 @@ export class GalleryComponent implements OnInit {
     }
     
     setCardWidth(){
-        const gap = this.configuration?.galleryConfig?.Gallery?.Gap || 'none';
-        const maxColumns = this.configuration?.galleryConfig?.Gallery?.MaxColumns || 1;
+        const gap = this.configuration?.GalleryConfig?.Gallery?.Gap || 'none';
+        const maxColumns = this.configuration?.GalleryConfig?.Gallery?.MaxColumns || 1;
         const spacing = gap == 'none' ? '0px' : '(var(--pep-spacing-'+ gap +') * '+ (maxColumns - 1) +')';
 
         this.cardWidth = 'calc((100%  - 2px - '+ spacing +' ) / '+ maxColumns +' )';
@@ -98,10 +98,10 @@ export class GalleryComponent implements OnInit {
                     eventData: { gallery: this.configuration },
                     completion: (res: any) => {
                             if (res) {
-                                debugger;
+                                    this._configuration = res;
                             } else {
-                                // Show default error.
-                                debugger;
+                                
+                                // Show default error.   
                             }
                         }
                 }
@@ -117,25 +117,14 @@ export class GalleryComponent implements OnInit {
         return this.configuration;
     }
     onCardClicked(event) {
-
-        
+    
         // Parse the params if exist.
-        // const params = this.getScriptParams(event.ScriptData);
-        
-        // this.hostEvents.emit({
-        //     action: 'emit-event',
-        //     eventKey: 'RunScript',
-        //     eventData: {
-        //         ScriptKey: event.ScriptKey,
-        //         ScriptParams: params
-        //     }
-        // });
-
+        // const params = this.getScriptParams(event.ScriptData); 
         try{
             const eventData = {
                 detail: {
                     eventKey: CLIENT_ACTION_ON_GALLERY_CARD_CLICKED,
-                    eventData: { script: event.ScriptData },
+                    eventData: { flow: event },
                     completion: (res: any) => {
                             if (res) {
                                 debugger;

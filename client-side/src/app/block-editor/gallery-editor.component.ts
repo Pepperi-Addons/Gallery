@@ -46,7 +46,7 @@ export class GalleryEditorComponent implements OnInit {
         return this._configuration;
     }
 
-    // All the page parameters to set in page configuration when needed (for ScriptPicker addon usage).
+    // All the page parameters to set in page configuration when needed (for FlowPicker addon usage).
     private _pageParameters: any;
     get pageParameters(): any {
         return this._pageParameters;
@@ -130,13 +130,13 @@ export class GalleryEditorComponent implements OnInit {
     private getPageConfigurationParametersNames(): Array<string> {
         const parameters = new Set<string>();
 
-        // Go for all cards scripts and add parameters to page configuration if Source is dynamic.
-        for (let index = 0; index < this._configuration.cards.length; index++) {
-            const card = this._configuration.cards[index];
+        // Go for all Cards scripts and add parameters to page configuration if Source is dynamic.
+        for (let index = 0; index < this._configuration.Cards.length; index++) {
+            const card = this._configuration.Cards[index];
             
-            if (card?.script?.runScriptData) {
-                Object.keys(card.script.runScriptData?.ScriptData).forEach(paramKey => {
-                    const param = card.script.runScriptData.ScriptData[paramKey];
+            if (card?.Flow?.runScriptData) {
+                Object.keys(card.Flow.runScriptData?.ScriptData).forEach(paramKey => {
+                    const param = card.Flow.runScriptData.ScriptData[paramKey];
         
                     if (!parameters.has(param.Value) && param.Source === 'dynamic') {
                         parameters.add(param.Value);
@@ -176,17 +176,17 @@ export class GalleryEditorComponent implements OnInit {
 
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
-            this.configuration.galleryConfig[keyObj[0]][keyObj[1]] = value;
+            this.configuration.GalleryConfig[keyObj[0]][keyObj[1]] = value;
         }
         else{
-            this.configuration.galleryConfig[key] = value;
+            this.configuration.GalleryConfig[key] = value;
         }
   
-        this.updateHostObjectField(`galleryConfig.${key}`, value);
+        this.updateHostObjectField(`GalleryConfig.${key}`, value);
 
         if(key === 'Text.GroupTitleAndDescription' || key === 'Text.Position'){
-            if(this.configuration?.galleryConfig?.Text?.Position === 'separated'){
-                if(this.configuration.galleryConfig.Text.GroupTitleAndDescription ==='ungrouped'){ //disable Vertical Position (all potions)
+            if(this.configuration?.GalleryConfig?.Text?.Position === 'separated'){
+                if(this.configuration.GalleryConfig.Text.GroupTitleAndDescription ==='ungrouped'){ //disable Vertical Position (all potions)
                     this.verticalAlign[0].disabled = true;
                     this.verticalAlign[1].disabled = true;
                     this.verticalAlign[2].disabled = true;
@@ -211,7 +211,7 @@ export class GalleryEditorComponent implements OnInit {
     }
 
     private getDefaultCards(numOfCards: number = 0): Array<ICardEditor> {
-        let cards: Array<ICardEditor> = [];
+        let Cards: Array<ICardEditor> = [];
        
         for(var i=0; i < numOfCards; i++){
             let card = new ICardEditor();
@@ -221,10 +221,10 @@ export class GalleryEditorComponent implements OnInit {
 
             card.Title = this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
             card.Description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
-            cards.push(card);
+            Cards.push(card);
         }
 
-        return cards;
+        return Cards;
     }
 
     getOrdinal(n) {
@@ -234,42 +234,42 @@ export class GalleryEditorComponent implements OnInit {
     }
 
     private getDefaultHostObject(): IGallery {
-        return { galleryConfig: new IGalleryEditor(), cards: this.getDefaultCards(2) };
+        return { GalleryConfig: new IGalleryEditor(), Cards: this.getDefaultCards(2) };
     }
 
     addNewCardClick() {
         let card = new ICardEditor();
-        card.id = (this.configuration?.cards.length);
+        card.id = (this.configuration?.Cards.length);
         card.Title = this.getOrdinal(card.id+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
         card.Description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(card.id+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
         
-        this.configuration?.cards.push( card); 
+        this.configuration?.Cards.push( card); 
         this.updateHostObject();  
     }
 
     onCardEditClick(event){
        
-        if(this.configuration?.galleryConfig?.editSlideIndex === event.id){ //close the editor
-            this.configuration.galleryConfig.editSlideIndex = -1;
+        if(this.configuration?.GalleryConfig?.editSlideIndex === event.id){ //close the editor
+            this.configuration.GalleryConfig.editSlideIndex = -1;
         }
         else{ 
-            this.currentCardindex = this.configuration.galleryConfig.editSlideIndex = parseInt(event.id);
+            this.currentCardindex = this.configuration.GalleryConfig.editSlideIndex = parseInt(event.id);
         }
-        this.updateHostObjectField(`galleryConfig.editSlideIndex`, this.configuration.galleryConfig.editSlideIndex);
+        this.updateHostObjectField(`GalleryConfig.editSlideIndex`, this.configuration.GalleryConfig.editSlideIndex);
         //this.cdr.detectChanges();
         //this.updateHostObject();
     }
     onCardRemoveClick(event){
-        this.configuration?.cards.splice(event.id, 1);
-        this.configuration?.cards.forEach(function(card, index, arr) {card.id = index; });
+        this.configuration?.Cards.splice(event.id, 1);
+        this.configuration?.Cards.forEach(function(card, index, arr) {card.id = index; });
         this.updateHostObject();
     }
 
     drop(event: CdkDragDrop<string[]>) {
         if (event.previousContainer === event.container) {
-         moveItemInArray(this.configuration.cards, event.previousIndex, event.currentIndex);
-         for(let index = 0 ; index < this.configuration.cards.length; index++){
-            this.configuration.cards[index].id = index;
+         moveItemInArray(this.configuration.Cards, event.previousIndex, event.currentIndex);
+         for(let index = 0 ; index < this.configuration.Cards.length; index++){
+            this.configuration.Cards[index].id = index;
          }
           this.updateHostObject();
         } 

@@ -71,10 +71,10 @@ export class CardEditorComponent implements OnInit {
   
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
-            this.configuration.cards[this.id][keyObj[0]][keyObj[1]] = value;
+            this.configuration.Cards[this.id][keyObj[0]][keyObj[1]] = value;
         }
         else{
-            this.configuration.cards[this.id][key] = value;
+            this.configuration.Cards[this.id][key] = value;
         }
 
         this.updateHostObject();
@@ -90,10 +90,10 @@ export class CardEditorComponent implements OnInit {
 
     onSlideshowFieldChange(key, event){
         if(event && event.source && event.source.key){
-            this.configuration.galleryConfig[key] = event.source.key;
+            this.configuration.GalleryConfig[key] = event.source.key;
         }
         else{
-            this.configuration.galleryConfig[key] = event;
+            this.configuration.GalleryConfig[key] = event;
         }
 
         this.updateHostObject();
@@ -101,39 +101,43 @@ export class CardEditorComponent implements OnInit {
 
     onHostEvents(event: any) {
         if(event?.url) {
-            this.configuration.cards[this.id].AssetURL = "'"+ encodeURI(event.url) +"'";
-            this.configuration.cards[this.id].AssetKey = event.key;
+            this.configuration.Cards[this.id].AssetURL = "'"+ encodeURI(event.url) +"'";
+            this.configuration.Cards[this.id].AssetKey = event.key;
 
             this.updateHostObject();
         }     
     }
 
     openScriptPickerDialog() {
-        const script = this.configuration.cards[this.id]['script'] || {};
-        const fields = {};
-        Object.keys(this._pageParameters).forEach(paramKey => {
-            fields[paramKey] = {
-                Type: 'String'
-            }
-        });
+        const flow = this.configuration.Cards[this.id]['Flow'] || {};
+    
+        // const fields = {};
+        // Object.keys(this._pageParameters).forEach(paramKey => {
+        //     fields[paramKey] = {
+        //         Type: 'String'
+        //     }
+        // });
 
-        script['fields'] = fields;
+        //script['fields'] = fields;
 
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
-            name: 'ScriptPicker',
+            name: 'FlowPicker',
             size: 'large',
-            hostObject: script,
-            hostEventsCallback: (event) => { 
-                if (event.action === 'script-picked') {
-                    this.configuration.cards[this.id]['script'] = event.data;
-                    this.updateHostObject(true);
-                    this.dialogRef.close();
-                } else if (event.action === 'close') {
-                    this.dialogRef.close();
+            hostObject: {
+                'runFlowData': flow
+            },
+            hostEventsCallback: (event) => {
+                if (event.action === 'on-done') {
+                                this.configuration.Cards[this.id]['Flow'] = event.data;
+                                this.updateHostObject(true);
+                                this.dialogRef.close();
+                } else if (event.action === 'on-cancel') {
+                                this.dialogRef.close();
                 }
             }
-        });
+        })
+
     }
 
 }

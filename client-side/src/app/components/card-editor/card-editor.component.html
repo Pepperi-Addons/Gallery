@@ -4,21 +4,21 @@
     </div>
     <div *ngIf="title !== ''" class="title-container">
         <span class="body-sm ellipsis">{{id + 1}}.&nbsp;</span>
-        <span class="body-sm color-link bold ellipsis" title="{{configuration?.cards[id].Title}}">{{configuration?.cards[id].Title}}</span>
+        <span class="body-sm color-link bold ellipsis" title="{{configuration?.Cards[id].Title}}">{{configuration?.Cards[id].Title}}</span>
     </div>
     <div class="actions" *ngIf="showActions">
         <pep-button classNames="caution" sizeType="xs" iconName="system_bin" (buttonClick)="onRemoveClick();"></pep-button>
-        <pep-button *ngIf="id != configuration?.galleryConfig?.editSlideIndex" sizeType="xs" iconName="arrow_down" (buttonClick)="onEditClick();"></pep-button>
-        <pep-button *ngIf="id == configuration?.galleryConfig?.editSlideIndex" sizeType="xs" iconName="arrow_up" (buttonClick)="onEditClick();"></pep-button>
+        <pep-button *ngIf="id != configuration?.GalleryConfig?.editSlideIndex" sizeType="xs" iconName="arrow_down" (buttonClick)="onEditClick();"></pep-button>
+        <pep-button *ngIf="id == configuration?.GalleryConfig?.editSlideIndex" sizeType="xs" iconName="arrow_up" (buttonClick)="onEditClick();"></pep-button>
     </div>
-    <div class="editorCont" *ngIf="id == configuration?.galleryConfig?.editSlideIndex">
-        <pep-textbox [label]="'IMAGE_EDITOR.TITLE' | translate" type="string" [value]="configuration?.cards[id].Title" (valueChange)="onCardFieldChange('Title',$event)"></pep-textbox>
-        <pep-textarea [value]="configuration?.cards[id].Description" [label]="'IMAGE_EDITOR.DESCRIPTION' | translate"
+    <div class="editorCont" *ngIf="id == configuration?.GalleryConfig?.editSlideIndex">
+        <pep-textbox [label]="'IMAGE_EDITOR.TITLE' | translate" type="string" [value]="configuration?.Cards[id].Title" (valueChange)="onCardFieldChange('Title',$event)"></pep-textbox>
+        <pep-textarea [value]="configuration?.Cards[id].Description" [label]="'IMAGE_EDITOR.DESCRIPTION' | translate"
                       rowSpan="2" (valueChange)="onCardFieldChange('Description',$event)">
         </pep-textarea>
-        <assets-button [imageURL]="configuration?.cards[id].AssetURL" (hostEvents)="onHostEvents($event);"></assets-button>
-        <!-- <pep-textbox [label]="'IMAGE_EDITOR.LINK_TO' | translate" type="link" [value]="configuration?.cards[id].linkTo" (valueChange)="onCardFieldChange('linkTo',$event)"></pep-textbox> -->
-        <label class="body-xs normal ellipsis">{{'IMAGE_EDITOR.ACTION' | translate}}</label>
-        <pep-button class="script-button" [value]="configuration?.cards[id].script ? configuration?.cards[id].script?.runScriptData?.ScriptKey : ('IMAGE_EDITOR.CHOOSE_SCRIPT' | translate)" (buttonClick)="openScriptPickerDialog();"></pep-button>
+        <assets-button [imageURL]="configuration?.Cards[id].AssetURL" (hostEvents)="onHostEvents($event);"></assets-button>
+        <!-- <pep-textbox [label]="'IMAGE_EDITOR.LINK_TO' | translate" type="link" [value]="configuration?.Cards[id].linkTo" (valueChange)="onCardFieldChange('linkTo',$event)"></pep-textbox> -->
+        <label class="body-xs normal ellipsis">{{'IMAGE_EDITOR.FLOW' | translate}}</label>
+        <pep-button class="script-button" [value]="configuration?.Cards[id].Flow ? configuration?.Cards[id].Flow?.FlowKey : ('IMAGE_EDITOR.CHOOSE_FLOW' | translate)" (buttonClick)="openScriptPickerDialog();"></pep-button>
     </div>
 </div>
