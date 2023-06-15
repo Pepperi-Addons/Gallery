@@ -2,7 +2,7 @@
 <div class="galleryCardCont" 
     [ngStyle]="{'display': GalleryConfig?.Text?.Position === 'overlaid' ? 'block' : 'grid',
                 'height' : GalleryConfig?.Gallery?.FillHeight ? '100%' : (GalleryConfig?.Card?.Height + 'rem'),
-                'cursor' : card?.Flow != '' ? 'pointer' : 'inherit',
+                'cursor' : card?.Flow && card?.Flow != '' ? 'pointer' : 'inherit',
                 'border': getGalleryBorder()}"
     [ngClass]="['textColor_'+ GalleryConfig?.Card?.TextColor,
                 GalleryConfig?.Card?.DropShadow?.use ? 'shadow-' + this.GalleryConfig?.Card?.DropShadow?.size : '',
