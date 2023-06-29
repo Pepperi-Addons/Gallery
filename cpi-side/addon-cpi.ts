@@ -46,17 +46,18 @@ export async function load(configuration: any) {
 }
 /**********************************  client events starts /**********************************/
 pepperi.events.intercept(CLIENT_ACTION_ON_GALLERY_CARD_CLICKED as any, {}, async (data): Promise<any> => {
-   
     const cpiService = new GalleryCpiService();
-    const res = cpiService.runFlowData(data);
+    const res = cpiService.runFlowData(data.flow);
     return res;
 
 });
 
 pepperi.events.intercept(CLIENT_ACTION_ON_GALLERY_LOAD as any, {}, async (data): Promise<any> => {
     let gallery = data.gallery;
+    const cpiService = new GalleryCpiService();
+    const res = cpiService.runFlowData(data.flow);
+    return res;
 
-    return gallery;
 });
 /***********************************  client events ends /***********************************/
 

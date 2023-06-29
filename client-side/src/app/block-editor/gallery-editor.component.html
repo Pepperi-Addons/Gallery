@@ -164,6 +164,11 @@
         <pep-shadow-settings [shadow]="configuration?.GalleryConfig?.Card?.DropShadow"
                             (shadowChange)="onGalleryFieldChange('Card.DropShadow',$event)">
         </pep-shadow-settings>
+        <div>
+            <label class="body-lg bold ellipsis">{{'IMAGE_EDITOR.FLOW' | translate}}</label>
+            <label class="body-xs normal">{{'IMAGE_EDITOR.CHOOSE_FLOW_ONLOAD_DESC' | translate}}</label>
+            <pep-button class="script-button" [value]="configuration?.GalleryConfig?.OnLoadFlow?.FlowKey || ('IMAGE_EDITOR.CHOOSE_FLOW' | translate)" (buttonClick)="openFlowPickerDialog();"></pep-button>
+         </div>
     </mat-tab>
 
     <mat-tab cdkDropListGroup label="{{'GALLERY_EDITOR.TABS.CONTENT' | translate}}">

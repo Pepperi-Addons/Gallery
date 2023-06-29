@@ -79,7 +79,9 @@
         "DELETE_IMAGE": "Delete image",
         "CHOOSE_IMAGE": "Choose Image",
         "OPEN_ASSETS_MANAGER": "Assets Manager",
-        "CHOOSE_FLOW": "Choose Flow"
+        "CHOOSE_FLOW": "Choose Flow",
+        "CHOOSE_FLOW_ONLOAD_DESC": "Choose the flow you want to activate in On Load Event",
+        "CHOOSE_FLOW_ONCLICK_DESC": "Choose the flow you want to activate in On Click Event"
     }
 }
 

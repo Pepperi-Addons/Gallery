@@ -108,17 +108,8 @@ export class CardEditorComponent implements OnInit {
         }     
     }
 
-    openScriptPickerDialog() {
+    openFlowPickerDialog() {
         const flow = this.configuration.Cards[this.id]['Flow'] || {};
-    
-        // const fields = {};
-        // Object.keys(this._pageParameters).forEach(paramKey => {
-        //     fields[paramKey] = {
-        //         Type: 'String'
-        //     }
-        // });
-
-        //script['fields'] = fields;
 
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,

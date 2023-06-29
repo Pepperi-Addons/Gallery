@@ -19,6 +19,7 @@ class GalleryCpiService {
     public async runFlowData(flowData){
         let res;
         try{
+            //pepperi.papiClient.fl
                 const flow = JSON.parse(Buffer.from(flowData, 'base64').toString('utf8'));
                 //todo - change to pepperi.flows(script.FlowKey).run
                 res = await pepperi.flows.run(flow);

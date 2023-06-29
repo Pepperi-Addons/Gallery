@@ -1,12 +1,14 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewContainerRef } from '@angular/core';
 import { IGallery, IGalleryEditor, ICardEditor } from '../gallery.model';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
-import { PepColorService } from '@pepperi-addons/ngx-lib';
 import  { GalleryService } from '../../common/gallery.service';
 import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray} from '@angular/cdk/drag-drop';
-import { PageConfiguration } from '@pepperi-addons/papi-sdk';
-import { createReadStream } from 'fs';
+import { PageConfiguration, PapiClient } from '@pepperi-addons/papi-sdk';
+import { AddonService } from "src/app/services/addon.service";
+import { MatDialogRef } from '@angular/material/dialog';
+import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
+
 
 @Component({
     selector: 'gallery-editor',
@@ -14,7 +16,8 @@ import { createReadStream } from 'fs';
     styleUrls: ['./gallery-editor.component.scss']
 })
 export class GalleryEditorComponent implements OnInit {
-    // @Input() hostObject: any;
+
+    dialogRef: MatDialogRef<any>;
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     currentCardindex: number;
@@ -33,7 +36,7 @@ export class GalleryEditorComponent implements OnInit {
                 this.loadDefaultConfiguration();
             }
         }
-
+        
         this._pageParameters = value?.pageParameters || {};
         this._pageConfiguration = value?.pageConfiguration || this.defaultPageConfiguration;
     }
@@ -60,16 +63,23 @@ export class GalleryEditorComponent implements OnInit {
     public TextPositionStyling: Array<PepButton> = [];
     public GroupTitleAndDescription: Array<PepButton> = [];
 
-    constructor(private translate: TranslateService, private pepColorService: PepColorService, private galleryService: GalleryService) { }
+    constructor(private translate: TranslateService, 
+                private galleryService: GalleryService,
+                private viewContainerRef: ViewContainerRef,
+                private addonBlockLoaderService: PepAddonBlockLoaderService) {
+                 
+                }
 
     async ngOnInit(): Promise<void> {
 
-         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
+        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
 
         if (!this.configuration) {
             this.loadDefaultConfiguration();
         }
-       
+        
+        this.galleryService.getFlowName(this.configuration.GalleryConfig.OnLoadFlow.FlowKey);
+        
         this.textColor = [
             { key: 'system-primary', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.SYSTEM'), callback: (event: any) => this.onGalleryFieldChange('Card.TextColor',event) },
             { key: 'invert', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.INVERT'), callback: (event: any) => this.onGalleryFieldChange('Card.TextColor',event) }
@@ -259,6 +269,7 @@ export class GalleryEditorComponent implements OnInit {
         //this.cdr.detectChanges();
         //this.updateHostObject();
     }
+
     onCardRemoveClick(event){
         this.configuration?.Cards.splice(event.id, 1);
         this.configuration?.Cards.forEach(function(card, index, arr) {card.id = index; });
@@ -281,5 +292,29 @@ export class GalleryEditorComponent implements OnInit {
 
     onDragEnd(event: CdkDragEnd) {
         this.galleryService.changeCursorOnDragEnd();
+    }
+
+    openFlowPickerDialog() {
+    
+        const flow = this.configuration?.GalleryConfig?.OnLoadFlow || null;
+
+        this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
+            container: this.viewContainerRef,
+            name: 'FlowPicker',
+            size: 'large',
+            hostObject: {
+                'runFlowData': flow
+            },
+            hostEventsCallback: (event) => {
+                if (event.action === 'on-done') {
+                               this.configuration.GalleryConfig.OnLoadFlow = event.data;
+                                this.updateHostObject();
+                                this.dialogRef.close();
+                } else if (event.action === 'on-cancel') {
+                                this.dialogRef.close();
+                }
+            }
+        })
+
     }
 }

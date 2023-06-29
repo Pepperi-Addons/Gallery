@@ -61,6 +61,7 @@ export class Title {
 }
 
 export class IGalleryEditor {
+    OnLoadFlow: any;
     Gallery: Gallery = new Gallery();
     Card: Card = new Card();
     Text: Text = new Text();

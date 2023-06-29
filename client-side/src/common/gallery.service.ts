@@ -1,15 +1,43 @@
-import { CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
+import jwt from 'jwt-decode';
 import { Injectable } from "@angular/core";
 import { PepColorSettings } from "@pepperi-addons/ngx-composite-lib/color-settings";
 import { PepColorService } from "@pepperi-addons/ngx-lib";
+import { PapiClient } from '@pepperi-addons/papi-sdk';
+import { PepDataConvertorService, PepHttpService, PepSessionService } from '@pepperi-addons/ngx-lib';
+import { config } from '../app/addon.config';
 
 @Injectable({
     providedIn: 'root',
 })
 export class GalleryService {
     
+    papiClient: PapiClient
+    accessToken = '';
+    parsedToken: any
+    papiBaseURL = ''
 
-    constructor(private pepColorService: PepColorService) {};
+    constructor(private pepColorService: PepColorService,
+                public session: PepSessionService,
+                public pepperiDataConverter: PepDataConvertorService,
+                private httpService: PepHttpService) {
+                    const accessToken = this.session.getIdpToken();
+                    this.parsedToken = jwt(accessToken);
+                    this.papiBaseURL = this.parsedToken["pepperi.baseurl"];
+                    debugger;
+                    this.papiClient = new PapiClient({
+                        baseURL: this.papiBaseURL,
+                        token: this.session.getIdpToken(),
+                        addonUUID: config.AddonUUID,
+                        suppressLogging:true
+                        //addonSecretKey: client.AddonSecretKey,
+                        //actionUUID: client.AddonUUID
+                    });
+                }
+    
+     async getFlowName(flowUUID){
+            const flow = await this.papiClient.userDefinedFlows.uuid(flowUUID);
+            debugger;
+     }
 
     getRGBAcolor(colObj: PepColorSettings, opac = null){
         let rgba = 'rgba(255,255,255,0';
