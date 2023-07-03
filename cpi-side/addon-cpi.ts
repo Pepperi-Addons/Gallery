@@ -1,11 +1,18 @@
 import '@pepperi-addons/cpi-node';
 import GalleryCpiService from './gallery-cpi.service';
-import { CLIENT_ACTION_ON_GALLERY_CARD_CLICKED, CLIENT_ACTION_ON_GALLERY_LOAD } from 'shared';
+import { CLIENT_ACTION_ON_GALLERY_CARD_CLICK } from 'shared';
 export const router:any = Router()
 import path from 'path';
 
 router.post('/prepare_assets', async (req, res)=>{
-    const configuration = req.body.Configuration;
+    let configuration = req.body.Configuration;
+
+    // check if flow configured to on load --> run flow (instaed of onload event)
+    if(configuration?.Data?.GalleryConfig?.OnLoadFlow){
+         const cpiService = new GalleryCpiService();
+        //  configuration = await cpiService.runFlowData(configuration?.Data?.GalleryConfig?.OnLoadFlow, req);
+     }
+
     if(!(await pepperi['environment'].isWebApp())) {
         const cards = configuration.Data.Cards as any[];
         await Promise.all(cards.map(async (card) => {
@@ -45,17 +52,9 @@ export async function load(configuration: any) {
     
 }
 /**********************************  client events starts /**********************************/
-pepperi.events.intercept(CLIENT_ACTION_ON_GALLERY_CARD_CLICKED as any, {}, async (data): Promise<any> => {
+pepperi.events.intercept(CLIENT_ACTION_ON_GALLERY_CARD_CLICK as any, {}, async (data): Promise<any> => {
     const cpiService = new GalleryCpiService();
-    const res = cpiService.runFlowData(data.flow);
-    return res;
-
-});
-
-pepperi.events.intercept(CLIENT_ACTION_ON_GALLERY_LOAD as any, {}, async (data): Promise<any> => {
-    let gallery = data.gallery;
-    const cpiService = new GalleryCpiService();
-    const res = cpiService.runFlowData(data.flow);
+    const res = cpiService.runFlowData(data.flow, data);
     return res;
 
 });

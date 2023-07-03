@@ -3,7 +3,7 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Outpu
 import { IGallery, IHostObject } from '../gallery.model';
 import  { GalleryService } from '../../common/gallery.service';
 import { PepLayoutService } from '@pepperi-addons/ngx-lib';
-import { CLIENT_ACTION_ON_GALLERY_CARD_CLICKED, CLIENT_ACTION_ON_GALLERY_LOAD } from 'shared';
+import { CLIENT_ACTION_ON_GALLERY_CARD_CLICK } from 'shared';
 
 @Component({
     selector: 'gallery',
@@ -49,10 +49,6 @@ export class GalleryComponent implements OnInit {
     }
 
     async ngOnInit(): Promise<void> {
-        // trigger the onload event only when custom flow
-        if(this.configuration?.GalleryConfig?.OnLoadFlow && this.configuration.GalleryConfig.OnLoadFlow.FlowKey != ''){
-            this.configuration = await this.onGalleryLoad();
-        }
         this.setCardWidth();
     }
 
@@ -92,36 +88,6 @@ export class GalleryComponent implements OnInit {
         return res;
     }
 
-    onGalleryLoad(){
-        try{
-            //debugger;
-            // TODO - NEED TO ADD THE GALLERY OBJ AS A PARAM
-            //this.configuration.GalleryConfig.OnLoadFlow.FlowParams = this.configuration
-            const eventData = {
-                detail: {
-                    eventKey: CLIENT_ACTION_ON_GALLERY_LOAD,
-                    eventData: { gallery: this.configuration,
-                                 flow: this.configuration.GalleryConfig.OnLoadFlow},
-                    completion: (res: any) => {
-                            if (res) {
-                                    this._configuration = res;
-                            } else {
-
-                                // Show default error.   
-                            }
-                        }
-                }
-            };
-
-            const customEvent = new CustomEvent('emit-event', eventData);
-            window.dispatchEvent(customEvent);
-        }
-        catch(err){
-
-        }
-
-        return this.configuration;
-    }
     onCardClicked(event) {
     
         // Parse the params if exist.
@@ -129,7 +95,7 @@ export class GalleryComponent implements OnInit {
         try{
             const eventData = {
                 detail: {
-                    eventKey: CLIENT_ACTION_ON_GALLERY_CARD_CLICKED,
+                    eventKey: CLIENT_ACTION_ON_GALLERY_CARD_CLICK,
                     eventData: { flow: event },
                     completion: (res: any) => {
                             if (res) {

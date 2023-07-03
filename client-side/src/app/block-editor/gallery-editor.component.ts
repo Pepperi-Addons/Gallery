@@ -62,6 +62,7 @@ export class GalleryEditorComponent implements OnInit {
     public verticalAlign: Array<PepButton> = [];
     public TextPositionStyling: Array<PepButton> = [];
     public GroupTitleAndDescription: Array<PepButton> = [];
+    public onloadFlowName = null;
 
     constructor(private translate: TranslateService, 
                 private galleryService: GalleryService,
@@ -78,7 +79,9 @@ export class GalleryEditorComponent implements OnInit {
             this.loadDefaultConfiguration();
         }
         
-        this.galleryService.getFlowName(this.configuration.GalleryConfig.OnLoadFlow.FlowKey);
+        if(this.configuration.GalleryConfig.OnLoadFlow.FlowKey){
+            this.onloadFlowName = await this.galleryService.getFlowName(this.configuration.GalleryConfig.OnLoadFlow.FlowKey);
+        }
         
         this.textColor = [
             { key: 'system-primary', value:this.translate.instant('GALLERY_EDITOR.TEXT_COLOR.SYSTEM'), callback: (event: any) => this.onGalleryFieldChange('Card.TextColor',event) },
@@ -305,11 +308,12 @@ export class GalleryEditorComponent implements OnInit {
             hostObject: {
                 'runFlowData': flow
             },
-            hostEventsCallback: (event) => {
+            hostEventsCallback: async (event) => {
                 if (event.action === 'on-done') {
-                               this.configuration.GalleryConfig.OnLoadFlow = event.data;
+                                this.configuration.GalleryConfig.OnLoadFlow = event.data;
                                 this.updateHostObject();
                                 this.dialogRef.close();
+                                this.onloadFlowName = await this.galleryService.getFlowName(event.data.FlowKey);
                 } else if (event.action === 'on-cancel') {
                                 this.dialogRef.close();
                 }

@@ -19,6 +19,6 @@
         <assets-button [imageURL]="configuration?.Cards[id].AssetURL" (hostEvents)="onHostEvents($event);"></assets-button>
         <!-- <pep-textbox [label]="'IMAGE_EDITOR.LINK_TO' | translate" type="link" [value]="configuration?.Cards[id].linkTo" (valueChange)="onCardFieldChange('linkTo',$event)"></pep-textbox> -->
         <label class="body-xs normal">{{'IMAGE_EDITOR.CHOOSE_FLOW_ONCLICK_DESC' | translate}}</label>
-        <pep-button class="script-button" [value]="configuration?.Cards[id].Flow ? configuration?.Cards[id].Flow?.FlowKey : ('IMAGE_EDITOR.CHOOSE_FLOW' | translate)" (buttonClick)="openFlowPickerDialog();"></pep-button>
+        <pep-button class="script-button" [value]="cardFlowName ? cardFlowName : ('IMAGE_EDITOR.CHOOSE_FLOW' | translate)" (buttonClick)="openFlowPickerDialog();"></pep-button>
     </div>
 </div>

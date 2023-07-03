@@ -6,6 +6,7 @@ import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { IGallery } from 'src/app/gallery.model';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
+import { GalleryService } from 'src/common/gallery.service';
 
 interface groupButtonArray {
     key: string; 
@@ -29,7 +30,8 @@ export class CardEditorComponent implements OnInit {
     }
 
     public title: string;
-    
+    public cardFlowName = undefined;
+
     @Input() isDraggable = false;
     @Input() showActions = true;
 
@@ -44,12 +46,18 @@ export class CardEditorComponent implements OnInit {
         private pepColorService: PepColorService,
         private pepDialogService: PepDialogService,
         private viewContainerRef: ViewContainerRef,
+        private galleryService: GalleryService,
         private addonBlockLoaderService: PepAddonBlockLoaderService) {
 
     }
 
     async ngOnInit(): Promise<void> {
-        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();    
+        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();   
+        const card = this.configuration.Cards[this.id];
+       
+        if(card?.Flow?.FlowKey){
+            this.cardFlowName = await this.galleryService.getFlowName(card?.Flow?.FlowKey) || undefined;
+        }
     }
 
     getOrdinal(n) {
@@ -118,11 +126,12 @@ export class CardEditorComponent implements OnInit {
             hostObject: {
                 'runFlowData': flow
             },
-            hostEventsCallback: (event) => {
+            hostEventsCallback: async (event) => {
                 if (event.action === 'on-done') {
                                 this.configuration.Cards[this.id]['Flow'] = event.data;
                                 this.updateHostObject(true);
                                 this.dialogRef.close();
+                                this.cardFlowName = await this.galleryService.getFlowName(event.data.FlowKey) || undefined;
                 } else if (event.action === 'on-cancel') {
                                 this.dialogRef.close();
                 }

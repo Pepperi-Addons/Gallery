@@ -23,7 +23,7 @@ export class GalleryService {
                     const accessToken = this.session.getIdpToken();
                     this.parsedToken = jwt(accessToken);
                     this.papiBaseURL = this.parsedToken["pepperi.baseurl"];
-                    debugger;
+
                     this.papiClient = new PapiClient({
                         baseURL: this.papiBaseURL,
                         token: this.session.getIdpToken(),
@@ -35,8 +35,17 @@ export class GalleryService {
                 }
     
      async getFlowName(flowUUID){
-            const flow = await this.papiClient.userDefinedFlows.uuid(flowUUID);
-            debugger;
+        let flowName = undefined;
+        try{
+            const flow = (await this.papiClient.userDefinedFlows.search({ KeyList: [flowUUID], Fields: ['Key', 'Name']})).Objects;
+            flowName = flow?.length ? flow[0].Name : undefined;
+        }
+        catch(err){
+            flowName = undefined;
+        }
+        finally{
+            return flowName;
+        }
      }
 
     getRGBAcolor(colObj: PepColorSettings, opac = null){
