@@ -89,14 +89,19 @@ export class GalleryComponent implements OnInit {
     }
 
     onCardClicked(event) {
-    
+        const flowData = event;
+        const parameters = {
+            OnLoad: this.configuration
+        }
+        
+        //if(flowData){
         // Parse the params if exist.
         // const params = this.getScriptParams(event.ScriptData); 
         try{
             const eventData = {
                 detail: {
                     eventKey: CLIENT_ACTION_ON_GALLERY_CARD_CLICK,
-                    eventData: { flow: event },
+                    eventData: { flow: flowData, parameters: parameters },
                     completion: (res: any) => {
                             if (res) {
                                 debugger;

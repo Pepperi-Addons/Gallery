@@ -75,6 +75,7 @@
         "TITLE": "Title",
         "DESCRIPTION": "Description",
         "IMAGE_URL": "Image URL",
+        "ONLOAD_FLOW": "Onload flow",
         "FLOW": "Flow",
         "DELETE_IMAGE": "Delete image",
         "CHOOSE_IMAGE": "Choose Image",

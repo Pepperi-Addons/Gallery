@@ -79,8 +79,9 @@ export class GalleryEditorComponent implements OnInit {
             this.loadDefaultConfiguration();
         }
         
-        if(this.configuration.GalleryConfig.OnLoadFlow.FlowKey){
-            this.onloadFlowName = await this.galleryService.getFlowName(this.configuration.GalleryConfig.OnLoadFlow.FlowKey);
+        if(this.configuration?.GalleryConfig?.OnLoadFlow){
+            const flow = JSON.parse(atob(this.configuration.GalleryConfig.OnLoadFlow));
+            this.onloadFlowName = await this.galleryService.getFlowName(flow.FlowKey);
         }
         
         this.textColor = [
@@ -299,21 +300,50 @@ export class GalleryEditorComponent implements OnInit {
 
     openFlowPickerDialog() {
     
-        const flow = this.configuration?.GalleryConfig?.OnLoadFlow || null;
+        const flow = this.configuration?.GalleryConfig?.OnLoadFlow ? JSON.parse(atob(this.configuration?.GalleryConfig?.OnLoadFlow)) : null;
+        let hostObj = {};
+        
+        if(flow){
+            hostObj = { 
+                runFlowData: { 
+                    FlowKey: flow.FlowKey, 
+                    FlowParams: flow.FlowParams 
+                },
+                fields: {
+                    OnLoad: {
+                        Type: 'Object',
+                    },
+                    Test: {
+                        Type: 'String'
+                    }
+                }
+            };
+        }
+        else{
+            hostObj = { 
+                fields: {
+                        OnLoad: {
+                            Type: 'Object',
+                        },
+                        Test: {
+                            Type: 'String'
+                        }
+                    }
+                }
+        }
 
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
             name: 'FlowPicker',
             size: 'large',
-            hostObject: {
-                'runFlowData': flow
-            },
+            hostObject: hostObj,
             hostEventsCallback: async (event) => {
                 if (event.action === 'on-done') {
-                                this.configuration.GalleryConfig.OnLoadFlow = event.data;
-                                this.updateHostObject();
-                                this.dialogRef.close();
-                                this.onloadFlowName = await this.galleryService.getFlowName(event.data.FlowKey);
+                        const base64Flow = btoa(JSON.stringify(event.data));
+                        this.configuration.GalleryConfig.OnLoadFlow = base64Flow;
+                        this.updateHostObject();
+                        this.dialogRef.close();
+                        this.onloadFlowName = await this.galleryService.getFlowName(event.data.FlowKey);
                 } else if (event.action === 'on-cancel') {
                                 this.dialogRef.close();
                 }

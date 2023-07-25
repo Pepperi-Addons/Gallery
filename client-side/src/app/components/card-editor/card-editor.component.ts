@@ -55,8 +55,9 @@ export class CardEditorComponent implements OnInit {
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();   
         const card = this.configuration.Cards[this.id];
        
-        if(card?.Flow?.FlowKey){
-            this.cardFlowName = await this.galleryService.getFlowName(card?.Flow?.FlowKey) || undefined;
+        if(card?.Flow){
+            const flow = JSON.parse(atob(card?.Flow));
+            this.cardFlowName = await this.galleryService.getFlowName(flow?.FlowKey) || undefined;
         }
     }
 
@@ -117,23 +118,50 @@ export class CardEditorComponent implements OnInit {
     }
 
     openFlowPickerDialog() {
-        const flow = this.configuration.Cards[this.id]['Flow'] || {};
+        const flow = this.configuration?.Cards[this.id]['Flow'] ?  JSON.parse(atob(this.configuration?.Cards[this.id]['Flow'])) : null;
+        let hostObj = {};
+        if(flow){
+            hostObj = { 
+                runFlowData: { 
+                    FlowKey: flow.FlowKey, 
+                    FlowParams: flow.FlowParams 
+                },
+                fields: {
+                    OnLoad: {
+                        Type: 'Object',
+                    },
+                    Test: {
+                        Type: 'String'
+                    }
+                }
+            };
+        } else{
+            hostObj = { 
+                fields: {
+                        OnLoad: {
+                            Type: 'Object',
+                        },
+                        Test: {
+                            Type: 'String'
+                        }
+                    },
+                }
+        }
 
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
             name: 'FlowPicker',
             size: 'large',
-            hostObject: {
-                'runFlowData': flow
-            },
+            hostObject: hostObj,
             hostEventsCallback: async (event) => {
                 if (event.action === 'on-done') {
-                                this.configuration.Cards[this.id]['Flow'] = event.data;
-                                this.updateHostObject(true);
-                                this.dialogRef.close();
-                                this.cardFlowName = await this.galleryService.getFlowName(event.data.FlowKey) || undefined;
+                        const base64Flow = btoa(JSON.stringify(event.data));
+                        this.configuration.Cards[this.id]['Flow'] = base64Flow;
+                        this.updateHostObject(true);
+                        this.dialogRef.close();
+                        this.cardFlowName = await this.galleryService.getFlowName(event.data.FlowKey) || undefined;
                 } else if (event.action === 'on-cancel') {
-                                this.dialogRef.close();
+                        this.dialogRef.close();
                 }
             }
         })
