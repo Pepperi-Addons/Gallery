@@ -110,7 +110,7 @@ export class CardEditorComponent implements OnInit {
 
     onHostEvents(event: any) {
         if(event?.url) {
-            this.configuration.Cards[this.id].AssetURL = "'"+ encodeURI(event.url) +"'";
+            this.configuration.Cards[this.id].AssetURL = event.url;
             this.configuration.Cards[this.id].AssetKey = event.key;
 
             this.updateHostObject();
