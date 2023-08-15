@@ -104,7 +104,7 @@ export class CardEditorComponent implements OnInit {
 
     onHostEvents(event: any) {
         if(event?.url) {
-            this.configuration.cards[this.id].assetURL = "'"+ encodeURI(event.url) +"'";
+            this.configuration.cards[this.id].assetURL = event.url;
             this.configuration.cards[this.id].asset = event.key;
 
             //this.updateHostObjectField(`slides[${this.id}].image.assetURL`, encodeURI(event.url));

@@ -3,3 +3,4 @@ build/**
 publish/**
 var_sk
 client-side/.angular/cache/
+node_modules/
