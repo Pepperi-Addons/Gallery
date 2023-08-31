@@ -7,6 +7,7 @@ import { IGallery } from 'src/app/gallery.model';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
 import { GalleryService } from 'src/common/gallery.service';
+import { FlowService } from 'src/app/services/flow.service';
 
 interface groupButtonArray {
     key: string; 
@@ -30,7 +31,7 @@ export class CardEditorComponent implements OnInit {
     }
 
     public title: string;
-    public cardFlowName = undefined;
+    public flowHostObject;
 
     @Input() isDraggable = false;
     @Input() showActions = true;
@@ -47,18 +48,14 @@ export class CardEditorComponent implements OnInit {
         private pepDialogService: PepDialogService,
         private viewContainerRef: ViewContainerRef,
         private galleryService: GalleryService,
+        private flowService: FlowService,
         private addonBlockLoaderService: PepAddonBlockLoaderService) {
 
     }
 
     async ngOnInit(): Promise<void> {
-        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();   
-        const card = this.configuration.Cards[this.id];
-       
-        if(card?.Flow){
-            const flow = JSON.parse(atob(card?.Flow));
-            this.cardFlowName = await this.galleryService.getFlowName(flow?.FlowKey) || undefined;
-        }
+        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise(); 
+        this.flowService.prepareFlowHostObject((this.configuration?.Cards[this.id]['Flow'] || null)); 
     }
 
     getOrdinal(n) {
@@ -117,55 +114,59 @@ export class CardEditorComponent implements OnInit {
         }     
     }
 
-    openFlowPickerDialog() {
-        const flow = this.configuration?.Cards[this.id]['Flow'] ?  JSON.parse(atob(this.configuration?.Cards[this.id]['Flow'])) : null;
-        let hostObj = {};
-        if(flow){
-            hostObj = { 
-                runFlowData: { 
-                    FlowKey: flow.FlowKey, 
-                    FlowParams: flow.FlowParams 
-                },
-                fields: {
-                    OnLoad: {
-                        Type: 'Object',
-                    },
-                    Test: {
-                        Type: 'String'
-                    }
-                }
-            };
-        } else{
-            hostObj = { 
-                fields: {
-                        OnLoad: {
-                            Type: 'Object',
-                        },
-                        Test: {
-                            Type: 'String'
-                        }
-                    },
-                }
-        }
+    // openFlowPickerDialog() {
+    //     const flow = this.configuration?.Cards[this.id]['Flow'] ?  JSON.parse(atob(this.configuration?.Cards[this.id]['Flow'])) : null;
+    //     let hostObj = {};
+    //     if(flow){
+    //         hostObj = { 
+    //             runFlowData: { 
+    //                 FlowKey: flow.FlowKey, 
+    //                 FlowParams: flow.FlowParams 
+    //             },
+    //             fields: {
+    //                 OnLoad: {
+    //                     Type: 'Object',
+    //                 },
+    //                 Test: {
+    //                     Type: 'String'
+    //                 }
+    //             }
+    //         };
+    //     } else{
+    //         hostObj = { 
+    //             fields: {
+    //                     OnLoad: {
+    //                         Type: 'Object',
+    //                     },
+    //                     Test: {
+    //                         Type: 'String'
+    //                     }
+    //                 },
+    //             }
+    //     }
 
-        this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
-            container: this.viewContainerRef,
-            name: 'FlowPicker',
-            size: 'large',
-            hostObject: hostObj,
-            hostEventsCallback: async (event) => {
-                if (event.action === 'on-done') {
-                        const base64Flow = btoa(JSON.stringify(event.data));
-                        this.configuration.Cards[this.id]['Flow'] = base64Flow;
-                        this.updateHostObject(true);
-                        this.dialogRef.close();
-                        this.cardFlowName = await this.galleryService.getFlowName(event.data.FlowKey) || undefined;
-                } else if (event.action === 'on-cancel') {
-                        this.dialogRef.close();
-                }
-            }
-        })
+    //     this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
+    //         container: this.viewContainerRef,
+    //         name: 'FlowPicker',
+    //         size: 'large',
+    //         hostObject: hostObj,
+    //         hostEventsCallback: async (event) => {
+    //             if (event.action === 'on-done') {
+    //                     const base64Flow = btoa(JSON.stringify(event.data));
+    //                     this.configuration.Cards[this.id]['Flow'] = base64Flow;
+    //                     this.updateHostObject(true);
+    //                     this.dialogRef.close();
+    //             } else if (event.action === 'on-cancel') {
+    //                     this.dialogRef.close();
+    //             }
+    //         }
+    //     })
 
+    // }
+
+    onFlowChange(flowData: any) {
+        const base64Flow = btoa(JSON.stringify(flowData));
+        this.configuration.Cards[this.id]['Flow'] = base64Flow;
+        this.updateHostObject(true);
     }
-
 }

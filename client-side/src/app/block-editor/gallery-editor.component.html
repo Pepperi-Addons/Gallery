@@ -166,9 +166,9 @@
         </pep-shadow-settings>
         <div>
             <label class="body-lg bold ellipsis">{{'IMAGE_EDITOR.ONLOAD_FLOW' | translate}}</label>
-            <label class="body-xs normal">{{'IMAGE_EDITOR.CHOOSE_FLOW_ONLOAD_DESC' | translate}}</label>
-            <pep-button class="script-button" [value]="onloadFlowName ? onloadFlowName : ('IMAGE_EDITOR.CHOOSE_FLOW' | translate)" (buttonClick)="openFlowPickerDialog();"></pep-button>
-         </div>
+            <pep-field-title [label]="'IMAGE_EDITOR.CHOOSE_FLOW_ONLOAD_DESC' | translate"></pep-field-title>
+            <pep-flow-picker-button [flowHostObject]="flowHostObject" (flowChange)="onFlowChange($event)"></pep-flow-picker-button>
+        </div>
     </mat-tab>
 
     <mat-tab cdkDropListGroup label="{{'GALLERY_EDITOR.TABS.CONTENT' | translate}}">

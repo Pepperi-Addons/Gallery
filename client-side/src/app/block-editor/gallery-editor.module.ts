@@ -22,7 +22,9 @@ import { PepGroupButtonsSettingsModule } from '@pepperi-addons/ngx-composite-lib
 import { PepNgxCompositeLibModule } from '@pepperi-addons/ngx-composite-lib';
 import { config } from '../addon.config';
 import { GalleryService } from '../../common/gallery.service';
-
+import { FlowService } from '../services/flow.service';
+import { PepFlowPickerButtonModule } from '@pepperi-addons/ngx-composite-lib/flow-picker-button';
+import { PepFieldTitleModule } from '@pepperi-addons/ngx-lib/field-title';
 import { GalleryEditorComponent } from './gallery-editor.component';
 
 const pepIcons = [
@@ -48,6 +50,8 @@ const pepIcons = [
     imports: [
         CommonModule,
         PepButtonModule,
+        PepFlowPickerButtonModule,
+        PepFieldTitleModule,
         PepSliderModule,
         CardEditorModule,
         PepNgxLibModule,
@@ -79,7 +83,8 @@ const pepIcons = [
     providers: [
         TranslateStore,
         // Add here all used services.
-        GalleryService
+        GalleryService,
+        FlowService
     ]
 })
 export class GalleryEditorModule {

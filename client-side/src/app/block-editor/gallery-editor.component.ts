@@ -8,6 +8,7 @@ import { PageConfiguration, PapiClient } from '@pepperi-addons/papi-sdk';
 import { AddonService } from "src/app/services/addon.service";
 import { MatDialogRef } from '@angular/material/dialog';
 import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
+import { FlowService } from '../services/flow.service';
 
 
 @Component({
@@ -22,11 +23,14 @@ export class GalleryEditorComponent implements OnInit {
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     currentCardindex: number;
     blockLoaded = false;
+    public flowHostObject;
 
     @Input()
     set hostObject(value: any) {
-        if (value && value.configuration && Object.keys(value.configuration).length) {
+        if (value?.configuration && Object.keys(value.configuration).length) {
                 this._configuration = value.configuration;
+                debugger;
+                this.flowHostObject = this.flowService.prepareFlowHostObject((value.configuration.GalleryConfig?.OnLoadFlow || null));
             if(value.configurationSource && Object.keys(value.configuration).length > 0){
                 this.configurationSource = value.configurationSource;
             }
@@ -62,10 +66,10 @@ export class GalleryEditorComponent implements OnInit {
     public verticalAlign: Array<PepButton> = [];
     public TextPositionStyling: Array<PepButton> = [];
     public GroupTitleAndDescription: Array<PepButton> = [];
-    public onloadFlowName = null;
 
     constructor(private translate: TranslateService, 
                 private galleryService: GalleryService,
+                private flowService: FlowService,
                 private viewContainerRef: ViewContainerRef,
                 private addonBlockLoaderService: PepAddonBlockLoaderService) {
                  
@@ -77,11 +81,6 @@ export class GalleryEditorComponent implements OnInit {
 
         if (!this.configuration) {
             this.loadDefaultConfiguration();
-        }
-        
-        if(this.configuration?.GalleryConfig?.OnLoadFlow){
-            const flow = JSON.parse(atob(this.configuration.GalleryConfig.OnLoadFlow));
-            this.onloadFlowName = await this.galleryService.getFlowName(flow.FlowKey);
         }
         
         this.textColor = [
@@ -222,6 +221,7 @@ export class GalleryEditorComponent implements OnInit {
     private loadDefaultConfiguration() {
         this._configuration = this.getDefaultHostObject();
         this.updateHostObject();
+        this.flowService.prepareFlowHostObject((this.configuration?.GalleryConfig?.OnLoadFlow || null)); 
     }
 
     private getDefaultCards(numOfCards: number = 0): Array<ICardEditor> {
@@ -298,57 +298,28 @@ export class GalleryEditorComponent implements OnInit {
         this.galleryService.changeCursorOnDragEnd();
     }
 
-    openFlowPickerDialog() {
-    
-        const flow = this.configuration?.GalleryConfig?.OnLoadFlow ? JSON.parse(atob(this.configuration?.GalleryConfig?.OnLoadFlow)) : null;
-        let hostObj = {};
+    // private prepareFlowHostObject() {
+    //     this.flowHostObject = {};
+    //     const runFlowData =  this.configuration?.GalleryConfig?.OnLoadFlow ? JSON.parse(atob( this.configuration.GalleryConfig.OnLoadFlow)) : null;
+    //     //const runFlowData = this.menuItem?.Flow || null;
+
+    //     const fields = {};
+
+    //     if (runFlowData) {
+    //         this.flowService.flowDynamicParameters.forEach((value, key) => {
+    //             fields[key] = {
+    //                 Type: value || 'String'
+    //             };
+    //         });
+    //     }
         
-        if(flow){
-            hostObj = { 
-                runFlowData: { 
-                    FlowKey: flow.FlowKey, 
-                    FlowParams: flow.FlowParams 
-                },
-                fields: {
-                    OnLoad: {
-                        Type: 'Object',
-                    },
-                    Test: {
-                        Type: 'String'
-                    }
-                }
-            };
-        }
-        else{
-            hostObj = { 
-                fields: {
-                        OnLoad: {
-                            Type: 'Object',
-                        },
-                        Test: {
-                            Type: 'String'
-                        }
-                    }
-                }
-        }
+    //     this.flowHostObject['runFlowData'] = runFlowData?.FlowKey ? runFlowData : undefined;
+    //     this.flowHostObject['fields'] = fields;
+    // }
 
-        this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
-            container: this.viewContainerRef,
-            name: 'FlowPicker',
-            size: 'large',
-            hostObject: hostObj,
-            hostEventsCallback: async (event) => {
-                if (event.action === 'on-done') {
-                        const base64Flow = btoa(JSON.stringify(event.data));
-                        this.configuration.GalleryConfig.OnLoadFlow = base64Flow;
-                        this.updateHostObject();
-                        this.dialogRef.close();
-                        this.onloadFlowName = await this.galleryService.getFlowName(event.data.FlowKey);
-                } else if (event.action === 'on-cancel') {
-                                this.dialogRef.close();
-                }
-            }
-        })
-
+    onFlowChange(flowData: any) {
+        const base64Flow = btoa(JSON.stringify(flowData));
+        this.configuration.GalleryConfig.OnLoadFlow = base64Flow;
+        this.updateHostObject();
     }
 }

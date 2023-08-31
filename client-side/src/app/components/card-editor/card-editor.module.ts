@@ -18,6 +18,8 @@ import { PepSelectModule } from '@pepperi-addons/ngx-lib/select';
 import { PepTextareaModule } from '@pepperi-addons/ngx-lib/textarea';
 import { AssetsButtonModule } from '../assets-button/assets-button.module';
 import { config } from '../../addon.config';
+import { PepFlowPickerButtonModule } from '@pepperi-addons/ngx-composite-lib/flow-picker-button';
+import { PepFieldTitleModule } from '@pepperi-addons/ngx-lib/field-title';
 
 @NgModule({
     declarations: [CardEditorComponent],
@@ -26,6 +28,8 @@ import { config } from '../../addon.config';
         DragDropModule,
         PepButtonModule,
         PepMenuModule,
+        PepFlowPickerButtonModule,
+        PepFieldTitleModule,
         PepTextboxModule,
         PepCheckboxModule,
         PepSliderModule,
