@@ -29,7 +29,11 @@ export class GalleryEditorComponent implements OnInit {
     set hostObject(value: any) {
         if (value?.configuration && Object.keys(value.configuration).length) {
                 this._configuration = value.configuration;
-                debugger;
+
+                this.initPageConfiguration(value?.pageConfiguration);
+                const page = value?.page;
+                this.flowService.recalculateEditorData(page , this._pageConfiguration);
+
                 this.flowHostObject = this.flowService.prepareFlowHostObject((value.configuration.GalleryConfig?.OnLoadFlow || null));
             if(value.configurationSource && Object.keys(value.configuration).length > 0){
                 this.configurationSource = value.configurationSource;
@@ -42,7 +46,6 @@ export class GalleryEditorComponent implements OnInit {
         }
         
         this._pageParameters = value?.pageParameters || {};
-        this._pageConfiguration = value?.pageConfiguration || this.defaultPageConfiguration;
     }
 
 
@@ -110,6 +113,10 @@ export class GalleryEditorComponent implements OnInit {
 
     }
     
+    private initPageConfiguration(value: PageConfiguration = null) {
+        this._pageConfiguration = value || JSON.parse(JSON.stringify(this.defaultPageConfiguration));
+    }
+
     public onHostObjectChange(event) {
         if(event && event.action) {
             if (event.action === 'set-configuration') {
@@ -221,7 +228,7 @@ export class GalleryEditorComponent implements OnInit {
     private loadDefaultConfiguration() {
         this._configuration = this.getDefaultHostObject();
         this.updateHostObject();
-        this.flowService.prepareFlowHostObject((this.configuration?.GalleryConfig?.OnLoadFlow || null)); 
+        this.flowHostObject = this.flowService.prepareFlowHostObject((this.configuration?.GalleryConfig?.OnLoadFlow || null)); 
     }
 
     private getDefaultCards(numOfCards: number = 0): Array<ICardEditor> {
@@ -297,25 +304,6 @@ export class GalleryEditorComponent implements OnInit {
     onDragEnd(event: CdkDragEnd) {
         this.galleryService.changeCursorOnDragEnd();
     }
-
-    // private prepareFlowHostObject() {
-    //     this.flowHostObject = {};
-    //     const runFlowData =  this.configuration?.GalleryConfig?.OnLoadFlow ? JSON.parse(atob( this.configuration.GalleryConfig.OnLoadFlow)) : null;
-    //     //const runFlowData = this.menuItem?.Flow || null;
-
-    //     const fields = {};
-
-    //     if (runFlowData) {
-    //         this.flowService.flowDynamicParameters.forEach((value, key) => {
-    //             fields[key] = {
-    //                 Type: value || 'String'
-    //             };
-    //         });
-    //     }
-        
-    //     this.flowHostObject['runFlowData'] = runFlowData?.FlowKey ? runFlowData : undefined;
-    //     this.flowHostObject['fields'] = fields;
-    // }
 
     onFlowChange(flowData: any) {
         const base64Flow = btoa(JSON.stringify(flowData));

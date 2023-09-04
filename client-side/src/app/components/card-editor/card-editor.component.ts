@@ -1,12 +1,10 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { PepStyleType, PepSizeType, PepColorService} from '@pepperi-addons/ngx-lib';
+import { PepStyleType, PepSizeType} from '@pepperi-addons/ngx-lib';
 import { PepDialogActionButton, PepDialogData, PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { IGallery } from 'src/app/gallery.model';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
-import { GalleryService } from 'src/common/gallery.service';
 import { FlowService } from 'src/app/services/flow.service';
 
 interface groupButtonArray {
@@ -19,7 +17,7 @@ interface groupButtonArray {
     templateUrl: './card-editor.component.html',
     styleUrls: ['./card-editor.component.scss']
 })
-export class CardEditorComponent implements OnInit {
+export class CardEditorComponent implements OnInit, AfterViewInit{
 
     @Input() configuration: IGallery;
     @Input() id: string;
@@ -42,20 +40,17 @@ export class CardEditorComponent implements OnInit {
 
     dialogRef: MatDialogRef<any>;
     
-    constructor(
+    constructor (
         private translate: TranslateService,
-        private pepColorService: PepColorService,
-        private pepDialogService: PepDialogService,
-        private viewContainerRef: ViewContainerRef,
-        private galleryService: GalleryService,
-        private flowService: FlowService,
-        private addonBlockLoaderService: PepAddonBlockLoaderService) {
-
+        private flowService: FlowService) {
     }
 
     async ngOnInit(): Promise<void> {
-        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise(); 
-        this.flowService.prepareFlowHostObject((this.configuration?.Cards[this.id]['Flow'] || null)); 
+        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();    
+    }
+
+    ngAfterViewInit(): void {
+        this.flowHostObject = this.flowService.prepareFlowHostObject((this.configuration?.Cards[this.id]['Flow'] || null)); 
     }
 
     getOrdinal(n) {
@@ -94,16 +89,16 @@ export class CardEditorComponent implements OnInit {
         });
     }
 
-    onSlideshowFieldChange(key, event){
-        if(event && event.source && event.source.key){
-            this.configuration.GalleryConfig[key] = event.source.key;
-        }
-        else{
-            this.configuration.GalleryConfig[key] = event;
-        }
+    // onSlideshowFieldChange(key, event){
+    //     if(event && event.source && event.source.key){
+    //         this.configuration.GalleryConfig[key] = event.source.key;
+    //     }
+    //     else{
+    //         this.configuration.GalleryConfig[key] = event;
+    //     }
 
-        this.updateHostObject();
-    }
+    //     this.updateHostObject();
+    // }
 
     onHostEvents(event: any) {
         if(event?.url) {
@@ -170,3 +165,4 @@ export class CardEditorComponent implements OnInit {
         this.updateHostObject(true);
     }
 }
+

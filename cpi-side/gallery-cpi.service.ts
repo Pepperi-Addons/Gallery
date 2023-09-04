@@ -17,8 +17,7 @@ class GalleryCpiService {
         return {};
     }
     
-    public  async getOptionsFromFlow(flowStr: string, state: any, context: IContext | undefined): Promise<any> {
-
+    public  async getOptionsFromFlow(flowStr: string, state: any, context: IContext | undefined, configuration = {}): Promise<any> {
         const flowData: FlowObject = flowStr?.length ? JSON.parse(Buffer.from(flowStr, 'base64').toString('utf8')) : {};
         
         if (flowData?.FlowKey?.length > 0) {
@@ -26,6 +25,7 @@ class GalleryCpiService {
             
             if (flowData.FlowParams) {
                 const dynamicParams: any = [];
+                
 
                 // Get all dynamic parameters to set their value on the data property later.
                 const keysArr = Object.keys(flowData.FlowParams);
@@ -40,23 +40,23 @@ class GalleryCpiService {
                 // Set the dynamic parameters values on the dynamicParamsData property.
                 for (let index = 0; index < dynamicParams.length; index++) {
                     const param = dynamicParams[index];
-                    dynamicParamsData[param] = state[param] || '';
+                    dynamicParamsData[param] = param === 'configuration' ? configuration : state[param] || '';
                 }
             }
-
             const flowToRun: RunFlowBody = {
                 RunFlow: flowData,
                 Data: dynamicParamsData,
                 context: context
             };
-
-            // Run the flow and return the object.
+            // Run the flow and return the options.
             const flowRes = await pepperi.flows.run(flowToRun);
             return flowRes;
         }
         else{
             return {};
         }
+
+        
     }
      /***********************************************************************************************/
     //                              Public functions
