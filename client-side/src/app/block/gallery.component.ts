@@ -57,7 +57,7 @@ export class GalleryComponent implements OnInit {
         const maxColumns = this.configuration?.galleryConfig?.maxColumns || 1;
         const spacing = gap == 'none' ? '0px' : '(var(--pep-spacing-'+ gap +') * '+ (maxColumns - 1) +')';
 
-        this.cardWidth = 'calc((100%  - '+ spacing +' ) / '+ maxColumns +' )';
+        this.cardWidth = 'calc((100%  - 2px - '+ spacing +' ) / '+ maxColumns +' )';
     }
 
     counter(i: number) {
