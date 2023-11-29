@@ -44,17 +44,18 @@ export async function dimx_export(client:Client, request: Request): Promise<any>
         throw err;
     }
 }
-
 export async function delete_relation(client:Client, request: Request) {
     try {
         const service = new MyService(client);
         const pageComponentRelation: Relation = {
             RelationName: "PageBlock",
-            Name: blockName,
-            Hidden: true,
+            Name: `${blockName}(Do not use)`,
+            Hidden: false,
             Type: "NgComponent",
             SubType: "NG14",
-            AddonUUID: client.AddonUUID
+            AddonUUID: client.AddonUUID,
+            ModuleName: `${blockName}Module`,
+            AddonRelativeURL: blockName.toLowerCase()
         };
         if (request.method == 'POST') {
             const result = await service.upsertRelation(pageComponentRelation);
@@ -64,7 +65,6 @@ export async function delete_relation(client:Client, request: Request) {
             throw new Error(`Method ${request.method} not supported`);
         }
     } catch(err) {
-        throw err;
+        return {success:false, errorMessage: err };
     }
 }
-
